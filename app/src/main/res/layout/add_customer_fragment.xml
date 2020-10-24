@@ -278,6 +278,7 @@
             android:id="@+id/ivBack"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:contentDescription="@string/back"
             android:src="@drawable/ic_arrow_back_black_18dp" />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

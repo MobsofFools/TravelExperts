@@ -71,7 +71,7 @@
     <string name="last_name">Last Name</string>
     <string name="agent_id">Agent ID</string>
     <string name="first_name">First Name</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="back">Back</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="product_name">Product Name</string>
     <string name="product_id">Product ID</string>
