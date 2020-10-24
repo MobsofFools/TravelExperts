@@ -38,7 +38,7 @@ public class PackageDataViewFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
+        packageDataViewViewModel = new ViewModelProvider(this).get(PackageDataViewViewModel.class);
         View root = inflater.inflate(R.layout.data_view_fragment_package,container,false);
 
         //Edit Texts
