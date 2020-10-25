@@ -20,9 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.19999999">
-<!--                android:fontFamily="@font/roboto_slab"
-                android:textSize="14sp"
-                android:importantForAutofill="no" -->
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -41,12 +39,13 @@
                 android:id="@+id/etCustId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:enabled="false"
                 android:ems="10"
-                android:inputType="number"
-                android:hint="@string/customer_id"
                 android:fontFamily="@font/roboto_slab"
-                android:textSize="14sp"
-                android:importantForAutofill="no"/>
+                android:hint="@string/customer_id"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView19"
@@ -132,7 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textEmailAddress"
                 android:hint="@string/prompt_email"
                 android:fontFamily="@font/roboto_slab"
                 android:textSize="14sp"

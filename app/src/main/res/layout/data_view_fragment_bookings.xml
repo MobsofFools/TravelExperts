@@ -36,11 +36,16 @@
                 android:text="@string/booking_id" />
 
             <EditText
-                android:id="@+id/editTextNumber"
+                android:id="@+id/etBookingId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:enabled="false"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:hint="@string/booking_id"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/textView12"
@@ -50,11 +55,15 @@
                 android:text="@string/booking_date" />
 
             <EditText
-                android:id="@+id/editTextDate"
+                android:id="@+id/etBookingDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="date" />
+                android:inputType="date"
+                android:hint="@string/booking_date"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no"/>
 
             <TextView
                 android:id="@+id/textView13"
@@ -64,11 +73,15 @@
                 android:text="@string/trip_type_id" />
 
             <EditText
-                android:id="@+id/editTextNumber3"
+                android:id="@+id/etBookingTripTypeId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:hint="@string/trip_type_id"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no"/>
 
         </LinearLayout>
 
@@ -87,12 +100,15 @@
                 android:text="@string/booking_no" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/etBookingNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name" />
+                android:hint="@string/booking_no"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no"/>
 
             <TextView
                 android:id="@+id/textView16"
@@ -102,11 +118,15 @@
                 android:text="@string/customer_id" />
 
             <EditText
-                android:id="@+id/editTextNumber2"
+                android:id="@+id/etBookingCustId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:hint="@string/customer_id"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no"/>
 
         </LinearLayout>
     </LinearLayout>

@@ -40,11 +40,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number"
-                android:hint="@string/package_id"
+                android:enabled="false"
                 android:fontFamily="@font/roboto_slab"
-                android:textSize="14sp"
-                android:importantForAutofill="no"/>
+                android:hint="@string/package_id"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView12"

@@ -66,7 +66,7 @@ public class CustomerDataViewFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        customerDataViewViewModel = ViewModelProviders.of(this).get(CustomerDataViewViewModel.class);
+        customerDataViewViewModel = new ViewModelProvider(this).get(CustomerDataViewViewModel.class);
         // TODO: Use the ViewModel
     }
 

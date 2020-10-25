@@ -1,6 +1,7 @@
 package com.edvinlin.travelexperts.ui.products;
 
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -49,7 +50,7 @@ public class AddProduct extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        addProductViewModel = ViewModelProviders.of(this).get(AddProductViewModel.class);
+        addProductViewModel = new ViewModelProvider(this).get(AddProductViewModel.class);
         // TODO: Use the ViewModel
     }
 
