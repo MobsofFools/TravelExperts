@@ -14,12 +14,14 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.edvinlin.travelexperts.R;
 
 public class CustomerDataViewFragment extends Fragment {
 
     private CustomerDataViewViewModel customerDataViewViewModel;
+    private EditText n;
 
     public static CustomerDataViewFragment newInstance() {
         return new CustomerDataViewFragment();

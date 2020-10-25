@@ -33,9 +33,9 @@ import org.json.JSONObject;
 public class TravelPackagesFragment extends Fragment {
 
     private TravelPackagesViewModel travelPackagesViewModel;
-    private RecyclerView rvList;
+/*    private RecyclerView rvList;
     private RecyclerView.Adapter rvAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.LayoutManager layoutManager;*/
 
 
     public static TravelPackagesFragment newInstance() {
