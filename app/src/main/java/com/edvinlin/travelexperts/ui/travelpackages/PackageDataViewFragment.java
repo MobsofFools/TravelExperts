@@ -23,8 +23,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class PackageDataViewFragment extends Fragment {
-    EditText txtPackageId, txtPkgStartDate, txtPkgEndDate, txtPkgName,
-            txtPkgBasePrice, txtPkgDesc, txtPkgAgencyCommission;
+    EditText PkgId, PkgStartDate, PkgEndDate, PkgName,
+            PkgBasePrice, PkgDesc, PkgAgencyCommission;
 
     private PackageDataViewViewModel packageDataViewViewModel;
 
@@ -39,13 +39,13 @@ public class PackageDataViewFragment extends Fragment {
         View root = inflater.inflate(R.layout.data_view_fragment_package,container,false);
 
         //Edit Texts
-        txtPackageId = root.findViewById(R.id.txtId);
-        txtPkgName = root.findViewById(R.id.txtPkgName);
-        txtPkgStartDate = root.findViewById(R.id.txtPkgStartDate);
-        txtPkgEndDate = root.findViewById(R.id.txtPkgEndDate);
-        txtPkgDesc = root.findViewById(R.id.txtPkgDesc);
-        txtPkgBasePrice = root.findViewById(R.id.txtPkgBasePrice);
-        txtPkgAgencyCommission = root.findViewById(R.id.txtPkgAgencyCommission);
+        PkgId = root.findViewById(R.id.etPkgId);
+        PkgName = root.findViewById(R.id.etPkgName);
+        PkgStartDate = root.findViewById(R.id.etPkgStartDate);
+        PkgEndDate = root.findViewById(R.id.etPkgEndDate);
+        PkgDesc = root.findViewById(R.id.etPkgDesc);
+        PkgBasePrice = root.findViewById(R.id.etPkgBasePrice);
+        PkgAgencyCommission = root.findViewById(R.id.etPkgAgencyCommission);
 
         //Common Ones
         final CardView back = root.findViewById(R.id.cardBack);
@@ -61,12 +61,12 @@ public class PackageDataViewFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 TravelPackage travelPackage = new TravelPackage(0,
-                        txtPkgName.getText().toString(),
-                        ((Date) txtPkgStartDate.getText()),
-                        ((Date) txtPkgEndDate.getText()),
-                        txtPkgDesc.getText().toString(),
-                        ((BigDecimal) txtPkgBasePrice.getText()),
-                        ((BigDecimal) txtPkgAgencyCommission.getText())
+                        PkgName.getText().toString(),
+                        ((Date) PkgStartDate.getText()),
+                        ((Date) PkgEndDate.getText()),
+                        PkgDesc.getText().toString(),
+                        ((BigDecimal) PkgBasePrice.getText()),
+                        ((BigDecimal) PkgAgencyCommission.getText())
                 );
             }
         });

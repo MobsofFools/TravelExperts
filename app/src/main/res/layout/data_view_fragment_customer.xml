@@ -20,7 +20,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.19999999">
-
+<!--                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no" -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -35,12 +37,34 @@
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/customer_id" />
 
+            <EditText
+                android:id="@+id/etCustId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="@string/customer_id"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no"/>
+
             <TextView
                 android:id="@+id/textView19"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/first_name" />
+
+            <EditText
+                android:id="@+id/etCustFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/first_name"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/textView18"
@@ -49,12 +73,34 @@
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/address" />
 
+            <EditText
+                android:id="@+id/etCustAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/address"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no"  />
+
             <TextView
                 android:id="@+id/textView20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/province" />
+
+            <EditText
+                android:id="@+id/etCustProv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/province"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/textView21"
@@ -63,12 +109,34 @@
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/country" />
 
+            <EditText
+                android:id="@+id/etCustCountry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/country"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no" />
+
             <TextView
                 android:id="@+id/textView25"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/prompt_email" />
+
+            <EditText
+                android:id="@+id/etCustEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/prompt_email"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no" />
 
         </LinearLayout>
 
@@ -86,12 +154,34 @@
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/agent_id" />
 
+            <EditText
+                android:id="@+id/etCustAgentId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="@string/agent_id"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no" />
+
             <TextView
                 android:id="@+id/textView10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/last_name" />
+
+            <EditText
+                android:id="@+id/etCustLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/last_name"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/textView9"
@@ -100,12 +190,34 @@
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/city" />
 
+            <EditText
+                android:id="@+id/etCustCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/city"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no" />
+
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/postal_code" />
+
+            <EditText
+                android:id="@+id/etCustPostal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/postal_code"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/textView22"
@@ -114,12 +226,34 @@
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/home_phone" />
 
+            <EditText
+                android:id="@+id/etCustHomePhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="phone"
+                android:hint="@string/home_phone"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no"/>
+
             <TextView
                 android:id="@+id/textView24"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/business_phone" />
+
+            <EditText
+                android:id="@+id/etCustBusPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="phone"
+                android:hint="@string/business_phone"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no"/>
 
         </LinearLayout>
     </LinearLayout>

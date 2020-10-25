@@ -30,8 +30,7 @@ public class AddTravelPackage extends Fragment {
     public static AddTravelPackage newInstance() {
         return new AddTravelPackage();
     }
-    EditText txtPkgStartDate, txtPkgEndDate, txtPkgName,
-            txtPkgBasePrice, txtPkgDesc, txtPkgAgencyCommission;
+    EditText PkgName, PkgBasePrice, PkgAgencyCommission, PkgStartDate, PkgEndDate, PkgDesc;
 
 
     @Override
@@ -41,12 +40,12 @@ public class AddTravelPackage extends Fragment {
         View root = inflater.inflate(R.layout.data_view_fragment_package,container,false);
 
         //Edit Texts
-        txtPkgName = root.findViewById(R.id.txtPkgName);
-        txtPkgStartDate = root.findViewById(R.id.txtPkgStartDate);
-        txtPkgEndDate = root.findViewById(R.id.txtPkgEndDate);
-        txtPkgDesc = root.findViewById(R.id.txtPkgDesc);
-        txtPkgBasePrice = root.findViewById(R.id.txtPkgBasePrice);
-        txtPkgAgencyCommission = root.findViewById(R.id.txtPkgAgencyCommission);
+        PkgName = root.findViewById(R.id.etaPkgName);
+        PkgStartDate = root.findViewById(R.id.etaPkgStartDate);
+        PkgEndDate = root.findViewById(R.id.etaPkgEndDate);
+        PkgDesc = root.findViewById(R.id.etaPkgDesc);
+        PkgBasePrice = root.findViewById(R.id.etaPkgBasePrice);
+        PkgAgencyCommission = root.findViewById(R.id.etaPkgAgencyCommission);
 
         //Common Ones
         final CardView back = root.findViewById(R.id.cardBack);
@@ -62,12 +61,12 @@ public class AddTravelPackage extends Fragment {
             @Override
             public void onClick(View v) {
                 TravelPackage travelPackage = new TravelPackage(0,
-                        txtPkgName.getText().toString(),
-                        ((Date) txtPkgStartDate.getText()),
-                        ((Date) txtPkgEndDate.getText()),
-                        txtPkgDesc.getText().toString(),
-                        ((BigDecimal) txtPkgBasePrice.getText()),
-                        ((BigDecimal) txtPkgAgencyCommission.getText())
+                        PkgName.getText().toString(),
+                        ((Date) PkgStartDate.getText()),
+                        ((Date) PkgEndDate.getText()),
+                        PkgDesc.getText().toString(),
+                        ((BigDecimal) PkgBasePrice.getText()),
+                        ((BigDecimal) PkgAgencyCommission.getText())
                 );
                 //Executors.newSingleThreadExecutor().execute(new PostPackage(travelPackage));
             }

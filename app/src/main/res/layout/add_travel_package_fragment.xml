@@ -35,6 +35,17 @@
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/package_name" />
 
+            <EditText
+                android:id="@+id/etaPkgName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/package_name"
+                android:inputType="textPersonName"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no" />
+
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="match_parent"
@@ -42,12 +53,35 @@
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/base_price" />
 
+            <EditText
+                android:id="@+id/etaPkgBasePrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/base_price"
+                android:inputType="numberDecimal"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no"/>
+
             <TextView
                 android:id="@+id/textView14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_slab"
-                android:text="@string/agency_commission" />
+                android:text="@string/agency_commission"
+                />
+
+            <EditText
+                android:id="@+id/etaPkgAgencyCommission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/agency_commission"
+                android:inputType="numberDecimal"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no"/>
 
         </LinearLayout>
 
@@ -65,12 +99,33 @@
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/start_date" />
 
+            <EditText
+                android:id="@+id/etaPkgStartDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="date"
+                android:hint="@string/start_date"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no"/>
+
             <TextView
                 android:id="@+id/textView16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/end_date" />
+            <EditText
+                android:id="@+id/etaPkgEndDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="date"
+                android:hint="@string/end_date"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no"/>
 
             <TextView
                 android:id="@+id/textView17"
@@ -78,6 +133,16 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/description" />
+            <EditText
+                android:id="@+id/etaPkgDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/description"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no"/>
 
         </LinearLayout>
     </LinearLayout>

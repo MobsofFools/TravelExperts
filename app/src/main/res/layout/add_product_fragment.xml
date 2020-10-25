@@ -30,6 +30,17 @@
             android:fontFamily="@font/roboto_slab"
             android:text="@string/product_name" />
 
+        <EditText
+            android:id="@+id/etaProductName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/product_name"
+            android:fontFamily="@font/roboto_slab"
+            android:textSize="14sp"
+            android:importantForAutofill="no"/>
+
     </LinearLayout>
 
     <Button

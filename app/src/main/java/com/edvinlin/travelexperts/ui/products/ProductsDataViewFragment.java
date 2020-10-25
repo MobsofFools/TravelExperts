@@ -22,8 +22,7 @@ import com.edvinlin.travelexperts.R;
 public class ProductsDataViewFragment extends Fragment {
 
     private ProductsDataViewViewModel productsDataViewViewModel;
-    private EditText txtId, txtPkgName, txtPkgStartDate, txtPkgEndDate,
-            txtPkgBasePrice, txtPkgDesc, txtPkgAgencyCommission;
+    private EditText ProductId, ProductName;
 
     public static ProductsDataViewFragment newInstance() {
         return new ProductsDataViewFragment();
@@ -35,13 +34,9 @@ public class ProductsDataViewFragment extends Fragment {
         View root = inflater.inflate(R.layout.data_view_fragment_products, container, false);
 
         //Edit Texts
-        txtId = root.findViewById(R.id.txtId);
-        txtPkgName = root.findViewById(R.id.txtPkgName);
-        txtPkgStartDate = root.findViewById(R.id.txtPkgStartDate);
-        txtPkgEndDate = root.findViewById(R.id.txtPkgEndDate);
-        txtPkgBasePrice = root.findViewById(R.id.txtPkgBasePrice);
-        txtPkgDesc = root.findViewById(R.id.txtPkgDesc);
-        txtPkgAgencyCommission = root.findViewById(R.id.txtPkgAgencyCommission);
+        ProductId = root.findViewById(R.id.etProductId);
+        ProductName = root.findViewById(R.id.etProductName);
+
 
         //Common Ones
         final CardView back = root.findViewById(R.id.cardBack);
