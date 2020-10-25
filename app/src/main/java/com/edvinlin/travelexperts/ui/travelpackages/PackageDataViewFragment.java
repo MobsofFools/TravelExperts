@@ -2,7 +2,6 @@ package com.edvinlin.travelexperts.ui.travelpackages;
 
 import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 
@@ -11,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +21,6 @@ import com.edvinlin.travelexperts.model.TravelPackage;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.concurrent.Executors;
 
 public class PackageDataViewFragment extends Fragment {
     EditText txtPackageId, txtPkgStartDate, txtPkgEndDate, txtPkgName,
@@ -42,7 +39,7 @@ public class PackageDataViewFragment extends Fragment {
         View root = inflater.inflate(R.layout.data_view_fragment_package,container,false);
 
         //Edit Texts
-        txtPackageId = root.findViewById(R.id.txtPackageId);
+        txtPackageId = root.findViewById(R.id.txtId);
         txtPkgName = root.findViewById(R.id.txtPkgName);
         txtPkgStartDate = root.findViewById(R.id.txtPkgStartDate);
         txtPkgEndDate = root.findViewById(R.id.txtPkgEndDate);
@@ -71,7 +68,6 @@ public class PackageDataViewFragment extends Fragment {
                         ((BigDecimal) txtPkgBasePrice.getText()),
                         ((BigDecimal) txtPkgAgencyCommission.getText())
                 );
-                //Executors.newSingleThreadExecutor().execute(new PostPackage(travelPackage));
             }
         });
         return root;

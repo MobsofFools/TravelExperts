@@ -1,5 +1,7 @@
 package com.edvinlin.travelexperts.ui.travelpackages;
 
+import androidx.cardview.widget.CardView;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -7,31 +9,76 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.edvinlin.travelexperts.R;
+import com.edvinlin.travelexperts.model.TravelPackage;
+
+import java.math.BigDecimal;
+import java.util.Date;
 
 public class AddTravelPackage extends Fragment {
 
-    private AddTravelPackageViewModel mViewModel;
+    private AddTravelPackageViewModel addTravelPackageViewModel;
 
     public static AddTravelPackage newInstance() {
         return new AddTravelPackage();
     }
+    EditText txtPkgStartDate, txtPkgEndDate, txtPkgName,
+            txtPkgBasePrice, txtPkgDesc, txtPkgAgencyCommission;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.add_travel_package_fragment, container, false);
+        addTravelPackageViewModel = new ViewModelProvider(this).get(AddTravelPackageViewModel.class);
+        View root = inflater.inflate(R.layout.data_view_fragment_package,container,false);
+
+        //Edit Texts
+        txtPkgName = root.findViewById(R.id.txtPkgName);
+        txtPkgStartDate = root.findViewById(R.id.txtPkgStartDate);
+        txtPkgEndDate = root.findViewById(R.id.txtPkgEndDate);
+        txtPkgDesc = root.findViewById(R.id.txtPkgDesc);
+        txtPkgBasePrice = root.findViewById(R.id.txtPkgBasePrice);
+        txtPkgAgencyCommission = root.findViewById(R.id.txtPkgAgencyCommission);
+
+        //Common Ones
+        final CardView back = root.findViewById(R.id.cardBack);
+        final Button btnSave = root.findViewById(R.id.btnSave);
+        final Button btnDelete = root.findViewById(R.id.btnDelete);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.navigation_packages);
+            }
+        });
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TravelPackage travelPackage = new TravelPackage(0,
+                        txtPkgName.getText().toString(),
+                        ((Date) txtPkgStartDate.getText()),
+                        ((Date) txtPkgEndDate.getText()),
+                        txtPkgDesc.getText().toString(),
+                        ((BigDecimal) txtPkgBasePrice.getText()),
+                        ((BigDecimal) txtPkgAgencyCommission.getText())
+                );
+                //Executors.newSingleThreadExecutor().execute(new PostPackage(travelPackage));
+            }
+        });
+        return root;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(AddTravelPackageViewModel.class);
+        addTravelPackageViewModel = new ViewModelProvider(this).get(AddTravelPackageViewModel.class);
         // TODO: Use the ViewModel
     }
 
