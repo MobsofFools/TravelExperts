@@ -36,7 +36,6 @@ public class CustomerDataViewFragment extends Fragment {
 
         //Edit Texts
         CustId = root.findViewById(R.id.etCustId);
-        CustAgentId = root.findViewById(R.id.etCustAgentId);
         CustFirstName = root.findViewById(R.id.etCustFirstName);
         CustLastName = root.findViewById(R.id.etCustLastName);
         CustAddress = root.findViewById(R.id.etCustAddress);

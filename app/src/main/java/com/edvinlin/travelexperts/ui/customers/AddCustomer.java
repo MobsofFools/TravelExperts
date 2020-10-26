@@ -34,7 +34,6 @@ public class AddCustomer extends Fragment {
         View root = inflater.inflate(R.layout.data_view_fragment_customer, container, false);
 
         //Edit Texts
-        CustAgentId = root.findViewById(R.id.etaCustAgentId);
         CustFirstName = root.findViewById(R.id.etaCustFirstName);
         CustLastName = root.findViewById(R.id.etaCustLastName);
         CustAddress = root.findViewById(R.id.etaCustAddress);

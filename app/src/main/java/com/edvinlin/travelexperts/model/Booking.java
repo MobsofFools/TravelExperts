@@ -1,17 +1,24 @@
 package com.edvinlin.travelexperts.model;
 import androidx.annotation.NonNull;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class Booking implements Serializable {
     private static final long serialVersionUID = 1L;
-
+    @SerializedName("bookingId")
     private int BookingId;
+    @SerializedName("bookingDate")
     private Date BookingDate;
+    @SerializedName("bookingNo")
     private String BookingNo;
+    @SerializedName("travelerCount")
     private double TravelerCount;
+    @SerializedName("customerId")
     private int CustomerId;
+    @SerializedName("tripTypeId")
     private String TripTypeId;
 
     public Booking(int bookingId, Date bookingDate, String bookingNo, double travelerCount, int customerId, String tripTypeId) {
@@ -73,6 +80,6 @@ public class Booking implements Serializable {
 
     @Override
     public String toString() {
-        return BookingNo.toString();
+        return BookingNo;
     }
 }

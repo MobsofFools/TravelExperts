@@ -2,24 +2,37 @@ package com.edvinlin.travelexperts.model;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
-
+    @SerializedName("customerId")
     private int CustomerId;
+    @SerializedName("custFirstName")
     private String CustFirstName;
+    @SerializedName("custLastName")
     private String CustLastName;
+    @SerializedName("custAddress")
     private String CustAddress;
+    @SerializedName("custCity")
     private String CustCity;
+    @SerializedName("custProv")
     private String CustProv;
+    @SerializedName("custCountry")
     private String CustCountry;
+    @SerializedName("custHomePhone")
     private String CustHomePhone;
+    @SerializedName("custBusPhone")
     private String CustBusPhone;
+    @SerializedName("custEmail")
     private String CustEmail;
-    private int AgentId;
+    @SerializedName("custPassword")
+    private String CustPassword;
 
-    public Customer(int customerId, String custFirstName, String custLastName, String custAddress, String custCity, String custProv, String custCountry, String custHomePhone, String custBusPhone, String custEmail, int agentId) {
+    public Customer(int customerId, String custFirstName, String custLastName, String custAddress, String custCity, String custProv,
+                    String custCountry, String custHomePhone, String custBusPhone, String custEmail, String custPassword) {
         this.CustomerId = customerId;
         this.CustFirstName = custFirstName;
         this.CustLastName = custLastName;
@@ -30,7 +43,8 @@ public class Customer implements Serializable {
         this.CustHomePhone = custHomePhone;
         this.CustBusPhone = custBusPhone;
         this.CustEmail = custEmail;
-        this.AgentId = agentId;
+        this.CustPassword = custPassword;
+
     }
 
     public int getCustomerId() {
@@ -113,12 +127,14 @@ public class Customer implements Serializable {
         this.CustEmail = custEmail;
     }
 
-    public int getAgentId() {
-        return this.AgentId;
+
+
+    public String getCustPassword() {
+        return CustPassword;
     }
 
-    public void setAgentId(int agentId) {
-        this.AgentId = agentId;
+    public void setCustPassword(String custPassword) {
+        CustPassword = custPassword;
     }
 
     @Override
