@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="fill_parent"
-        android:layout_height="400dp"
+        android:layout_height="375dp"
         android:layout_margin="10dp"
         android:baselineAligned="false"
         android:orientation="horizontal"
@@ -39,8 +39,8 @@
                 android:id="@+id/etCustId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
                 android:ems="10"
+                android:enabled="false"
                 android:fontFamily="@font/roboto_slab"
                 android:hint="@string/customer_id"
                 android:importantForAutofill="no"
@@ -59,11 +59,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="@string/first_name"
                 android:fontFamily="@font/roboto_slab"
-                android:textSize="14sp"
-                android:importantForAutofill="no" />
+                android:hint="@string/first_name"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView18"
@@ -77,11 +77,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="@string/address"
                 android:fontFamily="@font/roboto_slab"
-                android:textSize="14sp"
-                android:importantForAutofill="no"  />
+                android:hint="@string/address"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView20"
@@ -95,11 +95,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="@string/province"
                 android:fontFamily="@font/roboto_slab"
-                android:textSize="14sp"
-                android:importantForAutofill="no" />
+                android:hint="@string/province"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView21"
@@ -113,11 +113,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="@string/country"
                 android:fontFamily="@font/roboto_slab"
-                android:textSize="14sp"
-                android:importantForAutofill="no" />
+                android:hint="@string/country"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView25"
@@ -131,11 +131,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textEmailAddress"
-                android:hint="@string/prompt_email"
                 android:fontFamily="@font/roboto_slab"
-                android:textSize="14sp"
-                android:importantForAutofill="no" />
+                android:hint="@string/prompt_email"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -158,11 +158,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="@string/last_name"
                 android:fontFamily="@font/roboto_slab"
-                android:textSize="14sp"
-                android:importantForAutofill="no" />
+                android:hint="@string/last_name"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView9"
@@ -176,11 +176,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="@string/city"
                 android:fontFamily="@font/roboto_slab"
-                android:textSize="14sp"
-                android:importantForAutofill="no" />
+                android:hint="@string/city"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -194,11 +194,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="@string/postal_code"
                 android:fontFamily="@font/roboto_slab"
-                android:textSize="14sp"
-                android:importantForAutofill="no" />
+                android:hint="@string/postal_code"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView22"
@@ -212,11 +212,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="phone"
-                android:hint="@string/home_phone"
                 android:fontFamily="@font/roboto_slab"
-                android:textSize="14sp"
-                android:importantForAutofill="no"/>
+                android:hint="@string/home_phone"
+                android:importantForAutofill="no"
+                android:inputType="phone"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView24"
@@ -230,11 +230,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="phone"
-                android:hint="@string/business_phone"
                 android:fontFamily="@font/roboto_slab"
-                android:textSize="14sp"
-                android:importantForAutofill="no"/>
+                android:hint="@string/business_phone"
+                android:importantForAutofill="no"
+                android:inputType="phone"
+                android:textSize="14sp" />
 
         </LinearLayout>
     </LinearLayout>
@@ -263,7 +263,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSave"
-        app:layout_constraintVertical_bias="0.177" />
+        app:layout_constraintVertical_bias="0.064" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardBack"

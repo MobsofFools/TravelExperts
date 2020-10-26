@@ -1,6 +1,7 @@
 package com.edvinlin.travelexperts.model;
 import androidx.annotation.NonNull;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -9,77 +10,93 @@ import java.util.Date;
 public class Booking implements Serializable {
     private static final long serialVersionUID = 1L;
     @SerializedName("bookingId")
-    private int BookingId;
+    @Expose
+    private Integer bookingId;
     @SerializedName("bookingDate")
-    private Date BookingDate;
+    @Expose
+    private String bookingDate;
     @SerializedName("bookingNo")
-    private String BookingNo;
-    @SerializedName("travelerCount")
-    private double TravelerCount;
+    @Expose
+    private String bookingNo;
     @SerializedName("customerId")
-    private int CustomerId;
+    @Expose
+    private Integer customerId;
+    @SerializedName("packageId")
+    @Expose
+    private Integer packageId;
+    @SerializedName("travelerCount")
+    @Expose
+    private Double travelerCount;
     @SerializedName("tripTypeId")
-    private String TripTypeId;
+    @Expose
+    private String tripTypeId;
 
-    public Booking(int bookingId, Date bookingDate, String bookingNo, double travelerCount, int customerId, String tripTypeId) {
-        this.BookingId = bookingId;
-        this.BookingDate = bookingDate;
-        this.BookingNo = bookingNo;
-        this.TravelerCount = travelerCount;
-        this.CustomerId = customerId;
-        this.TripTypeId = tripTypeId;
+    public Booking(Integer bookingId, String bookingDate, String bookingNo, Integer customerId, Integer packageId, Double travelerCount, String tripTypeId) {
+        super();
+        this.bookingId = bookingId;
+        this.bookingDate = bookingDate;
+        this.bookingNo = bookingNo;
+        this.customerId = customerId;
+        this.packageId = packageId;
+        this.travelerCount = travelerCount;
+        this.tripTypeId = tripTypeId;
     }
 
-    public int getBookingId() {
-        return this.BookingId;
+    public Integer getBookingId() {
+        return bookingId;
     }
 
-    public void setBookingId(int bookingId) {
-        this.BookingId = bookingId;
+    public void setBookingId(Integer bookingId) {
+        this.bookingId = bookingId;
     }
 
-    public Date getBookingDate() {
-        return this.BookingDate;
+    public String getBookingDate() {
+        return bookingDate;
     }
 
-    public void setBookingDate(Date bookingDate) {
-        this.BookingDate = bookingDate;
+    public void setBookingDate(String bookingDate) {
+        this.bookingDate = bookingDate;
     }
 
     public String getBookingNo() {
-        return this.BookingNo;
+        return bookingNo;
     }
 
     public void setBookingNo(String bookingNo) {
-        this.BookingNo = bookingNo;
+        this.bookingNo = bookingNo;
     }
 
-    public double getTravelerCount() {
-        return this.TravelerCount;
+    public Integer getCustomerId() {
+        return customerId;
     }
 
-    public void setTravelerCount(double travelerCount) {
-        this.TravelerCount = travelerCount;
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
     }
 
-    public int getCustomerId() {
-        return this.CustomerId;
+    public Integer getPackageId() {
+        return packageId;
     }
 
-    public void setCustomerId(int customerId) {
-        this.CustomerId = customerId;
+    public void setPackageId(Integer packageId) {
+        this.packageId = packageId;
+    }
+
+    public Double getTravelerCount() {
+        return travelerCount;
+    }
+
+    public void setTravelerCount(Double travelerCount) {
+        this.travelerCount = travelerCount;
     }
 
     public String getTripTypeId() {
-        return this.TripTypeId;
+        return tripTypeId;
     }
 
     public void setTripTypeId(String tripTypeId) {
-        this.TripTypeId = tripTypeId;
-    }
-
-    @Override
-    public String toString() {
-        return BookingNo;
+        this.tripTypeId = tripTypeId;
     }
 }
+
+
