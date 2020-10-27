@@ -2,12 +2,19 @@ package com.edvinlin.travelexperts.model;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @SerializedName("productId")
+    @Expose
     private int ProductId;
+    @SerializedName("prodName")
+    @Expose
     private String ProdName;
 
     public Product(int productId, String prodName) {
@@ -31,8 +38,4 @@ public class Product implements Serializable {
         this.ProdName = prodName;
     }
 
-    @Override
-    public String toString() {
-        return ProdName;
-    }
 }

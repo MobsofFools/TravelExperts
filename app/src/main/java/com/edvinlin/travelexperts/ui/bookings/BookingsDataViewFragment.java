@@ -2,6 +2,7 @@ package com.edvinlin.travelexperts.ui.bookings;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import androidx.navigation.Navigation;
 
 import com.edvinlin.travelexperts.R;
 import com.edvinlin.travelexperts.model.Booking;
+import com.google.gson.Gson;
 
 public class BookingsDataViewFragment extends Fragment {
 
@@ -57,31 +59,44 @@ public class BookingsDataViewFragment extends Fragment {
         sharedBookingModel = new ViewModelProvider(requireActivity()).get(SharedBookingModel.class);
         sharedBookingModel.getBooking().observe(getViewLifecycleOwner(), booking -> updateUI(booking));
         btnSave.setOnClickListener(v -> {
-            Booking booking = new Booking (
-            Integer.parseInt(BookingId.getText().toString()),
-            BookingNo.getText().toString(),
-            BookingDate.getText().toString(),
-            Integer.parseInt(BookingCustId.getText().toString()),
-            Integer.parseInt(BookingTripTypeId.getText().toString()),
-            Double.parseDouble(BookingPackageId.getText().toString()),
-            BookingTravelerCount.getText().toString()
+            Booking booking = new Booking(
+                    Integer.parseInt(BookingId.getText().toString()),
+                    BookingDate.getText().toString(),
+                    BookingNo.getText().toString(),
+                    Integer.parseInt(BookingCustId.getText().toString()),
+                    Integer.parseInt(BookingPackageId.getText().toString()),
+                    Double.parseDouble(BookingTravelerCount.getText().toString()),
+                    BookingTripTypeId.getText().toString()
             );
-        sharedBookingModel.EditBooking(booking);
-        });
+            Gson gson = new Gson();
+            String json = gson.toJson(booking);
+            Log.d("TAG", booking.toString());
+            sharedBookingModel.EditBooking(booking);
+            Navigation.findNavController(v).navigate(R.id.navigation_bookings);
 
-        btnDelete.setOnClickListener(v -> DeleteAskOption());
+
+
+        });
+        btnDelete.setOnClickListener( v -> {
+            int id = Integer.parseInt(BookingId.getText().toString());
+            Log.d("TAG", String.valueOf(id));
+            DeleteAskOption(id);
+        });
     }
-    private AlertDialog DeleteAskOption() {
+
+
+    private AlertDialog DeleteAskOption(int id) {
         AlertDialog deleteDialogBox = new AlertDialog.Builder(getContext())
                 .setTitle("Delete")
                 .setMessage("Do you want to Delete?")
                 .setIcon(R.drawable.ic_warning_24px)
                 .setPositiveButton("Delete", (dialog, which) -> {
-                    int id = Integer.parseInt(BookingId.getText().toString());
                     sharedBookingModel.DeleteBooking(id);
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
                 .create();
+        Log.d("TAG", "ALERT");
+        deleteDialogBox.show();
         return deleteDialogBox;
     }
     private void updateUI(Booking booking) {

@@ -23,12 +23,11 @@ public class SharedBookingModel extends ViewModel {
     public MutableLiveData<List<Booking>> mutableBookingList = new MutableLiveData<>();
     public MutableLiveData<Booking> mutableBooking = new MutableLiveData<>();
     public List<Booking> bookingList;
-    ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+    public Booking testBooking;
+
 
     public LiveData<List<Booking>> getBookingList() {
-        if (mutableBookingList.getValue() == null) {
-            LoadBookings();
-        }
+        LoadBookings();
         return mutableBookingList;
     }
 
@@ -49,6 +48,7 @@ public class SharedBookingModel extends ViewModel {
     }
 
     private void LoadBookings() {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<List<Booking>> call = apiService.getBookingsAPI();
         call.enqueue(new Callback<List<Booking>>() {
             @Override
@@ -65,14 +65,57 @@ public class SharedBookingModel extends ViewModel {
         });
 
     }
+    //Needs Testing
     public void AddBooking(Booking booking) {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<Booking> call = apiService.createBookingAPI(booking);
+        call.enqueue(new Callback<Booking>() {
+            @Override
+            public void onResponse(Call<Booking> call, Response<Booking> response) {
+                testBooking = response.body();
+                Log.d("TAG","Response = " +testBooking);
+                mutableBooking.postValue(testBooking);
+            }
+
+            @Override
+            public void onFailure(Call<Booking> call, Throwable t) {
+                Log.d("TAG", "Response = " + t.toString());
+            }
+        });
     }
+    //Functional
     public void EditBooking(Booking booking) {
-        Call<ResponseBody> call = apiService.updateBookingAPI(booking);
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<Booking> call = apiService.updateBookingAPI(booking);
+        call.enqueue(new Callback<Booking>() {
+            @Override
+            public void onResponse(Call<Booking> call, Response<Booking> response) {
+                testBooking = response.body();
+                Log.d("TAG","Response = " +testBooking);
+                mutableBooking.postValue(testBooking);
+            }
+
+            @Override
+            public void onFailure(Call<Booking> call, Throwable t) {
+                Log.d("TAG", "Response = " + t.toString());
+            }
+        });
     }
+    //Still not functional
     public void DeleteBooking(int id) {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<ResponseBody> call = apiService.deleteBookingAPI(id);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.d("TAG","Response = Deleted");
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.d("TAG", "Response = " + t.toString());
+            }
+        });
     }
 
 }

@@ -2,6 +2,7 @@ package com.edvinlin.travelexperts.model;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -9,46 +10,62 @@ import java.io.Serializable;
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
     @SerializedName("customerId")
+    @Expose
     private Integer CustomerId;
-    @SerializedName("custFirstName")
-    private String CustFirstName;
-    @SerializedName("custLastName")
-    private String CustLastName;
-    @SerializedName("custAddress")
-    private String CustAddress;
-    @SerializedName("custCity")
-    private String CustCity;
-    @SerializedName("custProv")
-    private String CustProv;
-    @SerializedName("custCountry")
-    private String CustCountry;
-    @SerializedName("custHomePhone")
-    private String CustHomePhone;
-    @SerializedName("custBusPhone")
-    private String CustBusPhone;
-    @SerializedName("custPostal")
-    private String CustPostal;
-    @SerializedName("custEmail")
-    private String CustEmail;
-    @SerializedName("custPassword")
-    private String CustPassword;
 
-    public Customer(Integer customerId, String custFirstName, String custLastName,
-                    String custAddress, String custCity, String custProv, String custCountry,
-                    String custHomePhone, String custBusPhone, String custPostal, String custEmail,
-                    String custPassword) {
-        this.CustomerId = customerId;
-        this.CustFirstName = custFirstName;
-        this.CustLastName = custLastName;
-        this.CustAddress = custAddress;
-        this.CustCity = custCity;
-        this.CustProv = custProv;
-        this.CustCountry = custCountry;
-        this.CustHomePhone = custHomePhone;
-        this.CustBusPhone = custBusPhone;
-        this.CustPostal = custPostal;
-        this.CustEmail = custEmail;
-        this.CustPassword = custPassword;
+    @SerializedName("custAddress")
+    @Expose
+    private String CustAddress;
+
+    @SerializedName("custBusPhone")
+    @Expose
+    private String CustBusPhone;
+
+    @SerializedName("custCity")
+    @Expose
+    private String CustCity;
+
+    @SerializedName("custCountry")
+    @Expose
+    private String CustCountry;
+
+    @SerializedName("custEmail")
+    @Expose
+    private String CustEmail;
+
+    @SerializedName("custFirstName")
+    @Expose
+    private String CustFirstName;
+
+    @SerializedName("custHomePhone")
+    @Expose
+    private String CustHomePhone;
+
+    @SerializedName("custLastName")
+    @Expose
+    private String CustLastName;
+
+    @SerializedName("custPostal")
+    @Expose
+    private String CustPostal;
+
+    @SerializedName("custProv")
+    @Expose
+    private String CustProv;
+
+
+    public Customer(Integer customerId, String custAddress, String custBusPhone, String custCity, String custCountry, String custEmail, String custFirstName, String custHomePhone, String custLastName, String custPostal, String custProv) {
+        CustomerId = customerId;
+        CustAddress = custAddress;
+        CustBusPhone = custBusPhone;
+        CustCity = custCity;
+        CustCountry = custCountry;
+        CustEmail = custEmail;
+        CustFirstName = custFirstName;
+        CustHomePhone = custHomePhone;
+        CustLastName = custLastName;
+        CustPostal = custPostal;
+        CustProv = custProv;
     }
 
     public Integer getCustomerId() {
@@ -140,16 +157,5 @@ public class Customer implements Serializable {
         CustPostal = custPostal;
     }
 
-    public String getCustPassword() {
-        return CustPassword;
-    }
 
-    public void setCustPassword(String custPassword) {
-        CustPassword = custPassword;
-    }
-
-    @Override
-    public String toString() {
-        return CustFirstName + ' ' + CustLastName;
-    }
 }

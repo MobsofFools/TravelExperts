@@ -56,6 +56,17 @@ public class CustomersFragment extends Fragment implements OnRecyclerItemClickLi
         });
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        sharedCustomerModel.getCustomerList().observe(getViewLifecycleOwner(), customers -> {
+            customerList.clear();
+            customerList.addAll(customers);
+            customerAdapter.notifyDataSetChanged();
+        });
+    }
+
+
     private void initRecyclerView() {
         // Setting up Recycler View
         customerList = new ArrayList<>();

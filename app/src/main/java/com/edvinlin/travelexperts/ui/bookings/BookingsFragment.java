@@ -56,6 +56,16 @@ public class BookingsFragment extends Fragment implements OnRecyclerItemClickLis
         });
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        sharedBookingModel.getBookingList().observe(getViewLifecycleOwner(), bookings -> {
+            bookingList.clear();
+            bookingList.addAll(bookings);
+            bookingAdapter.notifyDataSetChanged();
+        });
+    }
+
     private void initRecyclerView() {
         // Setting up Recycler View
         bookingList = new ArrayList<>();

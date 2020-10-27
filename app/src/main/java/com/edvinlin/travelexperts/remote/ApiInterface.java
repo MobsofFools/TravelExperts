@@ -20,37 +20,37 @@ public interface ApiInterface {
 
     //Customers
     //Get All Customers
-    @GET("getcustomers")
+    @GET("getcustomers/")
     Call<List<Customer>> getCustomersAPI();
     //Get Single Customer
-    @GET("getcustomer/{ customerId }")
+    @GET("getcustomer/{ customerId }/")
     Call<Customer> getCustomer(@Path("customerId") int customerId);
     //Post Customer
     @POST("postcustomer")
     Call<Customer> createCustomerAPI(@Body Customer customer);
     //Put Customer
-    @PUT("putcustomer")
-    Call<ResponseBody> updateCustomerAPI(@Body Customer customer);
+    @PUT("putcustomer/")
+    Call<Customer> updateCustomerAPI(@Body Customer customer);
     //Delete Customer
-    @DELETE("deletecustomer/{ customerId }")
+    @DELETE("deletecustomer/{customerId}/")
     Call<ResponseBody> deleteCustomerAPI(@Path("customerId") int customerId);
 
 
     //Bookings
     //Get All Bookings
-    @GET("getbookings")
+    @GET("getbookings/")
     Call<List<Booking>> getBookingsAPI();
     //Get Specific Booking
-    @GET("getbooking/{bookingId}")
+    @GET("getbooking/{bookingId}/")
     Call<Booking> getBookingAPI(@Path("bookingId") int bookingId);
     //Post Booking
-    @POST("postbooking")
+    @POST("postbooking/")
     Call<Booking> createBookingAPI(@Body Booking booking);
     //Put Booking
-    @PUT("putbooking")
-    Call<ResponseBody> updateBookingAPI(@Body Booking booking);
+    @PUT("putbooking/")
+    Call<Booking> updateBookingAPI(@Body Booking booking);
     //Delete Customer
-    @DELETE("deletebooking/{ bookingId }")
+    @DELETE("deletebooking/{bookingId}/")
     Call<ResponseBody> deleteBookingAPI(@Path("bookingId") int bookingId);
 
 
@@ -58,16 +58,16 @@ public interface ApiInterface {
     //Get Packages
     @GET("gettravelpackages/")
     Call<List<TravelPackage>> getTravelPackagesAPI();
-    @GET("gettravelpackage/{packageId}")
+    @GET("gettravelpackage/{packageId}/")
     Call<TravelPackage> getPackageAPI(@Path("packageId") int packageId);
     //New Package
-    @POST("posttravelpackage")
+    @POST("posttravelpackage/")
     Call<TravelPackage> createTravelPackageAPI(@Body TravelPackage travelPackage);
     //Update/Replace Package
-    @PUT("puttravelpackage")
+    @PUT("puttravelpackage/")
     Call<ResponseBody> updateTravelPackageAPI(@Body TravelPackage travelPackage);
     //Delete Package
-    @DELETE("deletetravelpackage/{ packageId }")
+    @DELETE("deletetravelpackage/{ packageId }/")
     Call<ResponseBody> deletePackageAPI(@Path("packageId") int packageId);
 
 

@@ -2,6 +2,7 @@ package com.edvinlin.travelexperts.ui.customers;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import androidx.navigation.Navigation;
 
 import com.edvinlin.travelexperts.R;
 import com.edvinlin.travelexperts.model.Customer;
+import com.google.gson.Gson;
 
 public class CustomerDataViewFragment extends Fragment {
 
@@ -62,29 +64,39 @@ public class CustomerDataViewFragment extends Fragment {
         btnSave.setOnClickListener(v -> {
             Customer customer = new Customer (
                 Integer.parseInt(CustId.getText().toString()),
-                CustFirstName.getText().toString(),
-                CustLastName.getText().toString(),
                 CustAddress.getText().toString(),
-                CustCity.getText().toString(),
-                CustProv.getText().toString(),
-                CustPostal.getText().toString(),
-                CustCountry.getText().toString(),
-                CustHomePhone.getText().toString(),
                 CustBusPhone.getText().toString(),
+                CustCity.getText().toString(),
+                CustCountry.getText().toString(),
                 CustEmail.getText().toString(),
-                "password"
+                CustFirstName.getText().toString(),
+                CustHomePhone.getText().toString(),
+                CustLastName.getText().toString(),
+                CustPostal.getText().toString(),
+                CustProv.getText().toString()
+
+
+
                 );
+            Gson gson = new Gson();
+            String json = gson.toJson(customer);
+            Log.d("TAG", customer.toString());
             sharedCustomerModel.EditCustomer(customer);
+            Navigation.findNavController(v).navigate(R.id.navigation_customers);
+        });
+        btnDelete.setOnClickListener(v -> {
+            int id = Integer.parseInt(CustId.getText().toString());
+            Log.d("TAG", String.valueOf(id));
+            DeleteAskOption(id);
         });
         
     }
-    private AlertDialog DeleteAskOption() {
+    private AlertDialog DeleteAskOption(int id) {
         AlertDialog deleteDialogBox = new AlertDialog.Builder(getContext())
                 .setTitle("Delete")
                 .setMessage("Do you want to Delete?")
                 .setIcon(R.drawable.ic_warning_24px)
                 .setPositiveButton("Delete", (dialog, which) -> {
-                    int id = Integer.parseInt(CustId.getText().toString());
                     sharedCustomerModel.DeleteCustomer(id);
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())

@@ -72,8 +72,7 @@ public class AddCustomer extends Fragment {
                     CustHomePhone.getText().toString(),
                     CustBusPhone.getText().toString(),
                     CustEmail.getText().toString(),
-                    CustPostal.getText().toString(),
-                    "password"
+                    CustPostal.getText().toString()
             );
             sharedCustomerModel.AddCustomer(customer);
         });

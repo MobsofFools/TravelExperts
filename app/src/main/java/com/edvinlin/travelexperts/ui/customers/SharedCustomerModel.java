@@ -22,12 +22,11 @@ public class SharedCustomerModel extends ViewModel {
     public MutableLiveData<List<Customer>> mutableCustomerList = new MutableLiveData<>();
     public MutableLiveData<Customer> mutableCustomer = new MutableLiveData<>();
     public List<Customer> customerList;
-    ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+    public Customer testCustomer;
+
 
     public LiveData<List<Customer>> getCustomerList() {
-        if (mutableCustomerList.getValue() == null) {
-            LoadCustomers();
-        }
+        LoadCustomers();
         return mutableCustomerList;
     }
     public LiveData<Customer> getCustomer() {return mutableCustomer;}
@@ -60,12 +59,28 @@ public class SharedCustomerModel extends ViewModel {
         });
     }
     public void AddCustomer(Customer customer) {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<Customer> call = apiService.createCustomerAPI(customer);
     }
     public void EditCustomer(Customer customer) {
-        Call<ResponseBody> call = apiService.updateCustomerAPI(customer);
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<Customer> call = apiService.updateCustomerAPI(customer);
+        call.enqueue(new Callback<Customer>() {
+            @Override
+            public void onResponse(Call<Customer> call, Response<Customer> response) {
+                testCustomer = response.body();
+                Log.d("TAG", "Response = " +testCustomer);
+                mutableCustomer.postValue(testCustomer);
+            }
+
+            @Override
+            public void onFailure(Call<Customer> call, Throwable t) {
+                Log.d("TAG", "Response = " + t.toString());
+            }
+        });
     }
     public void DeleteCustomer(int id) {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<ResponseBody> call = apiService.deleteCustomerAPI(id);
     }
 }

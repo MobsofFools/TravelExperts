@@ -40,7 +40,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.mViewH
 
     @Override
     public void onBindViewHolder(@NonNull mViewHolder holder, int position) {
-        holder.customerName.setText(customerList.get(position).toString());
+        holder.customerName.setText(customerList.get(position).getCustFirstName() + " " +customerList.get(position).getCustLastName());
         holder.phoneNo.setText(customerList.get(position).getCustHomePhone());
     }
 
