@@ -60,22 +60,38 @@
         android:id="@+id/navigation_addbooking"
         android:name="com.edvinlin.travelexperts.ui.bookings.AddBooking"
         android:label="@string/card4"
-        tools:layout="@layout/add_booking_fragment" />
+        tools:layout="@layout/add_booking_fragment" >
+        <action
+            android:id="@+id/action_navigation_addbooking_to_navigation_bookingsdataview"
+            app:destination="@id/navigation_bookingsdataview" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_addcustomer"
         android:name="com.edvinlin.travelexperts.ui.customers.AddCustomer"
         android:label="@string/card3"
-        tools:layout="@layout/add_customer_fragment" />
+        tools:layout="@layout/add_customer_fragment" >
+        <action
+            android:id="@+id/action_navigation_addcustomer_to_navigation_customerdataview"
+            app:destination="@id/navigation_customerdataview" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_addproduct"
         android:name="com.edvinlin.travelexperts.ui.products.AddProduct"
         android:label="@string/card5"
-        tools:layout="@layout/add_product_fragment" />
+        tools:layout="@layout/add_product_fragment" >
+        <action
+            android:id="@+id/action_navigation_addproduct_to_navigation_productdataview"
+            app:destination="@id/navigation_productdataview" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_addpackage"
         android:name="com.edvinlin.travelexperts.ui.travelpackages.AddTravelPackage"
         android:label="@string/card1"
-        tools:layout="@layout/add_travel_package_fragment" />
+        tools:layout="@layout/add_travel_package_fragment" >
+        <action
+            android:id="@+id/action_navigation_addpackage_to_navigation_packagedataview"
+            app:destination="@id/navigation_packagedataview" />
+    </fragment>
 
     <!-- Card Fragments -->
     <fragment

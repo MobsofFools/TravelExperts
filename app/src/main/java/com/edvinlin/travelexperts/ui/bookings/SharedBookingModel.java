@@ -39,12 +39,12 @@ public class SharedBookingModel extends ViewModel {
         try {
             Booking booking = mutableBookingList.getValue().get(position);
             mutableBooking.setValue(booking);
-        }catch(Exception e)
-        {
+        }catch(Exception e) {
             e.printStackTrace();
         }
-
-
+    }
+    public void setBookingAdded(Booking booking) {
+        mutableBooking.setValue(booking);
     }
 
     private void LoadBookings() {

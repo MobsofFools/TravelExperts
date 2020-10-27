@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ public class AddCustomer extends Fragment {
 
     private SharedCustomerModel sharedCustomerModel;
     private EditText CustFirstName, CustLastName, CustAddress, CustCity, CustProv, CustPostal, CustCountry, CustHomePhone, CustEmail, CustBusPhone;
+    private NavController navController;
 
     public static AddCustomer newInstance() {
         return new AddCustomer();
@@ -63,18 +65,20 @@ public class AddCustomer extends Fragment {
 
         btnAdd.setOnClickListener(v -> {
             Customer customer = new Customer(0,
-                    CustFirstName.getText().toString(),
-                    CustLastName.getText().toString(),
                     CustAddress.getText().toString(),
-                    CustCity.getText().toString(),
-                    CustProv.getText().toString(),
-                    CustCountry.getText().toString(),
-                    CustHomePhone.getText().toString(),
                     CustBusPhone.getText().toString(),
+                    CustCity.getText().toString(),
+                    CustCountry.getText().toString(),
                     CustEmail.getText().toString(),
-                    CustPostal.getText().toString()
+                    CustFirstName.getText().toString(),
+                    CustHomePhone.getText().toString(),
+                    CustLastName.getText().toString(),
+                    CustPostal.getText().toString(),
+                    CustProv.getText().toString()
             );
             sharedCustomerModel.AddCustomer(customer);
+            sharedCustomerModel.setCustomerAdded(customer);
+            navController.navigate(R.id.action_navigation_addcustomer_to_navigation_customerdataview);
         });
     }
 }

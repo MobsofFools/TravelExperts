@@ -81,4 +81,5 @@
     <string name="trip_type_id">Trip Type Id</string>
     <string name="add">Add</string>
     <string name="travelercount">Traveler Count</string>
+    <string name="yyyy_mm_dd">YYYY-MM-DD</string>
 </resources>

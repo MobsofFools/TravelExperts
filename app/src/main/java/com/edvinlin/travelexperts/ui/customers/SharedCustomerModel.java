@@ -40,6 +40,11 @@ public class SharedCustomerModel extends ViewModel {
         }
 
     }
+    public void setCustomerAdded(Customer customer)
+    {
+        mutableCustomer.setValue(customer);
+    }
+
     private void LoadCustomers() {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<List<Customer>> call = apiService.getCustomersAPI();
@@ -61,6 +66,19 @@ public class SharedCustomerModel extends ViewModel {
     public void AddCustomer(Customer customer) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<Customer> call = apiService.createCustomerAPI(customer);
+        call.enqueue(new Callback<Customer>() {
+            @Override
+            public void onResponse(Call<Customer> call, Response<Customer> response) {
+                testCustomer = response.body();
+                Log.d("TAG", "Response = " +testCustomer);
+                mutableCustomer.postValue(testCustomer);
+            }
+
+            @Override
+            public void onFailure(Call<Customer> call, Throwable t) {
+                Log.d("TAG", "Response = " + t.toString());
+            }
+        });
     }
     public void EditCustomer(Customer customer) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);

@@ -1,20 +1,22 @@
 package com.edvinlin.travelexperts.ui.bookings;
 
-import androidx.cardview.widget.CardView;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.edvinlin.travelexperts.R;
 import com.edvinlin.travelexperts.model.Booking;
@@ -23,12 +25,13 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class AddBooking extends Fragment {
 
+    private NavController navController;
     private SharedBookingModel sharedBookingModel;
     private EditText BookingNo, BookingDate, BookingCustId, BookingTripTypeId, TravelerCount, PackageId;
 
@@ -56,28 +59,73 @@ public class AddBooking extends Fragment {
         TravelerCount = view.findViewById(R.id.etaTravelerCount);
         PackageId = view.findViewById(R.id.etaPackageId);
 
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         Date c = Calendar.getInstance().getTime();
-        BookingDate.setText(c.toString());
+        String date = simpleDateFormat.format(c);
+        BookingDate.setText(date);
         BookingNo.setText(generateBookingNo());
+
+        BookingNo.addTextChangedListener(textWatcher);
+        BookingDate.addTextChangedListener(textWatcher);
+        BookingCustId.addTextChangedListener(textWatcher);
+        BookingTripTypeId.addTextChangedListener(textWatcher);
+        TravelerCount.addTextChangedListener(textWatcher);
+        PackageId.addTextChangedListener(textWatcher);
+
+
 
         //Common Ones
         final CardView back = view.findViewById(R.id.cardBack);
         final Button btnAdd = view.findViewById(R.id.btnAdd);
 
         back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_bookings));
+
+
+
         btnAdd.setOnClickListener(v -> {
             Booking booking = new Booking(0,
                     BookingDate.getText().toString(),
                     BookingNo.getText().toString(),
                     Integer.parseInt(BookingCustId.getText().toString()),
                     Integer.parseInt(PackageId.getText().toString()),
-                    Double.parseDouble(TravelerCount.getText().toString()),
+                    Integer.parseInt(TravelerCount.getText().toString()),
                     BookingTripTypeId.getText().toString()
             );
             sharedBookingModel.AddBooking(booking);
+            sharedBookingModel.setBookingAdded(booking);
+            Log.d("TAG", booking.toString());
+            Navigation.findNavController(view).navigate(R.id.navigation_bookings);
 
         });
     }
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String i1 = BookingDate.getText().toString();
+            String i2 = BookingNo.getText().toString();
+            String i3 = BookingCustId.getText().toString();
+            String i4 = PackageId.getText().toString();
+            String i5 = TravelerCount.getText().toString();
+            String i6 = BookingTripTypeId.getText().toString();
+            Button btnAdd = getView().findViewById(R.id.btnAdd);
+            btnAdd.setEnabled(!i1.isEmpty() && !i2.isEmpty() && !i3.isEmpty()
+                    && !i4.isEmpty() && !i5.isEmpty() && !i6.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+
+
+
     public String generateBookingNo() {
         int min = 1;
         int max = 4;

@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavGraph;
 import androidx.navigation.Navigation;
 
 import com.edvinlin.travelexperts.R;
@@ -65,7 +66,7 @@ public class BookingsDataViewFragment extends Fragment {
                     BookingNo.getText().toString(),
                     Integer.parseInt(BookingCustId.getText().toString()),
                     Integer.parseInt(BookingPackageId.getText().toString()),
-                    Double.parseDouble(BookingTravelerCount.getText().toString()),
+                    Integer.parseInt(BookingTravelerCount.getText().toString()),
                     BookingTripTypeId.getText().toString()
             );
             Gson gson = new Gson();
@@ -92,6 +93,7 @@ public class BookingsDataViewFragment extends Fragment {
                 .setIcon(R.drawable.ic_warning_24px)
                 .setPositiveButton("Delete", (dialog, which) -> {
                     sharedBookingModel.DeleteBooking(id);
+                    Navigation.findNavController(getView()).navigate(R.id.navigation_bookings);
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
                 .create();
@@ -99,6 +101,8 @@ public class BookingsDataViewFragment extends Fragment {
         deleteDialogBox.show();
         return deleteDialogBox;
     }
+
+
     private void updateUI(Booking booking) {
         if (booking.getBookingId() == null) BookingId.setText("");
         else BookingId.setText(String.valueOf(booking.getBookingId()));

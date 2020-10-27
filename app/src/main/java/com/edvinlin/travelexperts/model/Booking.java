@@ -28,12 +28,12 @@ public class Booking implements Serializable {
     private Integer packageId;
     @SerializedName("travelerCount")
     @Expose
-    private Double travelerCount;
+    private Integer travelerCount;
     @SerializedName("tripTypeId")
     @Expose
     private String tripTypeId;
 
-    public Booking(Integer bookingId, String bookingDate, String bookingNo, Integer customerId, Integer packageId, Double travelerCount, String tripTypeId) {
+    public Booking(Integer bookingId, String bookingDate, String bookingNo, Integer customerId, Integer packageId, Integer travelerCount, String tripTypeId) {
         super();
         this.bookingId = bookingId;
         this.bookingDate = bookingDate;
@@ -85,11 +85,11 @@ public class Booking implements Serializable {
         this.packageId = packageId;
     }
 
-    public Double getTravelerCount() {
+    public Integer getTravelerCount() {
         return travelerCount;
     }
 
-    public void setTravelerCount(Double travelerCount) {
+    public void setTravelerCount(Integer travelerCount) {
         this.travelerCount = travelerCount;
     }
 
