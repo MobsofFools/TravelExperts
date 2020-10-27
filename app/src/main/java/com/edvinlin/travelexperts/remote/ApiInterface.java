@@ -64,8 +64,8 @@ public interface ApiInterface {
     @POST("posttravelpackage")
     Call<TravelPackage> createTravelPackageAPI(@Body TravelPackage travelPackage);
     //Update/Replace Package
-//    @PUT("puttravelpackage")
-//    Call<RequestBody> updateTravelPackageAPI(@Body TravelPackage travelPackage);
+    @PUT("puttravelpackage")
+    Call<ResponseBody> updateTravelPackageAPI(@Body TravelPackage travelPackage);
     //Delete Package
     @DELETE("deletetravelpackage/{ packageId }")
     Call<ResponseBody> deletePackageAPI(@Path("packageId") int packageId);

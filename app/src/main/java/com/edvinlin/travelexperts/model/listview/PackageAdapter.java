@@ -16,12 +16,14 @@ import java.util.List;
 
 public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.mViewHolder> {
 
+    OnRecyclerItemClickListener onRecyclerItemClickListener;
     private Context context;
     private List<TravelPackage> packageList;
 
-    public PackageAdapter(Context context, List<TravelPackage> list) {
+    public PackageAdapter(Context context, List<TravelPackage> list, OnRecyclerItemClickListener onRecyclerItemClickListener) {
         this.context = context;
         this.packageList = list;
+        this.onRecyclerItemClickListener = onRecyclerItemClickListener;
     }
 
     public void setPackageList(List<TravelPackage> packageList) {
@@ -59,6 +61,7 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.mViewHol
             super(itemView);
             packageName = itemView.findViewById(R.id.item1);
             packageStartDate = itemView.findViewById(R.id.item2);
+            itemView.setOnClickListener(v -> onRecyclerItemClickListener.onItemClick(getAdapterPosition()));
 
         }
     }

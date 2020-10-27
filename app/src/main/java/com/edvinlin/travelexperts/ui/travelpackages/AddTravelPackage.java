@@ -25,34 +25,46 @@ import java.util.Date;
 
 public class AddTravelPackage extends Fragment {
 
-
+    private SharedPackageModel sharedPackageModel;
+    private EditText PkgName, PkgBasePrice, PkgAgencyCommission, PkgStartDate, PkgEndDate, PkgDesc;
     public static AddTravelPackage newInstance() {
         return new AddTravelPackage();
     }
-    EditText PkgName, PkgBasePrice, PkgAgencyCommission, PkgStartDate, PkgEndDate, PkgDesc;
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.add_travel_package_fragment,container,false);
-
-        //Edit Texts
-        PkgName = root.findViewById(R.id.etaPkgName);
-        PkgStartDate = root.findViewById(R.id.etaPkgStartDate);
-        PkgEndDate = root.findViewById(R.id.etaPkgEndDate);
-        PkgDesc = root.findViewById(R.id.etaPkgDesc);
-        PkgBasePrice = root.findViewById(R.id.etaPkgBasePrice);
-        PkgAgencyCommission = root.findViewById(R.id.etaPkgAgencyCommission);
-
-        //Common Ones
-        final CardView back = root.findViewById(R.id.cardBack);
-        final Button btnAdd = root.findViewById(R.id.btnAdd);
-
-        back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_packages));
-
-        return root;
+        return inflater.inflate(R.layout.add_travel_package_fragment,container,false);
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //Edit Texts
+        PkgName = view.findViewById(R.id.etaPkgName);
+        PkgStartDate = view.findViewById(R.id.etaPkgStartDate);
+        PkgEndDate = view.findViewById(R.id.etaPkgEndDate);
+        PkgDesc = view.findViewById(R.id.etaPkgDesc);
+        PkgBasePrice = view.findViewById(R.id.etaPkgBasePrice);
+        PkgAgencyCommission = view.findViewById(R.id.etaPkgAgencyCommission);
+
+        //Common Ones
+        final CardView back = view.findViewById(R.id.cardBack);
+        final Button btnAdd = view.findViewById(R.id.btnAdd);
+
+        back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_packages));
+        btnAdd.setOnClickListener(v -> {
+            TravelPackage travelPackage = new TravelPackage(0,
+                    PkgName.getText().toString(),
+                    PkgStartDate.getText().toString(),
+                    PkgEndDate.getText().toString(),
+                    PkgDesc.getText().toString(),
+                    Double.parseDouble(PkgBasePrice.getText().toString()),
+                    Double.parseDouble(PkgAgencyCommission.getText().toString())
+                    );
+            sharedPackageModel.AddPackage(travelPackage);
+        });
+
+    }
 }

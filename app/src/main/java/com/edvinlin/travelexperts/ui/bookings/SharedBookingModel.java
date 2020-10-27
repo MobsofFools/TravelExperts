@@ -49,7 +49,6 @@ public class SharedBookingModel extends ViewModel {
     }
 
     private void LoadBookings() {
-        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<List<Booking>> call = apiService.getBookingsAPI();
         call.enqueue(new Callback<List<Booking>>() {
             @Override

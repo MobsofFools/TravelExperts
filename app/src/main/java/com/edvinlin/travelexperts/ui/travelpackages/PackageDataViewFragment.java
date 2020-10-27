@@ -3,6 +3,7 @@ package com.edvinlin.travelexperts.ui.travelpackages;
 import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class PackageDataViewFragment extends Fragment {
+
+    private SharedPackageModel sharedPackageModel;
     EditText PkgId, PkgStartDate, PkgEndDate, PkgName,
             PkgBasePrice, PkgDesc, PkgAgencyCommission;
 
@@ -33,23 +36,79 @@ public class PackageDataViewFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.data_view_fragment_package,container,false);
 
+        return inflater.inflate(R.layout.data_view_fragment_package,container,false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         //Edit Texts
-        PkgId = root.findViewById(R.id.etPkgId);
-        PkgName = root.findViewById(R.id.etPkgName);
-        PkgStartDate = root.findViewById(R.id.etPkgStartDate);
-        PkgEndDate = root.findViewById(R.id.etPkgEndDate);
-        PkgDesc = root.findViewById(R.id.etPkgDesc);
-        PkgBasePrice = root.findViewById(R.id.etPkgBasePrice);
-        PkgAgencyCommission = root.findViewById(R.id.etPkgAgencyCommission);
+        PkgId = view.findViewById(R.id.etPkgId);
+        PkgName = view.findViewById(R.id.etPkgName);
+        PkgStartDate = view.findViewById(R.id.etPkgStartDate);
+        PkgEndDate = view.findViewById(R.id.etPkgEndDate);
+        PkgDesc = view.findViewById(R.id.etPkgDesc);
+        PkgBasePrice = view.findViewById(R.id.etPkgBasePrice);
+        PkgAgencyCommission = view.findViewById(R.id.etPkgAgencyCommission);
 
         //Common Ones
-        final CardView back = root.findViewById(R.id.cardBack);
-        final Button btnSave = root.findViewById(R.id.btnSave);
-        final Button btnDelete = root.findViewById(R.id.btnDelete);
+        final CardView back = view.findViewById(R.id.cardBack);
+        final Button btnSave = view.findViewById(R.id.btnSave);
+        final Button btnDelete = view.findViewById(R.id.btnDelete);
         back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_packages));
+        sharedPackageModel = new ViewModelProvider(requireActivity()).get(SharedPackageModel.class);
+        sharedPackageModel.getPackage().observe(getViewLifecycleOwner(), travelPackage -> {
+            updateUI(travelPackage);
+        });
+        btnSave.setOnClickListener(v -> {
+            TravelPackage travelPackage = new TravelPackage(
+                    Integer.parseInt(PkgId.getText().toString()),
+                    PkgName.getText().toString(),
+                    PkgStartDate.getText().toString(),
+                    PkgEndDate.getText().toString(),
+                    PkgDesc.getText().toString(),
+                    Double.parseDouble(PkgBasePrice.getText().toString()),
+                    Double.parseDouble(PkgAgencyCommission.getText().toString())
+            );
+            sharedPackageModel.EditPackage(travelPackage);
+        });
+        btnDelete.setOnClickListener(v -> DeleteAskOption());
+    }
 
-        return root;
+    private AlertDialog DeleteAskOption() {
+        AlertDialog deleteDialogBox = new AlertDialog.Builder(getContext())
+                .setTitle("Delete")
+                .setMessage("Do you want to Delete?")
+                .setIcon(R.drawable.ic_warning_24px)
+                .setPositiveButton("Delete", (dialog, which) -> {
+                    int id = Integer.parseInt(PkgId.getText().toString());
+                    sharedPackageModel.DeletePackage(id);
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                .create();
+        return deleteDialogBox;
+    }
+    private void updateUI(TravelPackage travelPackage) {
+        if (travelPackage.getPackageId() == null) PkgId.setText("");
+        else PkgId.setText(String.valueOf(travelPackage.getPackageId()));
+
+        if (travelPackage.getPkgName() == null) PkgName.setText("");
+        else PkgName.setText(travelPackage.getPkgName());
+
+        if (travelPackage.getPkgStartDate() == null) PkgStartDate.setText("");
+        else PkgStartDate.setText(travelPackage.getPkgStartDate());
+
+        if (travelPackage.getPkgEndDate() == null) PkgEndDate.setText("");
+        else PkgEndDate.setText(travelPackage.getPkgEndDate());
+
+        if (travelPackage.getPkgDesc() == null) PkgDesc.setText("");
+        else PkgDesc.setText(travelPackage.getPkgDesc());
+
+        if (travelPackage.getPkgBasePrice() == null) PkgBasePrice.setText("");
+        else PkgBasePrice.setText(String.valueOf(travelPackage.getPkgBasePrice()));
+
+        if (travelPackage.getPkgAgencyCommission() == null) PkgAgencyCommission.setText("");
+        else PkgAgencyCommission.setText(String.valueOf(travelPackage.getPkgAgencyCommission()));
     }
 }

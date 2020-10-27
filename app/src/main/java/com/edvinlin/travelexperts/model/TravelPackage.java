@@ -13,7 +13,7 @@ public class TravelPackage implements Serializable {
     private static final long serialVersionUID = 1L;
     @SerializedName("packageId")
     @Expose
-    private int PackageId;
+    private Integer PackageId;
     @SerializedName("pkgName")
     @Expose
     private String PkgName;
@@ -33,7 +33,7 @@ public class TravelPackage implements Serializable {
     @Expose
     private Double PkgAgencyCommission;
 
-    public TravelPackage(int packageId, String pkgName, String pkgStartDate, String pkgEndDate, String pkgDesc, Double pkgBasePrice, Double pkgAgencyCommission) {
+    public TravelPackage(Integer packageId, String pkgName, String pkgStartDate, String pkgEndDate, String pkgDesc, Double pkgBasePrice, Double pkgAgencyCommission) {
         PackageId = packageId;
         PkgName = pkgName;
         PkgStartDate = pkgStartDate;
@@ -43,11 +43,11 @@ public class TravelPackage implements Serializable {
         PkgAgencyCommission = pkgAgencyCommission;
     }
 
-    public int getPackageId() {
+    public Integer getPackageId() {
         return PackageId;
     }
 
-    public void setPackageId(int packageId) {
+    public void setPackageId(Integer packageId) {
         PackageId = packageId;
     }
 

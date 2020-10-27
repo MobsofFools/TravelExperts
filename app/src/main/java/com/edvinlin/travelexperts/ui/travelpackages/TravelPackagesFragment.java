@@ -9,13 +9,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.edvinlin.travelexperts.R;
 import com.edvinlin.travelexperts.model.TravelPackage;
+import com.edvinlin.travelexperts.model.listview.OnRecyclerItemClickListener;
 import com.edvinlin.travelexperts.model.listview.PackageAdapter;
 import com.edvinlin.travelexperts.remote.ApiClient;
 import com.edvinlin.travelexperts.remote.ApiInterface;
@@ -28,11 +31,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TravelPackagesFragment extends Fragment {
+public class TravelPackagesFragment extends Fragment implements OnRecyclerItemClickListener {
 
+    private SharedPackageModel sharedPackageModel;
     private RecyclerView recyclerView;
     private List<TravelPackage> packageList;
-    PackageAdapter packageAdapter;
+    private NavController navController;
+    private PackageAdapter packageAdapter;
 
 
     public static TravelPackagesFragment newInstance() {
@@ -42,20 +47,26 @@ public class TravelPackagesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_travel_packages,container,false);
-        recyclerView = root.findViewById(R.id.rvList);
 
-        final FloatingActionButton addbtn = root.findViewById(R.id.fabAdd);
-        addbtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_addpackage));
-
-        return root;
+        return inflater.inflate(R.layout.fragment_travel_packages,container,false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        recyclerView = view.findViewById(R.id.rvList);
+        navController = Navigation.findNavController(view);
+        final FloatingActionButton addbtn = view.findViewById(R.id.fabAdd);
+        addbtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_addpackage));
         initRecyclerView();
-        getPackageList();
+
+        sharedPackageModel = new ViewModelProvider(requireActivity()).get(SharedPackageModel.class);
+        sharedPackageModel.getPackageList().observe(getViewLifecycleOwner(), travelPackages -> {
+            packageList.clear();
+            packageList.addAll(travelPackages);
+            packageAdapter.notifyDataSetChanged();
+        });
+
     }
 
     private void initRecyclerView()
@@ -64,25 +75,14 @@ public class TravelPackagesFragment extends Fragment {
         packageList = new ArrayList<>();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        packageAdapter = new PackageAdapter(getContext(),packageList);
+        packageAdapter = new PackageAdapter(getContext(),packageList,this);
         recyclerView.setAdapter(packageAdapter);
     }
-    private void getPackageList() {
-        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        Call<List<TravelPackage>> call = apiService.getTravelPackagesAPI();
-        call.enqueue(new Callback<List<TravelPackage>>() {
-            @Override
-            public void onResponse(Call<List<TravelPackage>> call, Response<List<TravelPackage>> response) {
-                packageList = response.body();
-                Log.d("TAG","Response = " +packageList);
-                packageAdapter.setPackageList(packageList);
-            }
 
-            @Override
-            public void onFailure(Call<List<TravelPackage>> call, Throwable t) {
-                Log.d("TAG", "Response = " + t.toString());
-            }
-        });
+    @Override
+    public void onItemClick(int position) {
+        sharedPackageModel.setPackage(position);
+        navController.navigate(R.id.action_navigation_packages_to_navigation_packagedataview);
+
     }
-
 }
