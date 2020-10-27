@@ -39,7 +39,6 @@ public class BookingsFragment extends Fragment {
     private BookingsViewModel bookingsViewModel;
     private RecyclerView recyclerView;
     private List<Booking> bookingList;
-    private DividerItemDecoration dividerItemDecoration;
     BookingAdapter bookingAdapter;
 
     public static BookingsFragment newInstance() {
@@ -52,17 +51,20 @@ public class BookingsFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_customers, container, false);
 
-        // Setting up Recycler View
-        recyclerView = (RecyclerView) root.findViewById(R.id.rvList);
-        bookingList = new ArrayList<>();
-        bookingAdapter = new BookingAdapter(getContext(),bookingList);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);;
-        dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),layoutManager.getOrientation());
-        recyclerView.setLayoutManager(layoutManager);
-        bookingAdapter = new BookingAdapter(getContext(), bookingList);
-        recyclerView.setAdapter(bookingAdapter);
+        recyclerView = root.findViewById(R.id.rvList);
 
+        initRecyclerView();
+
+        getBookingList();
+
+
+        final FloatingActionButton addbtn = root.findViewById(R.id.fabAdd);
+        addbtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_addbooking));
+
+        return root;
+    }
+
+    private void getBookingList() {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<List<Booking>> call = apiService.getBookings();
         call.enqueue(new Callback<List<Booking>>() {
@@ -78,18 +80,15 @@ public class BookingsFragment extends Fragment {
                 Log.d("TAG", "Response = " + t.toString());
             }
         });
+    }
 
-
-
-        final FloatingActionButton addbtn = root.findViewById(R.id.fabAdd);
-        addbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.navigation_addbooking);
-            }
-        });
-
-        return root;
+    private void initRecyclerView() {
+        // Setting up Recycler View
+        bookingList = new ArrayList<>();
+        bookingAdapter = new BookingAdapter(getContext(),bookingList);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(bookingAdapter);
     }
 
     @Override
@@ -97,8 +96,8 @@ public class BookingsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         bookingsViewModel = new ViewModelProvider(this).get(BookingsViewModel.class);
         // TODO: Use the ViewModel
-        if (savedInstanceState !=null) {
+/*        if (savedInstanceState !=null) {
 
-        }
+        }*/
     }
 }

@@ -8,25 +8,10 @@
     android:background="@drawable/gradient_background"
     tools:context=".ui.customers.CustomersFragment">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/design_default_color_background"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@android:drawable/ic_input_add"
-        app:layout_constraintBottom_toBottomOf="@+id/rvList"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.943"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rvList"
-        app:layout_constraintVertical_bias="0.905" />
-
     <Button
         android:id="@+id/btnSearch"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="30dp"
         android:background="@drawable/button"
         android:text="@string/Search"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,16 +24,15 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvList"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_margin="20dp"
-        android:paddingTop="50dp"
-        android:paddingBottom="50dp"
+        android:layout_height="400dp"
+        android:layout_margin="10dp"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.441" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSearch"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/etSearch"
@@ -58,11 +42,25 @@
         android:hint="@string/Search"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/rvList"
         app:layout_constraintEnd_toStartOf="@+id/btnSearch"
-        app:layout_constraintHorizontal_bias="0.298"
+        app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintTop_toTopOf="@+id/btnSearch"
+        app:layout_constraintVertical_bias="0.0" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/design_default_color_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@android:drawable/ic_input_add"
+        app:layout_constraintBottom_toBottomOf="@+id/rvList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.929"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rvList"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

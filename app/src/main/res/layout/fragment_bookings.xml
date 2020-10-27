@@ -25,7 +25,7 @@
         android:id="@+id/rvList"
         android:layout_width="fill_parent"
         android:layout_height="400dp"
-        android:layout_margin="30dp"
+        android:layout_margin="10dp"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

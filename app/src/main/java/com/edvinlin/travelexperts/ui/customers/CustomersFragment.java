@@ -1,22 +1,18 @@
 package com.edvinlin.travelexperts.ui.customers;
 
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.edvinlin.travelexperts.R;
 import com.edvinlin.travelexperts.model.Customer;
@@ -32,12 +28,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CustomersFragment extends Fragment {
+public class CustomersFragment extends Fragment implements CustomerAdapter.OnListListener{
 
     private CustomersViewModel customersViewModel;
     private RecyclerView recyclerView;
     private List<Customer> customerList;
-    private DividerItemDecoration dividerItemDecoration;
     CustomerAdapter customerAdapter;
 
     public static CustomersFragment newInstance() {
@@ -47,18 +42,20 @@ public class CustomersFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        customersViewModel =  new ViewModelProvider(this).get(CustomersViewModel.class);
         View root = inflater.inflate(R.layout.fragment_customers, container, false);
-        // Setting up Recycler View
-        recyclerView = (RecyclerView) root.findViewById(R.id.rvList);
-        customerList = new ArrayList<>();
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);;
-        dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),layoutManager.getOrientation());
-        recyclerView.setLayoutManager(layoutManager);
-        customerAdapter = new CustomerAdapter(getContext(),customerList);
-        recyclerView.setAdapter(customerAdapter);
+        recyclerView = root.findViewById(R.id.rvList);
 
+        initRecyclerView();
+
+        getCustomerList();
+
+        final FloatingActionButton addbtn = root.findViewById(R.id.fabAdd);
+        addbtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_addcustomer));
+
+        return root;
+    }
+
+    private void getCustomerList() {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<List<Customer>> call = apiService.getCustomers();
         call.enqueue(new Callback<List<Customer>>() {
@@ -74,14 +71,15 @@ public class CustomersFragment extends Fragment {
                 Log.d("TAG", "Response = " + t.toString());
             }
         });
+    }
 
-        final FloatingActionButton addbtn = root.findViewById(R.id.fabAdd);
-        addbtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_addcustomer));
-
-
-
-
-        return root;
+    private void initRecyclerView() {
+        // Setting up Recycler View
+        customerList = new ArrayList<>();
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        customerAdapter = new CustomerAdapter(getContext(),customerList,this);
+        recyclerView.setAdapter(customerAdapter);
     }
 
 
@@ -92,4 +90,9 @@ public class CustomersFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
+    @Override
+    public void onListClick(int position) {
+        Log.d("TAG", "onListClick: "+position);
+
+    }
 }

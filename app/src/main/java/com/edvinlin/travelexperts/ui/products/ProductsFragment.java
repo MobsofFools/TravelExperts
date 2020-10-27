@@ -31,19 +31,14 @@ public class ProductsFragment extends Fragment {
         productsViewModel =  new ViewModelProvider(this).get(ProductsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_customers, container, false);
         final FloatingActionButton addbtn = root.findViewById(R.id.fabAdd);
-        addbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.navigation_addpackage);
-            }
-        });
+        addbtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_addproduct));
         return root;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        productsViewModel = ViewModelProviders.of(this).get(ProductsViewModel.class);
+        productsViewModel = new ViewModelProvider(this).get(ProductsViewModel.class);
         // TODO: Use the ViewModel
     }
 

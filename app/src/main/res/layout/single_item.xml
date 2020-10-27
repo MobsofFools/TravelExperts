@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:background="#7E4277CC"
+    android:background="#71A2DE"
     android:orientation="vertical">
 
     <TextView
@@ -20,5 +20,11 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_slab"
         android:textSize="14sp"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
 
 </LinearLayout>

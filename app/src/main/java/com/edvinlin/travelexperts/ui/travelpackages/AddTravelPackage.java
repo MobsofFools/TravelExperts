@@ -37,7 +37,7 @@ public class AddTravelPackage extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         addTravelPackageViewModel = new ViewModelProvider(this).get(AddTravelPackageViewModel.class);
-        View root = inflater.inflate(R.layout.data_view_fragment_package,container,false);
+        View root = inflater.inflate(R.layout.add_travel_package_fragment,container,false);
 
         //Edit Texts
         PkgName = root.findViewById(R.id.etaPkgName);
@@ -51,26 +51,8 @@ public class AddTravelPackage extends Fragment {
         final CardView back = root.findViewById(R.id.cardBack);
         final Button btnSave = root.findViewById(R.id.btnSave);
         final Button btnDelete = root.findViewById(R.id.btnDelete);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.navigation_packages);
-            }
-        });
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TravelPackage travelPackage = new TravelPackage(0,
-                        PkgName.getText().toString(),
-                        ((Date) PkgStartDate.getText()),
-                        ((Date) PkgEndDate.getText()),
-                        PkgDesc.getText().toString(),
-                        ((BigDecimal) PkgBasePrice.getText()),
-                        ((BigDecimal) PkgAgencyCommission.getText())
-                );
-                //Executors.newSingleThreadExecutor().execute(new PostPackage(travelPackage));
-            }
-        });
+        back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_packages));
+
         return root;
     }
 

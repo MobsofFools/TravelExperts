@@ -2,89 +2,100 @@ package com.edvinlin.travelexperts.model;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 public class TravelPackage implements Serializable {
     private static final long serialVersionUID = 1L;
-
+    @SerializedName("packageId")
+    @Expose
     private int PackageId;
+    @SerializedName("pkgName")
+    @Expose
     private String PkgName;
-    private Date PkgStartDate;
-    private Date PkgEndDate;
+    @SerializedName("pkgStartDate")
+    @Expose
+    private String PkgStartDate;
+    @SerializedName("pkgEndDate")
+    @Expose
+    private String PkgEndDate;
+    @SerializedName("pkgDesc")
+    @Expose
     private String PkgDesc;
-    private BigDecimal PkgBasePrice;
-    private BigDecimal PkgAgencyCommission;
+    @SerializedName("pkgBasePrice")
+    @Expose
+    private Double PkgBasePrice;
+    @SerializedName("pkgAgencyCommission")
+    @Expose
+    private Double PkgAgencyCommission;
 
-    public TravelPackage(int packageId, String pkgName, Date pkgStartDate, Date pkgEndDate, String pkgDesc, BigDecimal pkgBasePrice, BigDecimal pkgAgencyCommission) {
-        this.PackageId = packageId;
-        this.PkgName = pkgName;
-        this.PkgStartDate = pkgStartDate;
-        this.PkgEndDate = pkgEndDate;
-        this.PkgDesc = pkgDesc;
-        this.PkgBasePrice = pkgBasePrice;
-        this.PkgAgencyCommission = pkgAgencyCommission;
+    public TravelPackage(int packageId, String pkgName, String pkgStartDate, String pkgEndDate, String pkgDesc, Double pkgBasePrice, Double pkgAgencyCommission) {
+        PackageId = packageId;
+        PkgName = pkgName;
+        PkgStartDate = pkgStartDate;
+        PkgEndDate = pkgEndDate;
+        PkgDesc = pkgDesc;
+        PkgBasePrice = pkgBasePrice;
+        PkgAgencyCommission = pkgAgencyCommission;
     }
 
     public int getPackageId() {
-        return this.PackageId;
+        return PackageId;
     }
 
     public void setPackageId(int packageId) {
-        this.PackageId = packageId;
+        PackageId = packageId;
     }
 
     public String getPkgName() {
-        return this.PkgName;
+        return PkgName;
     }
 
     public void setPkgName(String pkgName) {
-        this.PkgName = pkgName;
+        PkgName = pkgName;
     }
 
-    public Date getPkgStartDate() {
-        return this.PkgStartDate;
+    public String getPkgStartDate() {
+        return PkgStartDate;
     }
 
-    public void setPkgStartDate(Date pkgStartDate) {
-        this.PkgStartDate = pkgStartDate;
+    public void setPkgStartDate(String pkgStartDate) {
+        PkgStartDate = pkgStartDate;
     }
 
-    public Date getPkgEndDate() {
-        return this.PkgEndDate;
+    public String getPkgEndDate() {
+        return PkgEndDate;
     }
 
-    public void setPkgEndDate(Date pkgEndDate) {
-        this.PkgEndDate = pkgEndDate;
+    public void setPkgEndDate(String pkgEndDate) {
+        PkgEndDate = pkgEndDate;
     }
 
     public String getPkgDesc() {
-        return this.PkgDesc;
+        return PkgDesc;
     }
 
     public void setPkgDesc(String pkgDesc) {
-        this.PkgDesc = pkgDesc;
+        PkgDesc = pkgDesc;
     }
 
-    public BigDecimal getPkgBasePrice() {
-        return this.PkgBasePrice;
+    public Double getPkgBasePrice() {
+        return PkgBasePrice;
     }
 
-    public void setPkgBasePrice(BigDecimal pkgBasePrice) {
-        this.PkgBasePrice = pkgBasePrice;
+    public void setPkgBasePrice(Double pkgBasePrice) {
+        PkgBasePrice = pkgBasePrice;
     }
 
-    public BigDecimal getPkgAgencyCommission() {
-        return this.PkgAgencyCommission;
+    public Double getPkgAgencyCommission() {
+        return PkgAgencyCommission;
     }
 
-    public void setPkgAgencyCommission(BigDecimal pkgAgencyCommission) {
-        this.PkgAgencyCommission = pkgAgencyCommission;
-    }
-
-    @Override
-    public String toString() {
-        return PkgName;
+    public void setPkgAgencyCommission(Double pkgAgencyCommission) {
+        PkgAgencyCommission = pkgAgencyCommission;
     }
 }

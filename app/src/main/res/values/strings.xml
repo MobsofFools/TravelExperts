@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ThreadedProject3</string>
+    <string name="app_name">TravelExperts</string>
     <!--Log In -->
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>

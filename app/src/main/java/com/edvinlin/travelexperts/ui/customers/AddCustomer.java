@@ -31,7 +31,7 @@ public class AddCustomer extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.data_view_fragment_customer, container, false);
+        View root = inflater.inflate(R.layout.add_customer_fragment, container, false);
 
         //Edit Texts
         CustFirstName = root.findViewById(R.id.etaCustFirstName);
@@ -50,12 +50,7 @@ public class AddCustomer extends Fragment {
         final Button btnSave = root.findViewById(R.id.btnSave);
         final Button btnDelete = root.findViewById(R.id.btnDelete);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.navigation_packages);
-            }
-        });
+        back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_packages));
         return root;
     }
 

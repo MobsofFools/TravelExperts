@@ -51,25 +51,8 @@ public class PackageDataViewFragment extends Fragment {
         final CardView back = root.findViewById(R.id.cardBack);
         final Button btnSave = root.findViewById(R.id.btnSave);
         final Button btnDelete = root.findViewById(R.id.btnDelete);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.navigation_packages);
-            }
-        });
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TravelPackage travelPackage = new TravelPackage(0,
-                        PkgName.getText().toString(),
-                        ((Date) PkgStartDate.getText()),
-                        ((Date) PkgEndDate.getText()),
-                        PkgDesc.getText().toString(),
-                        ((BigDecimal) PkgBasePrice.getText()),
-                        ((BigDecimal) PkgAgencyCommission.getText())
-                );
-            }
-        });
+        back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_packages));
+
         return root;
     }
 
