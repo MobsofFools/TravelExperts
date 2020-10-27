@@ -29,8 +29,8 @@ public interface ApiInterface {
     @POST("postcustomer")
     Call<Customer> createCustomerAPI(@Body Customer customer);
     //Put Customer
-//    @PUT("putcustomer")
-//    Call<ResponseBody> updateCustomerAPI(@Body Customer customer);
+    @PUT("putcustomer")
+    Call<ResponseBody> updateCustomerAPI(@Body Customer customer);
     //Delete Customer
     @DELETE("deletecustomer/{ customerId }")
     Call<ResponseBody> deleteCustomerAPI(@Path("customerId") int customerId);

@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
     @SerializedName("customerId")
-    private int CustomerId;
+    private Integer CustomerId;
     @SerializedName("custFirstName")
     private String CustFirstName;
     @SerializedName("custLastName")
@@ -26,13 +26,17 @@ public class Customer implements Serializable {
     private String CustHomePhone;
     @SerializedName("custBusPhone")
     private String CustBusPhone;
+    @SerializedName("custPostal")
+    private String CustPostal;
     @SerializedName("custEmail")
     private String CustEmail;
     @SerializedName("custPassword")
     private String CustPassword;
 
-    public Customer(int customerId, String custFirstName, String custLastName, String custAddress, String custCity, String custProv,
-                    String custCountry, String custHomePhone, String custBusPhone, String custEmail, String custPassword) {
+    public Customer(Integer customerId, String custFirstName, String custLastName,
+                    String custAddress, String custCity, String custProv, String custCountry,
+                    String custHomePhone, String custBusPhone, String custPostal, String custEmail,
+                    String custPassword) {
         this.CustomerId = customerId;
         this.CustFirstName = custFirstName;
         this.CustLastName = custLastName;
@@ -42,16 +46,16 @@ public class Customer implements Serializable {
         this.CustCountry = custCountry;
         this.CustHomePhone = custHomePhone;
         this.CustBusPhone = custBusPhone;
+        this.CustPostal = custPostal;
         this.CustEmail = custEmail;
         this.CustPassword = custPassword;
-
     }
 
-    public int getCustomerId() {
+    public Integer getCustomerId() {
         return this.CustomerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(Integer customerId) {
         this.CustomerId = customerId;
     }
 
@@ -128,6 +132,13 @@ public class Customer implements Serializable {
     }
 
 
+    public String getCustPostal() {
+        return CustPostal;
+    }
+
+    public void setCustPostal(String custPostal) {
+        CustPostal = custPostal;
+    }
 
     public String getCustPassword() {
         return CustPassword;

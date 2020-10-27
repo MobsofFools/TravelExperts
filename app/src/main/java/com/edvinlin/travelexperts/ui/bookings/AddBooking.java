@@ -19,6 +19,14 @@ import android.widget.EditText;
 import com.edvinlin.travelexperts.R;
 import com.edvinlin.travelexperts.model.Booking;
 
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Calendar;
+import java.util.concurrent.ThreadLocalRandom;
+
 public class AddBooking extends Fragment {
 
     private SharedBookingModel sharedBookingModel;
@@ -37,14 +45,20 @@ public class AddBooking extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //Edit Texts
+
         sharedBookingModel = new ViewModelProvider(requireActivity()).get(SharedBookingModel.class);
+        //Edit Texts
+
         BookingNo = view.findViewById(R.id.etaBookingNo);
         BookingDate = view.findViewById(R.id.etaBookingDate);
         BookingCustId = view.findViewById(R.id.etaBookingCustId);
         BookingTripTypeId = view.findViewById(R.id.etaBookingTripTypeId);
         TravelerCount = view.findViewById(R.id.etaTravelerCount);
         PackageId = view.findViewById(R.id.etaPackageId);
+
+        Date c = Calendar.getInstance().getTime();
+        BookingDate.setText(c.toString());
+        BookingNo.setText(generateBookingNo());
 
         //Common Ones
         final CardView back = view.findViewById(R.id.cardBack);
@@ -64,4 +78,15 @@ public class AddBooking extends Fragment {
 
         });
     }
+    public String generateBookingNo() {
+        int min = 1;
+        int max = 4;
+        int ran1 = ThreadLocalRandom.current().nextInt(min,max);
+        String generatedString = RandomStringUtils.random(ran1, true, false);
+        int x = RandomUtils.nextInt(1,9999);
+
+        return generatedString.toUpperCase() + String.valueOf(x);
+
+    }
+
 }

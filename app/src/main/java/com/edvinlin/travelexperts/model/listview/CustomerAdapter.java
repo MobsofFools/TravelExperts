@@ -15,14 +15,15 @@ import com.edvinlin.travelexperts.model.Customer;
 import java.util.List;
 
 public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.mViewHolder> {
-
+    OnRecyclerItemClickListener onItemClickListener;
     private Context context;
     private List<Customer> customerList;
 
 
-    public CustomerAdapter(Context context, List<Customer> list) {
+    public CustomerAdapter(Context context, List<Customer> list, OnRecyclerItemClickListener onItemClickListener) {
         this.context = context;
         this.customerList = list;
+        this.onItemClickListener = onItemClickListener;
     }
 
     public void setBookingList(List<Customer> customerList) {
@@ -59,6 +60,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.mViewH
             super(itemView);
             customerName= itemView.findViewById(R.id.item1);
             phoneNo = itemView.findViewById(R.id.item2);
+            itemView.setOnClickListener(v -> onItemClickListener.onItemClick(getAdapterPosition()));
 
         }
 

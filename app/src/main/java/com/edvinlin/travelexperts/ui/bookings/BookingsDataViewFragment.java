@@ -1,31 +1,22 @@
 package com.edvinlin.travelexperts.ui.bookings;
 
-import androidx.cardview.widget.CardView;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
 import com.edvinlin.travelexperts.R;
 import com.edvinlin.travelexperts.model.Booking;
-
-
-import retrofit2.http.Path;
 
 public class BookingsDataViewFragment extends Fragment {
 
@@ -94,45 +85,26 @@ public class BookingsDataViewFragment extends Fragment {
         return deleteDialogBox;
     }
     private void updateUI(Booking booking) {
-        if (booking.getBookingId() == null) {
-            BookingId.setText("");
-        }
-        else{
-            BookingId.setText(String.valueOf(booking.getBookingId()));
-        }
-        if (booking.getBookingNo() == null) {
-            BookingNo.setText("");
-        }
-        else{
-            BookingNo.setText(booking.getBookingNo());
-        }
-        if (booking.getBookingDate() == null ) {
-            BookingDate.setText("");
-        }
-        else{
-            BookingDate.setText(booking.getBookingDate());
-        }
-        if (booking.getCustomerId() == null) {
-            BookingCustId.setText("");
-        }
-        else{
-            BookingCustId.setText(String.valueOf(booking.getCustomerId()));
-        }
+        if (booking.getBookingId() == null) BookingId.setText("");
+        else BookingId.setText(String.valueOf(booking.getBookingId()));
 
-        BookingTripTypeId.setText(booking.getTripTypeId());
-        if (booking.getPackageId() == null){
-            BookingPackageId.setText("");
-        }
-        else{
-            BookingPackageId.setText(String.valueOf(booking.getPackageId()));
-        }
+        if (booking.getBookingNo() == null) BookingNo.setText("");
+        else BookingNo.setText(booking.getBookingNo());
 
-        if (booking.getTravelerCount() == null){
-            BookingTravelerCount.setText("");
-        }
-        else {
-            BookingTravelerCount.setText(String.valueOf(booking.getTravelerCount()));
-        }
+        if (booking.getBookingDate() == null ) BookingDate.setText("");
+        else BookingDate.setText(booking.getBookingDate());
+
+        if (booking.getCustomerId() == null) BookingCustId.setText("");
+        else BookingCustId.setText(String.valueOf(booking.getCustomerId()));
+
+        if (booking.getTripTypeId() == null) BookingTripTypeId.setText("");
+        else BookingTripTypeId.setText(booking.getTripTypeId());
+
+        if (booking.getPackageId() == null) BookingPackageId.setText("");
+        else BookingPackageId.setText(String.valueOf(booking.getPackageId()));
+
+        if (booking.getTravelerCount() == null) BookingTravelerCount.setText("");
+        else BookingTravelerCount.setText(String.valueOf(booking.getTravelerCount()));
 
     }
 }

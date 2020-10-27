@@ -1,8 +1,6 @@
 package com.edvinlin.travelexperts.ui.bookings;
 
-import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -25,6 +23,7 @@ public class SharedBookingModel extends ViewModel {
     public MutableLiveData<List<Booking>> mutableBookingList = new MutableLiveData<>();
     public MutableLiveData<Booking> mutableBooking = new MutableLiveData<>();
     public List<Booking> bookingList;
+    ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
     public LiveData<List<Booking>> getBookingList() {
         if (mutableBookingList.getValue() == null) {
@@ -68,15 +67,12 @@ public class SharedBookingModel extends ViewModel {
 
     }
     public void AddBooking(Booking booking) {
-        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<Booking> call = apiService.createBookingAPI(booking);
     }
     public void EditBooking(Booking booking) {
-        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<ResponseBody> call = apiService.updateBookingAPI(booking);
     }
     public void DeleteBooking(int id) {
-        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<ResponseBody> call = apiService.deleteBookingAPI(id);
     }
 
