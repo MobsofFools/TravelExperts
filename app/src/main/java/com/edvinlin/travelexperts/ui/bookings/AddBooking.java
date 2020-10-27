@@ -17,11 +17,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.edvinlin.travelexperts.R;
+import com.edvinlin.travelexperts.model.Booking;
 
 public class AddBooking extends Fragment {
 
-    private AddBookingViewModel addBookingViewModel;
-    private EditText BookingNo, BookingDate, BookingCustId, BookingTripTypeId;
+    private SharedBookingModel sharedBookingModel;
+    private EditText BookingNo, BookingDate, BookingCustId, BookingTripTypeId, TravelerCount, PackageId;
 
     public static AddBooking newInstance() {
         return new AddBooking();
@@ -30,33 +31,37 @@ public class AddBooking extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.add_booking_fragment, container, false);
-        //Edit Texts
-
-        BookingNo = root.findViewById(R.id.etaBookingNo);
-        BookingDate = root.findViewById(R.id.etaBookingDate);
-        BookingCustId = root.findViewById(R.id.etaBookingCustId);
-        BookingTripTypeId = root.findViewById(R.id.etaBookingTripTypeId);
-
-        //Common Ones
-        final CardView back = root.findViewById(R.id.cardBack);
-        final Button btnSave = root.findViewById(R.id.btnSave);
-        final Button btnDelete = root.findViewById(R.id.btnDelete);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.navigation_packages);
-            }
-        });
-
-        return root;
+        return inflater.inflate(R.layout.add_booking_fragment, container, false);
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        addBookingViewModel = new ViewModelProvider(this).get(AddBookingViewModel.class);
-        // TODO: Use the ViewModel
-    }
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //Edit Texts
+        sharedBookingModel = new ViewModelProvider(requireActivity()).get(SharedBookingModel.class);
+        BookingNo = view.findViewById(R.id.etaBookingNo);
+        BookingDate = view.findViewById(R.id.etaBookingDate);
+        BookingCustId = view.findViewById(R.id.etaBookingCustId);
+        BookingTripTypeId = view.findViewById(R.id.etaBookingTripTypeId);
+        TravelerCount = view.findViewById(R.id.etaTravelerCount);
+        PackageId = view.findViewById(R.id.etaPackageId);
 
+        //Common Ones
+        final CardView back = view.findViewById(R.id.cardBack);
+        final Button btnAdd = view.findViewById(R.id.btnAdd);
+
+        back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_bookings));
+        btnAdd.setOnClickListener(v -> {
+            Booking booking = new Booking(0,
+                    BookingDate.getText().toString(),
+                    BookingNo.getText().toString(),
+                    Integer.parseInt(BookingCustId.getText().toString()),
+                    Integer.parseInt(PackageId.getText().toString()),
+                    Double.parseDouble(TravelerCount.getText().toString()),
+                    BookingTripTypeId.getText().toString()
+            );
+            sharedBookingModel.AddBooking(booking);
+
+        });
+    }
 }

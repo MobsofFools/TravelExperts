@@ -28,9 +28,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CustomersFragment extends Fragment implements CustomerAdapter.OnListListener{
+public class CustomersFragment extends Fragment {
 
-    private CustomersViewModel customersViewModel;
     private RecyclerView recyclerView;
     private List<Customer> customerList;
     CustomerAdapter customerAdapter;
@@ -43,11 +42,7 @@ public class CustomersFragment extends Fragment implements CustomerAdapter.OnLis
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_customers, container, false);
-        recyclerView = root.findViewById(R.id.rvList);
 
-        initRecyclerView();
-
-        getCustomerList();
 
         final FloatingActionButton addbtn = root.findViewById(R.id.fabAdd);
         addbtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_addcustomer));
@@ -55,9 +50,21 @@ public class CustomersFragment extends Fragment implements CustomerAdapter.OnLis
         return root;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        recyclerView = view.findViewById(R.id.rvList);
+
+        initRecyclerView();
+
+        getCustomerList();
+    }
+
+    //Methods
+
     private void getCustomerList() {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        Call<List<Customer>> call = apiService.getCustomers();
+        Call<List<Customer>> call = apiService.getCustomersAPI();
         call.enqueue(new Callback<List<Customer>>() {
             @Override
             public void onResponse(Call<List<Customer>> call, Response<List<Customer>> response) {
@@ -78,21 +85,7 @@ public class CustomersFragment extends Fragment implements CustomerAdapter.OnLis
         customerList = new ArrayList<>();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        customerAdapter = new CustomerAdapter(getContext(),customerList,this);
+        customerAdapter = new CustomerAdapter(getContext(),customerList);
         recyclerView.setAdapter(customerAdapter);
-    }
-
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        customersViewModel = new ViewModelProvider(this).get(CustomersViewModel.class);
-        // TODO: Use the ViewModel
-    }
-
-    @Override
-    public void onListClick(int position) {
-        Log.d("TAG", "onListClick: "+position);
-
     }
 }

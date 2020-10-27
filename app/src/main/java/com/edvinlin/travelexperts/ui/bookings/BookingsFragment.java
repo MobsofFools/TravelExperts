@@ -1,5 +1,6 @@
 package com.edvinlin.travelexperts.ui.bookings;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,70 +36,52 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BookingsFragment extends Fragment {
+public class BookingsFragment extends Fragment implements BookingAdapter.OnItemClickListener{
 
-    private BookingsViewModel bookingsViewModel;
+    private SharedBookingModel sharedBookingModel;
     private RecyclerView recyclerView;
     private List<Booking> bookingList;
-    BookingAdapter bookingAdapter;
-
-    public static BookingsFragment newInstance() {
-        return new BookingsFragment();
-    }
-
+    private NavController navController;
+    private BookingAdapter bookingAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_customers, container, false);
-
         recyclerView = root.findViewById(R.id.rvList);
-
-        initRecyclerView();
-
-        getBookingList();
-
-
         final FloatingActionButton addbtn = root.findViewById(R.id.fabAdd);
         addbtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_addbooking));
 
         return root;
     }
 
-    private void getBookingList() {
-        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        Call<List<Booking>> call = apiService.getBookings();
-        call.enqueue(new Callback<List<Booking>>() {
-            @Override
-            public void onResponse(Call<List<Booking>> call, Response<List<Booking>> response) {
-            bookingList = response.body();
-            Log.d("TAG","Response = " +bookingList);
-            bookingAdapter.setBookingList(bookingList);
-            }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(view);
 
-            @Override
-            public void onFailure(Call<List<Booking>> call, Throwable t) {
-                Log.d("TAG", "Response = " + t.toString());
-            }
+        initRecyclerView();
+
+        sharedBookingModel = new ViewModelProvider(requireActivity()).get(SharedBookingModel.class);
+        sharedBookingModel.getBookingList().observe(getViewLifecycleOwner(), bookings -> {
+            bookingList.clear();
+            bookingList.addAll(bookings);
+            bookingAdapter.notifyDataSetChanged();
         });
     }
 
     private void initRecyclerView() {
         // Setting up Recycler View
         bookingList = new ArrayList<>();
-        bookingAdapter = new BookingAdapter(getContext(),bookingList);
+        bookingAdapter = new BookingAdapter(getContext(),bookingList, this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(bookingAdapter);
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        bookingsViewModel = new ViewModelProvider(this).get(BookingsViewModel.class);
-        // TODO: Use the ViewModel
-/*        if (savedInstanceState !=null) {
-
-        }*/
+    public void onItemClick(int position) {
+        sharedBookingModel.setBooking(position);
+        navController.navigate(R.id.action_navigation_bookings_to_navigation_bookingsdataview);
     }
 }

@@ -26,8 +26,6 @@ public class PackageDataViewFragment extends Fragment {
     EditText PkgId, PkgStartDate, PkgEndDate, PkgName,
             PkgBasePrice, PkgDesc, PkgAgencyCommission;
 
-    private PackageDataViewViewModel packageDataViewViewModel;
-
     public static PackageDataViewFragment newInstance() {
         return new PackageDataViewFragment();
     }
@@ -35,7 +33,6 @@ public class PackageDataViewFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        packageDataViewViewModel = new ViewModelProvider(this).get(PackageDataViewViewModel.class);
         View root = inflater.inflate(R.layout.data_view_fragment_package,container,false);
 
         //Edit Texts
@@ -55,12 +52,4 @@ public class PackageDataViewFragment extends Fragment {
 
         return root;
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        packageDataViewViewModel = new ViewModelProvider(this).get(PackageDataViewViewModel.class);
-        // TODO: Use the ViewModel
-    }
-
 }

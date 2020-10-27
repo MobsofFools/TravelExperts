@@ -25,7 +25,6 @@ import java.util.Date;
 
 public class AddTravelPackage extends Fragment {
 
-    private AddTravelPackageViewModel addTravelPackageViewModel;
 
     public static AddTravelPackage newInstance() {
         return new AddTravelPackage();
@@ -36,7 +35,7 @@ public class AddTravelPackage extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        addTravelPackageViewModel = new ViewModelProvider(this).get(AddTravelPackageViewModel.class);
+
         View root = inflater.inflate(R.layout.add_travel_package_fragment,container,false);
 
         //Edit Texts
@@ -49,18 +48,11 @@ public class AddTravelPackage extends Fragment {
 
         //Common Ones
         final CardView back = root.findViewById(R.id.cardBack);
-        final Button btnSave = root.findViewById(R.id.btnSave);
-        final Button btnDelete = root.findViewById(R.id.btnDelete);
+        final Button btnAdd = root.findViewById(R.id.btnAdd);
+
         back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_packages));
 
         return root;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        addTravelPackageViewModel = new ViewModelProvider(this).get(AddTravelPackageViewModel.class);
-        // TODO: Use the ViewModel
     }
 
 }

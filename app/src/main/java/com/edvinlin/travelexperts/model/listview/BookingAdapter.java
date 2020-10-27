@@ -16,12 +16,14 @@ import java.util.List;
 
 public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.mViewHolder> {
 
+    OnItemClickListener onItemClickListener;
     private Context context;
     private List<Booking> bookingList;
 
-    public BookingAdapter(Context context, List<Booking> list) {
+    public BookingAdapter(Context context, List<Booking> list, OnItemClickListener onItemClickListener) {
         this.context = context;
         this.bookingList = list;
+        this.onItemClickListener = onItemClickListener;
     }
 
     public void setBookingList(List<Booking> bookingList) {
@@ -55,10 +57,14 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.mViewHol
 
         public mViewHolder(View itemView) {
             super(itemView);
-            bookingNo = (TextView)itemView.findViewById(R.id.item1);
+            bookingNo = itemView.findViewById(R.id.item1);
+            itemView.setOnClickListener(v -> onItemClickListener.onItemClick(getAdapterPosition()));
 
 
         }
+    }
+    public interface OnItemClickListener {
+        public void onItemClick(int position);
     }
 }
 

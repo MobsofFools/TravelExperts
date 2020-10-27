@@ -21,7 +21,6 @@ import com.edvinlin.travelexperts.R;
 
 public class ProductsDataViewFragment extends Fragment {
 
-    private ProductsDataViewViewModel productsDataViewViewModel;
     private EditText ProductId, ProductName;
 
     public static ProductsDataViewFragment newInstance() {
@@ -44,21 +43,9 @@ public class ProductsDataViewFragment extends Fragment {
         final Button btnDelete = root.findViewById(R.id.btnDelete);
 
         //Back Button
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.navigation_packages);
-            }
-        });
+        back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_packages));
 
         return root;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        productsDataViewViewModel = new ViewModelProvider(this).get(ProductsDataViewViewModel.class);
-        // TODO: Use the ViewModel
     }
 
 }

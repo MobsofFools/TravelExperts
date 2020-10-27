@@ -21,7 +21,6 @@ import com.edvinlin.travelexperts.R;
 
 public class AddProduct extends Fragment {
 
-    private AddProductViewModel addProductViewModel;
     private EditText ProductName;
 
     public static AddProduct newInstance() {
@@ -36,22 +35,8 @@ public class AddProduct extends Fragment {
         ProductName = root.findViewById(R.id.etaProductName);
         //Common Ones
         final CardView back = root.findViewById(R.id.cardBack);
-        final Button btnSave = root.findViewById(R.id.btnSave);
-        final Button btnDelete = root.findViewById(R.id.btnDelete);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.navigation_packages);
-            }
-        });
+        final Button btnAdd = root.findViewById(R.id.btnAdd);
+        back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_products));
         return root;
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        addProductViewModel = new ViewModelProvider(this).get(AddProductViewModel.class);
-        // TODO: Use the ViewModel
-    }
-
 }

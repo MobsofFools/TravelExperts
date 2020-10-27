@@ -21,7 +21,6 @@ import com.edvinlin.travelexperts.R;
 
 public class AddCustomer extends Fragment {
 
-    private AddCustomerViewModel addCustomerViewModel;
     private EditText CustAgentId, CustFirstName, CustLastName, CustAddress, CustCity, CustProv, CustPostal, CustCountry, CustHomePhone, CustEmail, CustBusPhone;
 
     public static AddCustomer newInstance() {
@@ -47,18 +46,10 @@ public class AddCustomer extends Fragment {
 
         //Common Ones
         final CardView back = root.findViewById(R.id.cardBack);
-        final Button btnSave = root.findViewById(R.id.btnSave);
-        final Button btnDelete = root.findViewById(R.id.btnDelete);
+        final Button btnAdd = root.findViewById(R.id.btnAdd);
 
-        back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_packages));
+        back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_customers));
         return root;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        addCustomerViewModel = new ViewModelProvider(this).get(AddCustomerViewModel.class);
-        // TODO: Use the ViewModel
     }
 
 }

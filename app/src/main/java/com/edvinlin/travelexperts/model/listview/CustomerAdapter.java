@@ -18,12 +18,11 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.mViewH
 
     private Context context;
     private List<Customer> customerList;
-    private OnListListener mOnListListener;
 
-    public CustomerAdapter(Context context, List<Customer> list, OnListListener onListListener) {
+
+    public CustomerAdapter(Context context, List<Customer> list) {
         this.context = context;
         this.customerList = list;
-        this.mOnListListener = onListListener;
     }
 
     public void setBookingList(List<Customer> customerList) {
@@ -35,7 +34,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.mViewH
     @Override
     public CustomerAdapter.mViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.single_item,parent,false);
-        return new CustomerAdapter.mViewHolder(view, mOnListListener);
+        return new CustomerAdapter.mViewHolder(view);
     }
 
     @Override
@@ -52,27 +51,16 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.mViewH
         return 0;
     }
 
-    public class mViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class mViewHolder extends RecyclerView.ViewHolder{
         TextView customerName;
         TextView phoneNo;
-        OnListListener onListListener;
-        public mViewHolder(@NonNull View itemView, OnListListener onListListener) {
+
+        public mViewHolder(@NonNull View itemView) {
             super(itemView);
             customerName= itemView.findViewById(R.id.item1);
             phoneNo = itemView.findViewById(R.id.item2);
-            this.onListListener = onListListener;
-
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
-            onListListener.onListClick(getAdapterPosition());
 
         }
-    }
-    public interface OnListListener {
-        void onListClick(int position);
 
     }
 }

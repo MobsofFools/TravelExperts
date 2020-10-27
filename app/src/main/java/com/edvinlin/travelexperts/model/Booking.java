@@ -1,4 +1,6 @@
 package com.edvinlin.travelexperts.model;
+import android.text.Editable;
+
 import androidx.annotation.NonNull;
 
 import com.google.gson.annotations.Expose;
@@ -41,6 +43,7 @@ public class Booking implements Serializable {
         this.travelerCount = travelerCount;
         this.tripTypeId = tripTypeId;
     }
+
 
     public Integer getBookingId() {
         return bookingId;

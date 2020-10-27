@@ -21,7 +21,7 @@ import com.edvinlin.travelexperts.R;
 
 public class CustomerDataViewFragment extends Fragment {
 
-    private CustomerDataViewViewModel customerDataViewViewModel;
+
     private EditText CustId, CustAgentId, CustFirstName, CustLastName, CustAddress, CustCity, CustProv, CustPostal, CustCountry, CustHomePhone, CustEmail, CustBusPhone;
 
     public static CustomerDataViewFragment newInstance() {
@@ -31,7 +31,7 @@ public class CustomerDataViewFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        customerDataViewViewModel = new ViewModelProvider(this).get(CustomerDataViewViewModel.class);
+
         View root = inflater.inflate(R.layout.data_view_fragment_customer, container, false);
 
         //Edit Texts
@@ -51,22 +51,10 @@ public class CustomerDataViewFragment extends Fragment {
         final CardView back = root.findViewById(R.id.cardBack);
         final Button btnSave = root.findViewById(R.id.btnSave);
         final Button btnDelete = root.findViewById(R.id.btnDelete);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.navigation_packages);
-            }
-        });
+        back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_packages));
         return root;
 
 
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        customerDataViewViewModel = new ViewModelProvider(this).get(CustomerDataViewViewModel.class);
-        // TODO: Use the ViewModel
     }
 
 }

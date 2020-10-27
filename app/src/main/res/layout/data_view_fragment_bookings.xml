@@ -83,6 +83,24 @@
                 android:textSize="14sp"
                 android:importantForAutofill="no"/>
 
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_slab"
+                android:text="@string/travelercount" />
+
+            <EditText
+                android:id="@+id/etTravelerCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/travelercount"
+                android:inputType="number"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -104,11 +122,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="@string/booking_no"
                 android:fontFamily="@font/roboto_slab"
-                android:textSize="14sp"
-                android:importantForAutofill="no"/>
+                android:hint="@string/booking_no"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView16"
@@ -122,8 +140,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number"
+                android:fontFamily="@font/roboto_slab"
                 android:hint="@string/customer_id"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_slab"
+                android:text="@string/package_id" />
+
+            <EditText
+                android:id="@+id/etPackageId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/package_id"
+                android:inputType="number"
                 android:fontFamily="@font/roboto_slab"
                 android:textSize="14sp"
                 android:importantForAutofill="no"/>

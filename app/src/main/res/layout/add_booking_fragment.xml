@@ -63,6 +63,23 @@
                 android:fontFamily="@font/roboto_slab"
                 android:textSize="14sp"
                 android:importantForAutofill="no"/>
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_slab"
+                android:text="@string/travelercount" />
+
+            <EditText
+                android:id="@+id/etaTravelerCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/travelercount"
+                android:inputType="number"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no"/>
 
         </LinearLayout>
 
@@ -108,16 +125,34 @@
                 android:fontFamily="@font/roboto_slab"
                 android:textSize="14sp"
                 android:importantForAutofill="no"/>
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_slab"
+                android:text="@string/package_id" />
+
+            <EditText
+                android:id="@+id/etaPackageId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/package_id"
+                android:inputType="number"
+                android:fontFamily="@font/roboto_slab"
+                android:textSize="14sp"
+                android:importantForAutofill="no"/>
 
         </LinearLayout>
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnSave"
+        android:id="@+id/btnAdd"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="@drawable/button"
-        android:text="@string/save"
+        android:enabled="false"
+        android:text="@string/add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

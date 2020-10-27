@@ -30,7 +30,6 @@ import retrofit2.Response;
 
 public class TravelPackagesFragment extends Fragment {
 
-    private TravelPackagesViewModel travelPackagesViewModel;
     private RecyclerView recyclerView;
     private List<TravelPackage> packageList;
     PackageAdapter packageAdapter;
@@ -45,8 +44,7 @@ public class TravelPackagesFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_travel_packages,container,false);
         recyclerView = root.findViewById(R.id.rvList);
-        initRecyclerView();
-        getPackageList();
+
         final FloatingActionButton addbtn = root.findViewById(R.id.fabAdd);
         addbtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_addpackage));
 
@@ -54,11 +52,12 @@ public class TravelPackagesFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        travelPackagesViewModel = new ViewModelProvider(this).get(TravelPackagesViewModel.class);
-        // TODO: Use the ViewModel
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initRecyclerView();
+        getPackageList();
     }
+
     private void initRecyclerView()
     {
         // Setting up Recycler View
@@ -70,7 +69,7 @@ public class TravelPackagesFragment extends Fragment {
     }
     private void getPackageList() {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        Call<List<TravelPackage>> call = apiService.getTravelPackages();
+        Call<List<TravelPackage>> call = apiService.getTravelPackagesAPI();
         call.enqueue(new Callback<List<TravelPackage>>() {
             @Override
             public void onResponse(Call<List<TravelPackage>> call, Response<List<TravelPackage>> response) {

@@ -1,8 +1,12 @@
 package com.edvinlin.travelexperts.ui.bookings;
 
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +22,15 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.edvinlin.travelexperts.R;
+import com.edvinlin.travelexperts.model.Booking;
+
+
+import retrofit2.http.Path;
 
 public class BookingsDataViewFragment extends Fragment {
 
-    private BookingsDataViewViewModel bookingsDataViewViewModel;
-    private EditText BookingId, BookingNo, BookingDate, BookingCustId, BookingTripTypeId;
+    private SharedBookingModel sharedBookingModel;
+    private EditText BookingId, BookingNo, BookingDate, BookingCustId, BookingTripTypeId, BookingPackageId, BookingTravelerCount;
 
     public static BookingsDataViewFragment newInstance() {
         return new BookingsDataViewFragment();
@@ -30,34 +39,100 @@ public class BookingsDataViewFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.data_view_fragment_bookings, container, false);
 
-        //Edit Texts
-        BookingId = root.findViewById(R.id.etBookingId);
-        BookingNo = root.findViewById(R.id.etBookingNo);
-        BookingDate = root.findViewById(R.id.etBookingDate);
-        BookingCustId = root.findViewById(R.id.etBookingCustId);
-        BookingTripTypeId = root.findViewById(R.id.etBookingTripTypeId);
-
-        //Common Ones
-        final CardView back = root.findViewById(R.id.cardBack);
-        final Button btnSave = root.findViewById(R.id.btnSave);
-        final Button btnDelete = root.findViewById(R.id.btnDelete);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.navigation_packages);
-            }
-        });
-
-        return root;
+        return inflater.inflate(R.layout.data_view_fragment_bookings, container, false);
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        bookingsDataViewViewModel = new ViewModelProvider(this).get(BookingsDataViewViewModel.class);
-        // TODO: Use the ViewModel
-    }
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //Edit Texts
+        BookingId = view.findViewById(R.id.etBookingId);
+        BookingNo = view.findViewById(R.id.etBookingNo);
+        BookingDate = view.findViewById(R.id.etBookingDate);
+        BookingCustId = view.findViewById(R.id.etBookingCustId);
+        BookingTripTypeId = view.findViewById(R.id.etBookingTripTypeId);
+        BookingPackageId = view.findViewById(R.id.etPackageId);
+        BookingTravelerCount = view.findViewById(R.id.etTravelerCount);
 
+
+        //Common Ones
+        final CardView back = view.findViewById(R.id.cardBack);
+        final Button btnSave = view.findViewById(R.id.btnSave);
+        final Button btnDelete = view.findViewById(R.id.btnDelete);
+
+        back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_bookings));
+
+        sharedBookingModel = new ViewModelProvider(requireActivity()).get(SharedBookingModel.class);
+        sharedBookingModel.getBooking().observe(getViewLifecycleOwner(), booking -> updateUI(booking));
+        btnSave.setOnClickListener(v -> {
+            Booking booking = new Booking (
+            Integer.parseInt(BookingId.getText().toString()),
+            BookingNo.getText().toString(),
+            BookingDate.getText().toString(),
+            Integer.parseInt(BookingCustId.getText().toString()),
+            Integer.parseInt(BookingTripTypeId.getText().toString()),
+            Double.parseDouble(BookingPackageId.getText().toString()),
+            BookingTravelerCount.getText().toString()
+            );
+        sharedBookingModel.EditBooking(booking);
+        });
+
+        btnDelete.setOnClickListener(v -> DeleteAskOption());
+    }
+    private AlertDialog DeleteAskOption() {
+        AlertDialog deleteDialogBox = new AlertDialog.Builder(getContext())
+                .setTitle("Delete")
+                .setMessage("Do you want to Delete?")
+                .setIcon(R.drawable.ic_warning_24px)
+                .setPositiveButton("Delete", (dialog, which) -> {
+                    int id = Integer.parseInt(BookingId.getText().toString());
+                    sharedBookingModel.DeleteBooking(id);
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                .create();
+        return deleteDialogBox;
+    }
+    private void updateUI(Booking booking) {
+        if (booking.getBookingId() == null) {
+            BookingId.setText("");
+        }
+        else{
+            BookingId.setText(String.valueOf(booking.getBookingId()));
+        }
+        if (booking.getBookingNo() == null) {
+            BookingNo.setText("");
+        }
+        else{
+            BookingNo.setText(booking.getBookingNo());
+        }
+        if (booking.getBookingDate() == null ) {
+            BookingDate.setText("");
+        }
+        else{
+            BookingDate.setText(booking.getBookingDate());
+        }
+        if (booking.getCustomerId() == null) {
+            BookingCustId.setText("");
+        }
+        else{
+            BookingCustId.setText(String.valueOf(booking.getCustomerId()));
+        }
+
+        BookingTripTypeId.setText(booking.getTripTypeId());
+        if (booking.getPackageId() == null){
+            BookingPackageId.setText("");
+        }
+        else{
+            BookingPackageId.setText(String.valueOf(booking.getPackageId()));
+        }
+
+        if (booking.getTravelerCount() == null){
+            BookingTravelerCount.setText("");
+        }
+        else {
+            BookingTravelerCount.setText(String.valueOf(booking.getTravelerCount()));
+        }
+
+    }
 }

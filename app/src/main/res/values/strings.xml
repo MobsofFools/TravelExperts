@@ -79,4 +79,6 @@
     <string name="booking_date">Booking Date</string>
     <string name="booking_no">Booking No</string>
     <string name="trip_type_id">Trip Type Id</string>
+    <string name="add">Add</string>
+    <string name="travelercount">Traveler Count</string>
 </resources>
