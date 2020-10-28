@@ -1,10 +1,15 @@
 package com.edvinlin.travelexperts.ui.bookings;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.Filter;
+import android.widget.ImageView;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
@@ -32,11 +37,13 @@ public class BookingsFragment extends Fragment implements OnRecyclerItemClickLis
     private List<Booking> bookingList;
     private NavController navController;
     private BookingAdapter bookingAdapter;
-    private SearchView searchView;
+    private EditText searchBar;
+    private ImageView ivRefresh;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
 
         return inflater.inflate(R.layout.fragment_list, container, false);
     }
@@ -44,29 +51,45 @@ public class BookingsFragment extends Fragment implements OnRecyclerItemClickLis
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        sharedBookingModel = new ViewModelProvider(requireActivity()).get(SharedBookingModel.class);
         recyclerView = view.findViewById(R.id.rvList);
         navController = Navigation.findNavController(view);
-
-/*        searchView = view.findViewById(R.id.etSearchBar);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                bookingAdapter.getFilter().filter(newText);
-                return false;
-            }
-        });*/
+        searchBar = view.findViewById(R.id.etSearch);
+        ivRefresh = view.findViewById(R.id.ivRefresh);
+        ivRefresh.setOnClickListener(v -> {
+            loadBookings();
+            searchBar.setText("");
+        });
 
         final FloatingActionButton addbtn = view.findViewById(R.id.fabAdd);
         addbtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_addbooking));
 
         initRecyclerView();
 
-        sharedBookingModel = new ViewModelProvider(requireActivity()).get(SharedBookingModel.class);
+        loadBookings();
+
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if (bookingAdapter != null) {
+                    bookingAdapter.getFilter().filter(s);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    private void loadBookings() {
         sharedBookingModel.getBookingList().observe(getViewLifecycleOwner(), bookings -> {
             bookingList.clear();
             bookingList.addAll(bookings);
@@ -77,11 +100,7 @@ public class BookingsFragment extends Fragment implements OnRecyclerItemClickLis
     @Override
     public void onStart() {
         super.onStart();
-        sharedBookingModel.getBookingList().observe(getViewLifecycleOwner(), bookings -> {
-            bookingList.clear();
-            bookingList.addAll(bookings);
-            bookingAdapter.notifyDataSetChanged();
-        });
+        loadBookings();
     }
 
     private void initRecyclerView() {

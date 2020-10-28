@@ -14,16 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.edvinlin.travelexperts.R;
 import com.edvinlin.travelexperts.model.Booking;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.mViewHolder> /*implements Filterable*/ {
+public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.mViewHolder> implements Filterable {
 
     OnRecyclerItemClickListener onItemClickListener;
     private Context context;
     private List<Booking> bookingList;
     private List<Booking> bookingListFull;
+
 
     public BookingAdapter(Context context, List<Booking> list, OnRecyclerItemClickListener onItemClickListener) {
         this.context = context;
@@ -56,6 +56,10 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.mViewHol
         return 0;
     }
 
+    public void setBookingListFull(List<Booking> bookingListFull) {
+        this.bookingListFull = bookingListFull;
+    }
+
     public class mViewHolder extends RecyclerView.ViewHolder {
         TextView bookingNo;
 
@@ -68,27 +72,31 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.mViewHol
 
         }
     }
-/*    @Override
+
+    @Override
     public Filter getFilter() {
-        return bookingFilter;
+        setBookingListFull(bookingList);
+        return myFilter;
     }
-    private Filter bookingFilter = new Filter() {
+    private Filter myFilter = new Filter() {
+
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<Booking> filteredList = new ArrayList<>();
-            if (constraint == null || constraint.length() == 0) {
+            if (constraint == null || constraint.length() == 0 ) {
                 filteredList.addAll(bookingListFull);
-            } else {
+            }else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
-                for (Booking item : bookingListFull) {
-                    if (item.getBookingNo().toLowerCase().contains(filterPattern)) {
-                        filteredList.add(item);
+                for (Booking booking : bookingListFull) {
+                    if (booking.getBookingNo().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(booking);
                     }
+
                 }
             }
             FilterResults results = new FilterResults();
             results.values = filteredList;
-            return results;
+            return  results;
         }
 
         @Override
@@ -97,6 +105,6 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.mViewHol
             bookingList.addAll((List) results.values);
             notifyDataSetChanged();
         }
-    };*/
+    };
 }
 
