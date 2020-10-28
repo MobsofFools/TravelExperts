@@ -38,6 +38,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="chat">Chat</string>
 
     <!-- Profile  -->
     <string name="change_password">Change Password</string>
