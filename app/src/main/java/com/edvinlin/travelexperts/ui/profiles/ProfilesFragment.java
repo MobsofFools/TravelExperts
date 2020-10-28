@@ -12,12 +12,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 
 import com.edvinlin.travelexperts.R;
 
 public class ProfilesFragment extends Fragment {
-
-    private ProfilesViewModel profilesViewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -26,5 +25,14 @@ public class ProfilesFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_profile, container, false);
 
 
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ImageView logout = view.findViewById(R.id.ivLogout);
+        logout.setOnClickListener(v -> {
+            Navigation.findNavController(getView()).navigate(R.id.navigation_login);
+        });
     }
 }

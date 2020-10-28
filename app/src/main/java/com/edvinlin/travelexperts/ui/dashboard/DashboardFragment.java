@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -22,14 +23,12 @@ import com.edvinlin.travelexperts.R;
 
 public class DashboardFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
+
         //Card 1 = Packages
         final CardView card1 = root.findViewById(R.id.card1);
         //Card 2 = Flights
@@ -57,8 +56,12 @@ public class DashboardFragment extends Fragment {
         card6.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_suppliers));
 
 
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), s -> textView.setText(s));
-
         return root;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
     }
 }

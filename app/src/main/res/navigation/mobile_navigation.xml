@@ -140,9 +140,9 @@
         android:name="com.edvinlin.travelexperts.ui.suppliers.SuppliersFragment"
         android:label="@string/card6"
         tools:layout="@layout/fragment_suppliers" />
-
-
-
-
-
+    <activity
+        android:id="@+id/navigation_login"
+        android:name="com.edvinlin.travelexperts.ui.login.LoginActivity"
+        android:label="@string/logout"
+        tools:layout="@layout/activity_login" />
 </navigation>
