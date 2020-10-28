@@ -1,27 +1,22 @@
 package com.edvinlin.travelexperts.ui.travelpackages;
 
-import androidx.cardview.widget.CardView;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.app.AlertDialog;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
 import com.edvinlin.travelexperts.R;
 import com.edvinlin.travelexperts.model.TravelPackage;
-
-import java.math.BigDecimal;
-import java.util.Date;
 
 public class PackageDataViewFragment extends Fragment {
 
@@ -64,12 +59,12 @@ public class PackageDataViewFragment extends Fragment {
         btnSave.setOnClickListener(v -> {
             TravelPackage travelPackage = new TravelPackage(
                     Integer.parseInt(PkgId.getText().toString()),
-                    PkgName.getText().toString(),
-                    PkgStartDate.getText().toString(),
-                    PkgEndDate.getText().toString(),
-                    PkgDesc.getText().toString(),
+                    Double.parseDouble(PkgAgencyCommission.getText().toString()),
                     Double.parseDouble(PkgBasePrice.getText().toString()),
-                    Double.parseDouble(PkgAgencyCommission.getText().toString())
+                    PkgDesc.getText().toString(),
+                    PkgEndDate.getText().toString(),
+                    PkgName.getText().toString(),
+                    PkgStartDate.getText().toString()
             );
             sharedPackageModel.EditPackage(travelPackage);
         });

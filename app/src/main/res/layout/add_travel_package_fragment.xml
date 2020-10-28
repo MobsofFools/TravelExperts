@@ -32,7 +32,7 @@
                 android:id="@+id/textView12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:text="@string/package_name" />
 
             <EditText
@@ -42,7 +42,7 @@
                 android:ems="10"
                 android:hint="@string/package_name"
                 android:inputType="textPersonName"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:textSize="14sp"
                 android:importantForAutofill="no" />
 
@@ -60,7 +60,7 @@
                 android:ems="10"
                 android:hint="@string/base_price"
                 android:inputType="numberDecimal"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:textSize="14sp"
                 android:importantForAutofill="no"/>
 
@@ -68,7 +68,7 @@
                 android:id="@+id/textView14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:text="@string/agency_commission"
                 />
 
@@ -79,7 +79,7 @@
                 android:ems="10"
                 android:hint="@string/agency_commission"
                 android:inputType="numberDecimal"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:textSize="14sp"
                 android:importantForAutofill="no"/>
 
@@ -96,7 +96,7 @@
                 android:id="@+id/textView15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:text="@string/start_date" />
 
             <EditText
@@ -106,7 +106,7 @@
                 android:ems="10"
                 android:inputType="date"
                 android:hint="@string/start_date"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:textSize="14sp"
                 android:importantForAutofill="no"/>
 
@@ -114,7 +114,7 @@
                 android:id="@+id/textView16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:text="@string/end_date" />
             <EditText
                 android:id="@+id/etaPkgEndDate"
@@ -123,7 +123,7 @@
                 android:ems="10"
                 android:inputType="date"
                 android:hint="@string/end_date"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:textSize="14sp"
                 android:importantForAutofill="no"/>
 
@@ -131,7 +131,7 @@
                 android:id="@+id/textView17"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:text="@string/description" />
             <EditText
                 android:id="@+id/etaPkgDesc"
@@ -140,7 +140,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:hint="@string/description"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:textSize="14sp"
                 android:importantForAutofill="no"/>
 

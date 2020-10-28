@@ -65,7 +65,7 @@ public class SharedBookingModel extends ViewModel {
         });
 
     }
-    //Needs Testing
+
     public void AddBooking(Booking booking) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<Booking> call = apiService.createBookingAPI(booking);
@@ -101,14 +101,14 @@ public class SharedBookingModel extends ViewModel {
             }
         });
     }
-    //Still not functional
+
     public void DeleteBooking(int id) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<ResponseBody> call = apiService.deleteBookingAPI(id);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.d("TAG","Response = Deleted");
+                Log.d("TAG","Response = " + response);
             }
 
             @Override

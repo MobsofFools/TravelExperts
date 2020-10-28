@@ -32,7 +32,7 @@
                 android:id="@+id/textView19"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:text="@string/first_name" />
 
             <EditText
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:hint="@string/first_name"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
@@ -50,7 +50,7 @@
                 android:id="@+id/textView18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:text="@string/address" />
 
             <EditText
@@ -58,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:hint="@string/address"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
@@ -68,7 +68,7 @@
                 android:id="@+id/textView20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:text="@string/province" />
 
             <EditText
@@ -76,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:hint="@string/province"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
@@ -86,7 +86,7 @@
                 android:id="@+id/textView21"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:text="@string/country" />
 
             <EditText
@@ -94,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:hint="@string/country"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
@@ -104,7 +104,7 @@
                 android:id="@+id/textView25"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:text="@string/prompt_email" />
 
             <EditText
@@ -112,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:hint="@string/prompt_email"
                 android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
@@ -131,7 +131,7 @@
                 android:id="@+id/textView10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:text="@string/last_name" />
 
             <EditText
@@ -139,7 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:hint="@string/last_name"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
@@ -149,7 +149,7 @@
                 android:id="@+id/textView9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:text="@string/city" />
 
             <EditText
@@ -157,7 +157,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:hint="@string/city"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
@@ -167,7 +167,7 @@
                 android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:text="@string/postal_code" />
 
             <EditText
@@ -175,7 +175,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:hint="@string/postal_code"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
@@ -185,7 +185,7 @@
                 android:id="@+id/textView22"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:text="@string/home_phone" />
 
             <EditText
@@ -193,7 +193,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:hint="@string/home_phone"
                 android:importantForAutofill="no"
                 android:inputType="phone"
@@ -203,7 +203,7 @@
                 android:id="@+id/textView24"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:text="@string/business_phone" />
 
             <EditText
@@ -211,7 +211,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:fontFamily="@font/roboto_slab"
+                android:fontFamily="@font/roboto"
                 android:hint="@string/business_phone"
                 android:importantForAutofill="no"
                 android:inputType="phone"

@@ -31,7 +31,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class AddBooking extends Fragment {
 
-    private NavController navController;
     private SharedBookingModel sharedBookingModel;
     private EditText BookingNo, BookingDate, BookingCustId, BookingTripTypeId, TravelerCount, PackageId;
 

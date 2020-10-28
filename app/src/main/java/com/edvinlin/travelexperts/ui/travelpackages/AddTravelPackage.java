@@ -56,12 +56,12 @@ public class AddTravelPackage extends Fragment {
         back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_packages));
         btnAdd.setOnClickListener(v -> {
             TravelPackage travelPackage = new TravelPackage(0,
-                    PkgName.getText().toString(),
-                    PkgStartDate.getText().toString(),
-                    PkgEndDate.getText().toString(),
-                    PkgDesc.getText().toString(),
+                    Double.parseDouble(PkgAgencyCommission.getText().toString()),
                     Double.parseDouble(PkgBasePrice.getText().toString()),
-                    Double.parseDouble(PkgAgencyCommission.getText().toString())
+                    PkgDesc.getText().toString(),
+                    PkgEndDate.getText().toString(),
+                    PkgName.getText().toString(),
+                    PkgStartDate.getText().toString()
                     );
             sharedPackageModel.AddPackage(travelPackage);
         });

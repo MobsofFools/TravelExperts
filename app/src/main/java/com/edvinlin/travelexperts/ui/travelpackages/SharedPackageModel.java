@@ -23,7 +23,8 @@ public class SharedPackageModel extends ViewModel {
     public MutableLiveData<List<TravelPackage>> mutablePackageList = new MutableLiveData<>();
     public MutableLiveData<TravelPackage> mutablePackage = new MutableLiveData<>();
     public List<TravelPackage> packageList;
-    ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+    public TravelPackage testPackage;
+
 
     public LiveData<List<TravelPackage>> getPackageList() {
         if (mutablePackageList.getValue() == null) {
@@ -46,6 +47,7 @@ public class SharedPackageModel extends ViewModel {
     }
 
     private void LoadPackages() {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<List<TravelPackage>> call = apiService.getTravelPackagesAPI();
         call.enqueue(new Callback<List<TravelPackage>>() {
             @Override
@@ -62,12 +64,31 @@ public class SharedPackageModel extends ViewModel {
         });
     }
     public void AddPackage(TravelPackage travelPackage) {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<TravelPackage> call = apiService.createTravelPackageAPI(travelPackage);
+        call.enqueue(new Callback<TravelPackage>() {
+            @Override
+            public void onResponse(Call<TravelPackage> call, Response<TravelPackage> response) {
+                testPackage = response.body();
+                Log.d("TAG", "Response = " +testPackage);
+
+                //Sets value of mutable package, to get
+                mutablePackage.postValue(testPackage);
+            }
+
+            @Override
+            public void onFailure(Call<TravelPackage> call, Throwable t) {
+
+            }
+        });
+
     }
     public void EditPackage(TravelPackage travelPackage) {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<ResponseBody> call = apiService.updateTravelPackageAPI(travelPackage);
     }
     public void DeletePackage(int id) {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<ResponseBody> call = apiService.deletePackageAPI(id);
     }
 }

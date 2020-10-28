@@ -14,33 +14,39 @@ public class TravelPackage implements Serializable {
     @SerializedName("packageId")
     @Expose
     private Integer PackageId;
-    @SerializedName("pkgName")
-    @Expose
-    private String PkgName;
-    @SerializedName("pkgStartDate")
-    @Expose
-    private String PkgStartDate;
-    @SerializedName("pkgEndDate")
-    @Expose
-    private String PkgEndDate;
-    @SerializedName("pkgDesc")
-    @Expose
-    private String PkgDesc;
-    @SerializedName("pkgBasePrice")
-    @Expose
-    private Double PkgBasePrice;
+
     @SerializedName("pkgAgencyCommission")
     @Expose
     private Double PkgAgencyCommission;
 
-    public TravelPackage(Integer packageId, String pkgName, String pkgStartDate, String pkgEndDate, String pkgDesc, Double pkgBasePrice, Double pkgAgencyCommission) {
+    @SerializedName("pkgBasePrice")
+    @Expose
+    private Double PkgBasePrice;
+
+    @SerializedName("pkgDesc")
+    @Expose
+    private String PkgDesc;
+
+    @SerializedName("pkgName")
+    @Expose
+    private String PkgName;
+
+    @SerializedName("pkgEndDate")
+    @Expose
+    private String PkgEndDate;
+
+    @SerializedName("pkgStartDate")
+    @Expose
+    private String PkgStartDate;
+
+    public TravelPackage(Integer packageId, Double pkgAgencyCommission, Double pkgBasePrice, String pkgDesc, String pkgName, String pkgEndDate, String pkgStartDate) {
         PackageId = packageId;
-        PkgName = pkgName;
-        PkgStartDate = pkgStartDate;
-        PkgEndDate = pkgEndDate;
-        PkgDesc = pkgDesc;
-        PkgBasePrice = pkgBasePrice;
         PkgAgencyCommission = pkgAgencyCommission;
+        PkgBasePrice = pkgBasePrice;
+        PkgDesc = pkgDesc;
+        PkgName = pkgName;
+        PkgEndDate = pkgEndDate;
+        PkgStartDate = pkgStartDate;
     }
 
     public Integer getPackageId() {
