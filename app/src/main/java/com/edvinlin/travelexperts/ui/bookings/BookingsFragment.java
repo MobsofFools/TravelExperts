@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +32,7 @@ public class BookingsFragment extends Fragment implements OnRecyclerItemClickLis
     private List<Booking> bookingList;
     private NavController navController;
     private BookingAdapter bookingAdapter;
+    private SearchView searchView;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -43,6 +46,21 @@ public class BookingsFragment extends Fragment implements OnRecyclerItemClickLis
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.rvList);
         navController = Navigation.findNavController(view);
+
+/*        searchView = view.findViewById(R.id.etSearchBar);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                bookingAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });*/
+
         final FloatingActionButton addbtn = view.findViewById(R.id.fabAdd);
         addbtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_addbooking));
 
