@@ -6,23 +6,10 @@
     app:startDestination="@+id/navigation_dashboard">
 
     <fragment
-        android:id="@+id/navigation_search"
-        android:name="com.edvinlin.travelexperts.ui.search.SearchFragment"
+        android:id="@+id/navigation_chat"
+        android:name="com.edvinlin.travelexperts.ui.chat.ChatFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_search" >
-        <action
-            android:id="@+id/action_navigation_search_to_navigation_packagedataview"
-            app:destination="@id/navigation_packagedataview" />
-        <action
-            android:id="@+id/action_navigation_search_to_navigation_customerdataview"
-            app:destination="@id/navigation_customerdataview" />
-        <action
-            android:id="@+id/action_navigation_search_to_navigation_productdataview"
-            app:destination="@id/navigation_productdataview" />
-        <action
-            android:id="@+id/action_navigation_search_to_navigation_bookingsdataview"
-            app:destination="@id/navigation_bookingsdataview" />
-    </fragment>
+        tools:layout="@layout/fragment_chat" />
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.edvinlin.travelexperts.ui.profiles.ProfilesFragment"

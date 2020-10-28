@@ -1,14 +1,14 @@
-package com.edvinlin.travelexperts.ui.search;
+package com.edvinlin.travelexperts.ui.chat;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SearchViewModel extends ViewModel {
+public class ChatViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public SearchViewModel() {
+    public ChatViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("");
     }
