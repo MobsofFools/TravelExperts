@@ -4,26 +4,35 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.edvinlin.travelexperts.R;
+import com.edvinlin.travelexperts.model.Customer;
 import com.edvinlin.travelexperts.model.TravelPackage;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.mViewHolder> {
+public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.mViewHolder> implements Filterable {
 
     OnRecyclerItemClickListener onRecyclerItemClickListener;
     private Context context;
     private List<TravelPackage> packageList;
+    private List<TravelPackage> packageListFull;
 
     public PackageAdapter(Context context, List<TravelPackage> list, OnRecyclerItemClickListener onRecyclerItemClickListener) {
         this.context = context;
         this.packageList = list;
         this.onRecyclerItemClickListener = onRecyclerItemClickListener;
+    }
+
+    public void setPackageListFull(List<TravelPackage> packageListFull) {
+        this.packageListFull = packageListFull;
     }
 
     public void setPackageList(List<TravelPackage> packageList) {
@@ -65,5 +74,36 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.mViewHol
 
         }
     }
+    @Override
+    public Filter getFilter() {
+        setPackageListFull(packageList);
+        return myFilter;
+    }
+    private Filter myFilter = new Filter() {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<TravelPackage> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(packageListFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (TravelPackage travelPackage : packageListFull) {
+                    if (travelPackage.getPkgName().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(travelPackage);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            packageList.clear();
+            packageList.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }
 

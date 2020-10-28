@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,13 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.edvinlin.travelexperts.R;
 import com.edvinlin.travelexperts.model.Customer;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.mViewHolder> {
+public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.mViewHolder> implements Filterable {
     OnRecyclerItemClickListener onItemClickListener;
     private Context context;
     private List<Customer> customerList;
+    private List<Customer> customerListFull;
 
+    public void setCustomerListFull(List<Customer> customerListFull) {
+        this.customerListFull = customerListFull;
+    }
 
     public CustomerAdapter(Context context, List<Customer> list, OnRecyclerItemClickListener onItemClickListener) {
         this.context = context;
@@ -26,7 +33,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.mViewH
         this.onItemClickListener = onItemClickListener;
     }
 
-    public void setBookingList(List<Customer> customerList) {
+    public void setCustomerList(List<Customer> customerList) {
         this.customerList = customerList;
         notifyDataSetChanged();
     }
@@ -65,4 +72,40 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.mViewH
         }
 
     }
+
+    @Override
+    public Filter getFilter() {
+        setCustomerListFull(customerList);
+        return myFilter;
+    }
+    private Filter myFilter = new Filter() {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Customer> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(customerListFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (Customer customer : customerListFull) {
+                    if (customer.getCustFirstName().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(customer);
+                    }
+                    if (customer.getCustLastName().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(customer);
+
+                    }
+                }
+            }
+                FilterResults results = new FilterResults();
+                results.values = filteredList;
+                return results;
+        }
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            customerList.clear();
+            customerList.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }

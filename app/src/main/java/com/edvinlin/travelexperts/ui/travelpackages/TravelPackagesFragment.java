@@ -1,15 +1,17 @@
 package com.edvinlin.travelexperts.ui.travelpackages;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -20,16 +22,10 @@ import com.edvinlin.travelexperts.R;
 import com.edvinlin.travelexperts.model.TravelPackage;
 import com.edvinlin.travelexperts.model.listview.OnRecyclerItemClickListener;
 import com.edvinlin.travelexperts.model.listview.PackageAdapter;
-import com.edvinlin.travelexperts.remote.ApiClient;
-import com.edvinlin.travelexperts.remote.ApiInterface;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class TravelPackagesFragment extends Fragment implements OnRecyclerItemClickListener {
 
@@ -38,6 +34,8 @@ public class TravelPackagesFragment extends Fragment implements OnRecyclerItemCl
     private List<TravelPackage> packageList;
     private NavController navController;
     private PackageAdapter packageAdapter;
+    private EditText searchBar;
+    private ImageView ivRefresh;
 
 
     public static TravelPackagesFragment newInstance() {
@@ -54,25 +52,55 @@ public class TravelPackagesFragment extends Fragment implements OnRecyclerItemCl
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        sharedPackageModel = new ViewModelProvider(requireActivity()).get(SharedPackageModel.class);
         recyclerView = view.findViewById(R.id.rvList);
         navController = Navigation.findNavController(view);
-        final FloatingActionButton addbtn = view.findViewById(R.id.fabAdd);
-        addbtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_addpackage));
-        initRecyclerView();
 
-        sharedPackageModel = new ViewModelProvider(requireActivity()).get(SharedPackageModel.class);
-        sharedPackageModel.getPackageList().observe(getViewLifecycleOwner(), travelPackages -> {
-            packageList.clear();
-            packageList.addAll(travelPackages);
-            packageAdapter.notifyDataSetChanged();
+        searchBar = view.findViewById(R.id.etSearch);
+
+        ivRefresh = view.findViewById(R.id.ivRefresh);
+        ivRefresh.setOnClickListener(v -> {
+            loadPackages();
+            searchBar.setText("");
         });
 
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if (packageAdapter != null) {
+                    packageAdapter.getFilter().filter(s);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        final FloatingActionButton addbtn = view.findViewById(R.id.fabAdd);
+        addbtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_addpackage));
+
+        initRecyclerView();
+        loadPackages();
+
     }
+
 
     @Override
     public void onStart() {
         super.onStart();
         sharedPackageModel = new ViewModelProvider(requireActivity()).get(SharedPackageModel.class);
+        loadPackages();
+    }
+
+    private void loadPackages() {
         sharedPackageModel.getPackageList().observe(getViewLifecycleOwner(), travelPackages -> {
             packageList.clear();
             packageList.addAll(travelPackages);
