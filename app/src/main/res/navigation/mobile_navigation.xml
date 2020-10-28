@@ -98,7 +98,7 @@
         android:id="@+id/navigation_packages"
         android:name="com.edvinlin.travelexperts.ui.travelpackages.TravelPackagesFragment"
         android:label="@string/card1"
-        tools:layout="@layout/fragment_travel_packages" >
+        tools:layout="@layout/fragment_list" >
         <action
             android:id="@+id/action_navigation_packages_to_navigation_packagedataview"
             app:destination="@id/navigation_packagedataview" />
@@ -115,7 +115,7 @@
         android:id="@+id/navigation_customers"
         android:name="com.edvinlin.travelexperts.ui.customers.CustomersFragment"
         android:label="@string/card3"
-        tools:layout="@layout/fragment_customers" >
+        tools:layout="@layout/fragment_list" >
         <action
             android:id="@+id/action_navigation_customers_to_navigation_customerdataview"
             app:destination="@id/navigation_customerdataview" />
@@ -127,7 +127,7 @@
         android:id="@+id/navigation_bookings"
         android:name="com.edvinlin.travelexperts.ui.bookings.BookingsFragment"
         android:label="@string/card4"
-        tools:layout="@layout/fragment_bookings" >
+        tools:layout="@layout/fragment_list" >
         <action
             android:id="@+id/action_navigation_bookings_to_navigation_addbooking"
             app:destination="@id/navigation_addbooking" />

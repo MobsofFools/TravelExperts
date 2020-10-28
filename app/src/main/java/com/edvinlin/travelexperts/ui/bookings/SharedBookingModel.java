@@ -1,6 +1,8 @@
 package com.edvinlin.travelexperts.ui.bookings;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -66,7 +68,7 @@ public class SharedBookingModel extends ViewModel {
 
     }
 
-    public void AddBooking(Booking booking) {
+    public void AddBooking(Booking booking, Context context) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<Booking> call = apiService.createBookingAPI(booking);
         call.enqueue(new Callback<Booking>() {
@@ -75,16 +77,18 @@ public class SharedBookingModel extends ViewModel {
                 testBooking = response.body();
                 Log.d("TAG","Response = " +testBooking);
                 mutableBooking.postValue(testBooking);
+                Toast.makeText(context, "Booking Successful", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<Booking> call, Throwable t) {
                 Log.d("TAG", "Response = " + t.toString());
+                Toast.makeText(context, "Add Failed", Toast.LENGTH_LONG).show();
             }
         });
     }
     //Functional
-    public void EditBooking(Booking booking) {
+    public void EditBooking(Booking booking, Context context) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<Booking> call = apiService.updateBookingAPI(booking);
         call.enqueue(new Callback<Booking>() {
@@ -93,27 +97,31 @@ public class SharedBookingModel extends ViewModel {
                 testBooking = response.body();
                 Log.d("TAG","Response = " +testBooking);
                 mutableBooking.postValue(testBooking);
+                Toast.makeText(context, "Booking Saved", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<Booking> call, Throwable t) {
                 Log.d("TAG", "Response = " + t.toString());
+                Toast.makeText(context, "Save Failed", Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    public void DeleteBooking(int id) {
+    public void DeleteBooking(int id, Context context) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<ResponseBody> call = apiService.deleteBookingAPI(id);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 Log.d("TAG","Response = " + response);
+                Toast.makeText(context, "Booking Deleted", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.d("TAG", "Response = " + t.toString());
+                Toast.makeText(context, "Deleted Failed", Toast.LENGTH_LONG).show();
             }
         });
     }

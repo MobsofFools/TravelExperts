@@ -17,6 +17,7 @@ import androidx.navigation.Navigation;
 
 import com.edvinlin.travelexperts.R;
 import com.edvinlin.travelexperts.model.TravelPackage;
+import com.edvinlin.travelexperts.model.functions.myDateSetter;
 
 public class PackageDataViewFragment extends Fragment {
 
@@ -66,7 +67,7 @@ public class PackageDataViewFragment extends Fragment {
                     PkgName.getText().toString(),
                     PkgStartDate.getText().toString()
             );
-            sharedPackageModel.EditPackage(travelPackage);
+            sharedPackageModel.EditPackage(travelPackage, getContext());
         });
         btnDelete.setOnClickListener(v -> DeleteAskOption());
 
@@ -82,7 +83,7 @@ public class PackageDataViewFragment extends Fragment {
                 .setIcon(R.drawable.ic_warning_24px)
                 .setPositiveButton("Delete", (dialog, which) -> {
                     int id = Integer.parseInt(PkgId.getText().toString());
-                    sharedPackageModel.DeletePackage(id);
+                    sharedPackageModel.DeletePackage(id, getContext());
                     Navigation.findNavController(requireView()).navigate(R.id.navigation_packages);
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())

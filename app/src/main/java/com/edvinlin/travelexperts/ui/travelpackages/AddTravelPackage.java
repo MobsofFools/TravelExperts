@@ -2,10 +2,7 @@ package com.edvinlin.travelexperts.ui.travelpackages;
 
 import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
-import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,27 +10,17 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.telecom.Call;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.edvinlin.travelexperts.R;
-import com.edvinlin.travelexperts.model.Booking;
 import com.edvinlin.travelexperts.model.TravelPackage;
-import com.edvinlin.travelexperts.ui.bookings.SharedBookingModel;
-
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+import com.edvinlin.travelexperts.model.functions.myDateSetter;
 
 public class AddTravelPackage extends Fragment {
 
@@ -91,7 +78,7 @@ public class AddTravelPackage extends Fragment {
                     PkgName.getText().toString(),
                     PkgStartDate.getText().toString()
                     );
-            sharedPackageModel.AddPackage(travelPackage);
+            sharedPackageModel.AddPackage(travelPackage, getContext());
         });
 
     }

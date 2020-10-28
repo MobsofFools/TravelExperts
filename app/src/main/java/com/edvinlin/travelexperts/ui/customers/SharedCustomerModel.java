@@ -65,7 +65,7 @@ public class SharedCustomerModel extends ViewModel {
             }
         });
     }
-    public void AddCustomer(Customer customer) {
+    public void AddCustomer(Customer customer, Context context) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<Customer> call = apiService.createCustomerAPI(customer);
         call.enqueue(new Callback<Customer>() {
@@ -74,15 +74,17 @@ public class SharedCustomerModel extends ViewModel {
                 testCustomer = response.body();
                 Log.d("TAG", "Response = " +testCustomer);
                 mutableCustomer.postValue(testCustomer);
+                Toast.makeText(context, "Customer Added", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<Customer> call, Throwable t) {
                 Log.d("TAG", "Response = " + t.toString());
+                Toast.makeText(context, "Add Failed", Toast.LENGTH_LONG).show();
             }
         });
     }
-    public void EditCustomer(Customer customer) {
+    public void EditCustomer(Customer customer, Context context) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<Customer> call = apiService.updateCustomerAPI(customer);
         call.enqueue(new Callback<Customer>() {
@@ -91,26 +93,30 @@ public class SharedCustomerModel extends ViewModel {
                 testCustomer = response.body();
                 Log.d("TAG", "Response = " +testCustomer);
                 mutableCustomer.postValue(testCustomer);
+                Toast.makeText(context, "Customer Saved", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<Customer> call, Throwable t) {
                 Log.d("TAG", "Response = " + t.toString());
+                Toast.makeText(context, "Save Failed", Toast.LENGTH_LONG).show();
             }
         });
     }
-    public void DeleteCustomer(int id) {
+    public void DeleteCustomer(int id, Context context) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<ResponseBody> call = apiService.deleteCustomerAPI(id);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 Log.d("TAG", "Response + " + response);
+                Toast.makeText(context, "Successfully Deleted", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.d("TAG", "Response = " + t.toString());
+                Toast.makeText(context, "Delete failed", Toast.LENGTH_LONG).show();
             }
         });
     }

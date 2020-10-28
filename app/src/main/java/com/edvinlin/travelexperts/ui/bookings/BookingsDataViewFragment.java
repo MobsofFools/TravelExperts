@@ -71,7 +71,7 @@ public class BookingsDataViewFragment extends Fragment {
             Gson gson = new Gson();
             String json = gson.toJson(booking);
             Log.d("TAG", booking.toString());
-            sharedBookingModel.EditBooking(booking);
+            sharedBookingModel.EditBooking(booking, getContext());
             Navigation.findNavController(v).navigate(R.id.navigation_bookings);
 
 
@@ -91,7 +91,7 @@ public class BookingsDataViewFragment extends Fragment {
                 .setMessage("Do you want to Delete?")
                 .setIcon(R.drawable.ic_warning_24px)
                 .setPositiveButton("Delete", (dialog, which) -> {
-                    sharedBookingModel.DeleteBooking(id);
+                    sharedBookingModel.DeleteBooking(id, getContext());
                     Navigation.findNavController(getView()).navigate(R.id.navigation_bookings);
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())

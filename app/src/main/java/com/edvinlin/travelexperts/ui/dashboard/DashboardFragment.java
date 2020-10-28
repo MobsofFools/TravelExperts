@@ -43,61 +43,22 @@ public class DashboardFragment extends Fragment {
         //Card6 = Suppliers
         final CardView card6 = root.findViewById(R.id.card6);
 
-        //Send Intent to SearchView and Load Packages
-        card1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.navigation_packages);
-            }
-        });
 
-        card2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.navigation_flights);
-            }
-        });
+        card1.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_packages));
 
-        card3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.navigation_customers);
-            }
-        });
-        //Send Intent to Search View and Load
-        card4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.navigation_bookings);
-            }
-        });
-        //Dud Button For now
-        card5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.navigation_products);
-            }
-        });
-        //Dud Button For now
-        card6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.navigation_suppliers);
-            }
-        });
+        card2.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_flights));
+
+        card3.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_customers));
+
+        card4.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_bookings));
+
+        card5.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_products));
+
+        card6.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_suppliers));
 
 
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+        dashboardViewModel.getText().observe(getViewLifecycleOwner(), s -> textView.setText(s));
 
-
-
-
-
-            }
-        });
         return root;
     }
 }

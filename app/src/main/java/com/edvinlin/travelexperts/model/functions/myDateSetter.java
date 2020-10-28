@@ -1,4 +1,4 @@
-package com.edvinlin.travelexperts.ui.travelpackages;
+package com.edvinlin.travelexperts.model.functions;
 
 import android.app.DatePickerDialog;
 import android.content.Context;

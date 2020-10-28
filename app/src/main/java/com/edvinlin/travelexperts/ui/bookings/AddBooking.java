@@ -91,7 +91,7 @@ public class AddBooking extends Fragment {
                     Integer.parseInt(TravelerCount.getText().toString()),
                     BookingTripTypeId.getText().toString()
             );
-            sharedBookingModel.AddBooking(booking);
+            sharedBookingModel.AddBooking(booking, getContext());
             sharedBookingModel.setBookingAdded(booking);
             Log.d("TAG", booking.toString());
             Navigation.findNavController(view).navigate(R.id.navigation_bookings);

@@ -27,7 +27,7 @@ public class ProductsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_customers, container, false);
+        View root = inflater.inflate(R.layout.fragment_list, container, false);
         final FloatingActionButton addbtn = root.findViewById(R.id.fabAdd);
         addbtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_addproduct));
         return root;

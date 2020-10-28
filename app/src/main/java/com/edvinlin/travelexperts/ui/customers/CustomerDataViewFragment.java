@@ -91,8 +91,7 @@ public class CustomerDataViewFragment extends Fragment {
             Gson gson = new Gson();
             String json = gson.toJson(customer);
             Log.d("TAG", customer.toString());
-            sharedCustomerModel.EditCustomer(customer);
-            Navigation.findNavController(v).navigate(R.id.navigation_customers);
+            sharedCustomerModel.EditCustomer(customer,getContext());
         });
         btnDelete.setOnClickListener(v -> {
             int id = Integer.parseInt(CustId.getText().toString());
@@ -107,7 +106,8 @@ public class CustomerDataViewFragment extends Fragment {
                 .setMessage("Do you want to Delete?")
                 .setIcon(R.drawable.ic_warning_24px)
                 .setPositiveButton("Delete", (dialog, which) -> {
-                    sharedCustomerModel.DeleteCustomer(id);
+                    sharedCustomerModel.DeleteCustomer(id,getContext());
+                    Navigation.findNavController(getView()).navigate(R.id.navigation_customers);
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
                 .create();

@@ -1,7 +1,9 @@
 package com.edvinlin.travelexperts.ui.travelpackages;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -65,7 +67,7 @@ public class SharedPackageModel extends ViewModel {
             }
         });
     }
-    public void AddPackage(TravelPackage travelPackage) {
+    public void AddPackage(TravelPackage travelPackage, Context context) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<TravelPackage> call = apiService.createTravelPackageAPI(travelPackage);
         call.enqueue(new Callback<TravelPackage>() {
@@ -73,17 +75,19 @@ public class SharedPackageModel extends ViewModel {
             public void onResponse(Call<TravelPackage> call, Response<TravelPackage> response) {
                 testPackage = response.body();
                 Log.d("TAG", "Response = " +testPackage);
+                Toast.makeText(context, "Package Added", Toast.LENGTH_LONG).show();
 
             }
 
             @Override
             public void onFailure(Call<TravelPackage> call, Throwable t) {
                 Log.d("TAG", "Response = " + t.toString());
+                Toast.makeText(context, "Add Failed", Toast.LENGTH_LONG).show();
             }
         });
 
     }
-    public void EditPackage(TravelPackage travelPackage) {
+    public void EditPackage(TravelPackage travelPackage, Context context) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<TravelPackage> call = apiService.updateTravelPackageAPI(travelPackage);
         call.enqueue(new Callback<TravelPackage>() {
@@ -91,26 +95,30 @@ public class SharedPackageModel extends ViewModel {
             public void onResponse(Call<TravelPackage> call, Response<TravelPackage> response) {
                 testPackage = response.body();
                 Log.d("TAG", "Response = " +testPackage);
+                Toast.makeText(context, "Packaged Saved", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<TravelPackage> call, Throwable t) {
                 Log.d("TAG", "Response = " + t.toString());
+                Toast.makeText(context, "Save Failed", Toast.LENGTH_LONG).show();
             }
         });
     }
-    public void DeletePackage(int id) {
+    public void DeletePackage(int id, Context context) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<ResponseBody> call = apiService.deletePackageAPI(id);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 Log.d("TAG", "Response + " + response);
+                Toast.makeText(context, "Package Deleted", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.d("TAG", "Response = " + t.toString());
+                Toast.makeText(context, "Delete Failed", Toast.LENGTH_LONG).show();
             }
         });
     }
