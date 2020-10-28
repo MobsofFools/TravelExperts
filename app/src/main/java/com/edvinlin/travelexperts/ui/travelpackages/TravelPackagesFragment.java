@@ -69,6 +69,17 @@ public class TravelPackagesFragment extends Fragment implements OnRecyclerItemCl
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        sharedPackageModel = new ViewModelProvider(requireActivity()).get(SharedPackageModel.class);
+        sharedPackageModel.getPackageList().observe(getViewLifecycleOwner(), travelPackages -> {
+            packageList.clear();
+            packageList.addAll(travelPackages);
+            packageAdapter.notifyDataSetChanged();
+        });
+    }
+
     private void initRecyclerView()
     {
         // Setting up Recycler View
@@ -85,4 +96,5 @@ public class TravelPackagesFragment extends Fragment implements OnRecyclerItemCl
         navController.navigate(R.id.action_navigation_packages_to_navigation_packagedataview);
 
     }
+
 }

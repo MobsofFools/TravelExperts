@@ -33,6 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
+                android:labelFor="@id/etPkgId"
                 android:text="@string/package_id" />
 
             <EditText
@@ -42,7 +43,6 @@
                 android:ems="10"
                 android:enabled="false"
                 android:fontFamily="@font/roboto"
-                android:hint="@string/package_id"
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:textSize="14sp" />
@@ -52,6 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
+                android:labelFor="@id/etPkgName"
                 android:text="@string/package_name" />
 
             <EditText
@@ -59,17 +60,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="@string/package_name"
                 android:fontFamily="@font/roboto"
-                android:textSize="14sp"
-                android:importantForAutofill="no" />
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
+                android:labelFor="@id/etPkgBasePrice"
                 android:text="@string/base_price" />
 
             <EditText
@@ -77,17 +78,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="numberDecimal"
-                android:hint="@string/base_price"
                 android:fontFamily="@font/roboto"
-                android:textSize="14sp"
-                android:importantForAutofill="no"/>
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
+                android:labelFor="@id/etPkgAgencyCommission"
                 android:text="@string/agency_commission" />
 
             <EditText
@@ -95,11 +96,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="numberDecimal"
-                android:hint="@string/agency_commission"
                 android:fontFamily="@font/roboto"
-                android:textSize="14sp"
-                android:importantForAutofill="no"/>
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -122,11 +122,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="date"
-                android:hint="@string/start_date"
                 android:fontFamily="@font/roboto"
-                android:textSize="14sp"
-                android:importantForAutofill="no"/>
+                android:hint="@string/yyyy_mm_dd"
+                android:importantForAutofill="no"
+                android:inputType="date"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView16"
@@ -140,17 +140,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="date"
-                android:hint="@string/end_date"
                 android:fontFamily="@font/roboto"
-                android:textSize="14sp"
-                android:importantForAutofill="no"/>
+                android:hint="@string/yyyy_mm_dd"
+                android:importantForAutofill="no"
+                android:inputType="date"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView17"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
+                android:labelFor="@id/etPkgDesc"
                 android:text="@string/description" />
 
             <EditText
@@ -159,9 +160,9 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:fontFamily="@font/roboto"
-                android:hint="@string/description"
+                android:gravity="start|top"
                 android:importantForAutofill="no"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
                 android:textSize="14sp" />
 
         </LinearLayout>

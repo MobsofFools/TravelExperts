@@ -4,6 +4,8 @@ import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,17 +13,27 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.telecom.Call;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.edvinlin.travelexperts.R;
+import com.edvinlin.travelexperts.model.Booking;
 import com.edvinlin.travelexperts.model.TravelPackage;
+import com.edvinlin.travelexperts.ui.bookings.SharedBookingModel;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class AddTravelPackage extends Fragment {
 
@@ -30,6 +42,7 @@ public class AddTravelPackage extends Fragment {
     public static AddTravelPackage newInstance() {
         return new AddTravelPackage();
     }
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -41,6 +54,9 @@ public class AddTravelPackage extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        sharedPackageModel = new ViewModelProvider(requireActivity()).get(SharedPackageModel.class);
+
         //Edit Texts
         PkgName = view.findViewById(R.id.etaPkgName);
         PkgStartDate = view.findViewById(R.id.etaPkgStartDate);
@@ -48,6 +64,18 @@ public class AddTravelPackage extends Fragment {
         PkgDesc = view.findViewById(R.id.etaPkgDesc);
         PkgBasePrice = view.findViewById(R.id.etaPkgBasePrice);
         PkgAgencyCommission = view.findViewById(R.id.etaPkgAgencyCommission);
+
+        PkgName.addTextChangedListener(textWatcher);
+        PkgStartDate.addTextChangedListener(textWatcher);
+        PkgEndDate.addTextChangedListener(textWatcher);
+        PkgDesc.addTextChangedListener(textWatcher);
+        PkgBasePrice.addTextChangedListener(textWatcher);
+        PkgAgencyCommission.addTextChangedListener(textWatcher);
+
+        myDateSetter dateSetter = new myDateSetter();
+
+        dateSetter.setDate(PkgStartDate,getContext());
+        dateSetter.setDate(PkgEndDate,getContext());
 
         //Common Ones
         final CardView back = view.findViewById(R.id.cardBack);
@@ -67,4 +95,29 @@ public class AddTravelPackage extends Fragment {
         });
 
     }
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String i1 = PkgName.getText().toString();
+            String i2 = PkgStartDate.getText().toString();
+            String i3 = PkgEndDate.getText().toString();
+            String i4 = PkgDesc.getText().toString();
+            String i5 = PkgBasePrice.getText().toString();
+            String i6 = PkgAgencyCommission.getText().toString();
+
+            Button btnAdd = getView().findViewById(R.id.btnAdd);
+            btnAdd.setEnabled(!i1.isEmpty() && !i2.isEmpty() && !i3.isEmpty()
+                    && !i4.isEmpty() && !i5.isEmpty() && !i6.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 }

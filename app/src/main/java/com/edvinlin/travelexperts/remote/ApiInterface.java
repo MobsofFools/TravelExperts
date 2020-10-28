@@ -23,7 +23,7 @@ public interface ApiInterface {
     @GET("getcustomers/")
     Call<List<Customer>> getCustomersAPI();
     //Get Single Customer
-    @GET("getcustomer/{ customerId }/")
+    @GET("getcustomer/{customerId}/")
     Call<Customer> getCustomer(@Path("customerId") int customerId);
     //Post Customer
     @POST("postcustomer")
@@ -65,9 +65,9 @@ public interface ApiInterface {
     Call<TravelPackage> createTravelPackageAPI(@Body TravelPackage travelPackage);
     //Update/Replace Package
     @PUT("puttravelpackage/")
-    Call<ResponseBody> updateTravelPackageAPI(@Body TravelPackage travelPackage);
+    Call<TravelPackage> updateTravelPackageAPI(@Body TravelPackage travelPackage);
     //Delete Package
-    @DELETE("deletetravelpackage/{ packageId }/")
+    @DELETE("deletetravelpackage/{packageId}/")
     Call<ResponseBody> deletePackageAPI(@Path("packageId") int packageId);
 
 

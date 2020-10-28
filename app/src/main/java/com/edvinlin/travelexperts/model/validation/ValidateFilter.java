@@ -1,4 +1,4 @@
-package com.edvinlin.travelexperts.ui.validation;
+package com.edvinlin.travelexperts.model.validation;
 
 import android.text.InputFilter;
 import android.text.Spanned;

@@ -24,7 +24,17 @@ public class CustomerDataViewFragment extends Fragment {
 
 
     private SharedCustomerModel sharedCustomerModel;
-    private EditText CustId, CustAgentId, CustFirstName, CustLastName, CustAddress, CustCity, CustProv, CustPostal, CustCountry, CustHomePhone, CustEmail, CustBusPhone;
+    private EditText CustId;
+    private EditText CustFirstName;
+    private EditText CustLastName;
+    private EditText CustAddress;
+    private EditText CustCity;
+    private EditText CustProv;
+    private EditText CustPostal;
+    private EditText CustCountry;
+    private EditText CustHomePhone;
+    private EditText CustEmail;
+    private EditText CustBusPhone;
 
     public static CustomerDataViewFragment newInstance() {
         return new CustomerDataViewFragment();

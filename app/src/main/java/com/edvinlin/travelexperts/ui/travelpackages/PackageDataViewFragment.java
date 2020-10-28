@@ -69,6 +69,10 @@ public class PackageDataViewFragment extends Fragment {
             sharedPackageModel.EditPackage(travelPackage);
         });
         btnDelete.setOnClickListener(v -> DeleteAskOption());
+
+        myDateSetter dateSetter = new myDateSetter();
+        dateSetter.setDate(PkgStartDate, getContext());
+        dateSetter.setDate(PkgStartDate,getContext());
     }
 
     private AlertDialog DeleteAskOption() {
@@ -79,9 +83,11 @@ public class PackageDataViewFragment extends Fragment {
                 .setPositiveButton("Delete", (dialog, which) -> {
                     int id = Integer.parseInt(PkgId.getText().toString());
                     sharedPackageModel.DeletePackage(id);
+                    Navigation.findNavController(requireView()).navigate(R.id.navigation_packages);
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
                 .create();
+        deleteDialogBox.show();
         return deleteDialogBox;
     }
     private void updateUI(TravelPackage travelPackage) {
@@ -106,4 +112,5 @@ public class PackageDataViewFragment extends Fragment {
         if (travelPackage.getPkgAgencyCommission() == null) PkgAgencyCommission.setText("");
         else PkgAgencyCommission.setText(String.valueOf(travelPackage.getPkgAgencyCommission()));
     }
+
 }

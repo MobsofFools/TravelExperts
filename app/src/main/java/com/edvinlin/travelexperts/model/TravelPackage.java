@@ -27,25 +27,25 @@ public class TravelPackage implements Serializable {
     @Expose
     private String PkgDesc;
 
-    @SerializedName("pkgName")
-    @Expose
-    private String PkgName;
-
     @SerializedName("pkgEndDate")
     @Expose
     private String PkgEndDate;
+
+    @SerializedName("pkgName")
+    @Expose
+    private String PkgName;
 
     @SerializedName("pkgStartDate")
     @Expose
     private String PkgStartDate;
 
-    public TravelPackage(Integer packageId, Double pkgAgencyCommission, Double pkgBasePrice, String pkgDesc, String pkgName, String pkgEndDate, String pkgStartDate) {
+    public TravelPackage(Integer packageId, Double pkgAgencyCommission, Double pkgBasePrice, String pkgDesc, String pkgEndDate, String pkgName, String pkgStartDate) {
         PackageId = packageId;
         PkgAgencyCommission = pkgAgencyCommission;
         PkgBasePrice = pkgBasePrice;
         PkgDesc = pkgDesc;
-        PkgName = pkgName;
         PkgEndDate = pkgEndDate;
+        PkgName = pkgName;
         PkgStartDate = pkgStartDate;
     }
 

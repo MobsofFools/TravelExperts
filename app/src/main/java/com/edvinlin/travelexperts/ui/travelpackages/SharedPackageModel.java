@@ -1,6 +1,7 @@
 package com.edvinlin.travelexperts.ui.travelpackages;
 
 import android.util.Log;
+import android.widget.EditText;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -10,7 +11,10 @@ import com.edvinlin.travelexperts.model.TravelPackage;
 import com.edvinlin.travelexperts.remote.ApiClient;
 import com.edvinlin.travelexperts.remote.ApiInterface;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -27,9 +31,7 @@ public class SharedPackageModel extends ViewModel {
 
 
     public LiveData<List<TravelPackage>> getPackageList() {
-        if (mutablePackageList.getValue() == null) {
-            LoadPackages();
-        }
+        LoadPackages();
         return mutablePackageList;
     }
     public LiveData<TravelPackage> getPackage() {
@@ -72,23 +74,44 @@ public class SharedPackageModel extends ViewModel {
                 testPackage = response.body();
                 Log.d("TAG", "Response = " +testPackage);
 
-                //Sets value of mutable package, to get
-                mutablePackage.postValue(testPackage);
             }
 
             @Override
             public void onFailure(Call<TravelPackage> call, Throwable t) {
-
+                Log.d("TAG", "Response = " + t.toString());
             }
         });
 
     }
     public void EditPackage(TravelPackage travelPackage) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        Call<ResponseBody> call = apiService.updateTravelPackageAPI(travelPackage);
+        Call<TravelPackage> call = apiService.updateTravelPackageAPI(travelPackage);
+        call.enqueue(new Callback<TravelPackage>() {
+            @Override
+            public void onResponse(Call<TravelPackage> call, Response<TravelPackage> response) {
+                testPackage = response.body();
+                Log.d("TAG", "Response = " +testPackage);
+            }
+
+            @Override
+            public void onFailure(Call<TravelPackage> call, Throwable t) {
+                Log.d("TAG", "Response = " + t.toString());
+            }
+        });
     }
     public void DeletePackage(int id) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<ResponseBody> call = apiService.deletePackageAPI(id);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.d("TAG", "Response + " + response);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.d("TAG", "Response = " + t.toString());
+            }
+        });
     }
 }

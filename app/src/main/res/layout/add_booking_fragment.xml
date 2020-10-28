@@ -51,6 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
+                android:labelFor="@id/etaBookingTripTypeId"
                 android:text="@string/trip_type_id" />
 
             <EditText
@@ -58,16 +59,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="@string/trip_type_id"
                 android:fontFamily="@font/roboto"
-                android:textSize="14sp"
-                android:importantForAutofill="no"/>
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:textSize="14sp" />
+
             <TextView
                 android:id="@+id/textView23"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
+                android:labelFor="@id/etaTravelerCount"
                 android:text="@string/travelercount" />
 
             <EditText
@@ -75,11 +77,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/travelercount"
-                android:inputType="number"
                 android:fontFamily="@font/roboto"
-                android:textSize="14sp"
-                android:importantForAutofill="no"/>
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -95,6 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
+                android:labelFor="@id/etaBookingNo"
                 android:text="@string/booking_no" />
 
             <EditText
@@ -102,17 +104,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="@string/booking_no"
                 android:fontFamily="@font/roboto"
-                android:textSize="14sp"
-                android:importantForAutofill="no"/>
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
+                android:labelFor="@id/etaBookingCustId"
                 android:text="@string/customer_id" />
 
             <EditText
@@ -120,16 +122,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number"
-                android:hint="@string/customer_id"
                 android:fontFamily="@font/roboto"
-                android:textSize="14sp"
-                android:importantForAutofill="no"/>
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textSize="14sp" />
+
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
+                android:labelFor="@id/etaPackageId"
                 android:text="@string/package_id" />
 
             <EditText
@@ -137,11 +140,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/package_id"
-                android:inputType="number"
                 android:fontFamily="@font/roboto"
-                android:textSize="14sp"
-                android:importantForAutofill="no"/>
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textSize="14sp" />
 
         </LinearLayout>
     </LinearLayout>
