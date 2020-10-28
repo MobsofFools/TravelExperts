@@ -84,4 +84,6 @@
     <string name="travelercount">Traveler Count</string>
     <string name="yyyy_mm_dd">YYYY-MM-DD</string>
     <string name="refresh">Refresh</string>
+    <string name="write_a_message">Write a message</string>
+    <string name="send">Send</string>
 </resources>
