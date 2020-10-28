@@ -22,12 +22,10 @@ import com.edvinlin.travelexperts.R;
 
 public class DashboardFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
         final TextView textView = root.findViewById(R.id.text_dashboard);
         //Card 1 = Packages
@@ -55,9 +53,6 @@ public class DashboardFragment extends Fragment {
         card5.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_products));
 
         card6.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_suppliers));
-
-
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), s -> textView.setText(s));
 
         return root;
     }

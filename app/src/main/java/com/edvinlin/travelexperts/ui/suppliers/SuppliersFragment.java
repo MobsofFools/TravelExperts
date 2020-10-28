@@ -16,7 +16,7 @@ import com.edvinlin.travelexperts.R;
 
 public class SuppliersFragment extends Fragment {
 
-    private SuppliersViewModel mViewModel;
+
 
     public static SuppliersFragment newInstance() {
         return new SuppliersFragment();
@@ -27,12 +27,4 @@ public class SuppliersFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_suppliers, container, false);
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(SuppliersViewModel.class);
-        // TODO: Use the ViewModel
-    }
-
 }

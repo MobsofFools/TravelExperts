@@ -2,38 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_dashboard">
+    android:id="@+id/mobile_navigation">
 
-    <fragment
-        android:id="@+id/navigation_search"
-        android:name="com.edvinlin.travelexperts.ui.search.SearchFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_search" >
-        <action
-            android:id="@+id/action_navigation_search_to_navigation_packagedataview"
-            app:destination="@id/navigation_packagedataview" />
-        <action
-            android:id="@+id/action_navigation_search_to_navigation_customerdataview"
-            app:destination="@id/navigation_customerdataview" />
-        <action
-            android:id="@+id/action_navigation_search_to_navigation_productdataview"
-            app:destination="@id/navigation_productdataview" />
-        <action
-            android:id="@+id/action_navigation_search_to_navigation_bookingsdataview"
-            app:destination="@id/navigation_bookingsdataview" />
-    </fragment>
-    <fragment
-        android:id="@+id/navigation_profile"
-        android:name="com.edvinlin.travelexperts.ui.profiles.ProfilesFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_profile" />
-<!-- Dashboard Fragments -->
-    <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.edvinlin.travelexperts.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+    <!-- Dashboard Fragments -->
     <!-- Data Views -->
     <fragment
         android:id="@+id/navigation_packagedataview"
@@ -45,11 +16,6 @@
         android:name="com.edvinlin.travelexperts.ui.customers.CustomerDataViewFragment"
         android:label="@string/dataview"
         tools:layout="@layout/data_view_fragment_customer" />
-    <fragment
-        android:id="@+id/navigation_productdataview"
-        android:name="com.edvinlin.travelexperts.ui.products.ProductsDataViewFragment"
-        android:label="@string/dataview"
-        tools:layout="@layout/data_view_fragment_products" />
     <fragment
         android:id="@+id/navigation_bookingsdataview"
         android:name="com.edvinlin.travelexperts.ui.bookings.BookingsDataViewFragment"
@@ -75,15 +41,6 @@
             app:destination="@id/navigation_customerdataview" />
     </fragment>
     <fragment
-        android:id="@+id/navigation_addproduct"
-        android:name="com.edvinlin.travelexperts.ui.products.AddProduct"
-        android:label="@string/card5"
-        tools:layout="@layout/add_product_fragment" >
-        <action
-            android:id="@+id/action_navigation_addproduct_to_navigation_productdataview"
-            app:destination="@id/navigation_productdataview" />
-    </fragment>
-    <fragment
         android:id="@+id/navigation_addpackage"
         android:name="com.edvinlin.travelexperts.ui.travelpackages.AddTravelPackage"
         android:label="@string/card1"
@@ -106,11 +63,6 @@
             android:id="@+id/action_navigation_packages_to_navigation_addpackage"
             app:destination="@id/navigation_addpackage" />
     </fragment>
-    <fragment
-        android:id="@+id/navigation_flights"
-        android:name="com.edvinlin.travelexperts.ui.flights.FlightFragment"
-        android:label="@string/card2"
-        tools:layout="@layout/fragment_flight" />
     <fragment
         android:id="@+id/navigation_customers"
         android:name="com.edvinlin.travelexperts.ui.customers.CustomersFragment"
@@ -135,27 +87,24 @@
             android:id="@+id/action_navigation_bookings_to_navigation_bookingsdataview"
             app:destination="@id/navigation_bookingsdataview" />
     </fragment>
-
     <fragment
-        android:id="@+id/navigation_products"
-        android:name="com.edvinlin.travelexperts.ui.products.ProductsFragment"
-        android:label="@string/card5"
-        tools:layout="@layout/fragment_products" >
-        <action
-            android:id="@+id/action_navigation_products_to_navigation_addproduct"
-            app:destination="@id/navigation_addproduct" />
-        <action
-            android:id="@+id/action_navigation_products_to_navigation_productdataview"
-            app:destination="@id/navigation_productdataview" />
+        android:id="@+id/navigation_flights"
+        android:name="com.edvinlin.travelexperts.ui.flights.FlightFragment"
+        android:label="@string/card2"
+        tools:layout="@layout/fragment_flight">
     </fragment>
     <fragment
         android:id="@+id/navigation_suppliers"
         android:name="com.edvinlin.travelexperts.ui.suppliers.SuppliersFragment"
         android:label="@string/card6"
-        tools:layout="@layout/fragment_suppliers" />
-
-
-
+        tools:layout="@layout/fragment_flight">
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_products"
+        android:name="com.edvinlin.travelexperts.ui.products.ProductsFragment"
+        android:label="@string/card5"
+        tools:layout="@layout/fragment_products">
+    </fragment>
 
 
 </navigation>

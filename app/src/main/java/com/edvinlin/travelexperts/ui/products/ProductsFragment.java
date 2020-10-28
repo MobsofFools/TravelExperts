@@ -19,18 +19,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ProductsFragment extends Fragment {
 
-    public static ProductsFragment newInstance() {
-        return new ProductsFragment();
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_list, container, false);
-        final FloatingActionButton addbtn = root.findViewById(R.id.fabAdd);
-        addbtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_addproduct));
-        return root;
+        return inflater.inflate(R.layout.fragment_products, container, false);
     }
 
 }

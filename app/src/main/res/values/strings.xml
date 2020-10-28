@@ -27,6 +27,7 @@
     <string name="card4img">Bookings</string>
     <string name="card5img">Products</string>
     <string name="card6img">Suppliers</string>
+    <string name="chat">Chat</string>
 
     <!-- Data -->
     <string name="dataview">Data View</string>

@@ -17,7 +17,6 @@ import com.edvinlin.travelexperts.R;
 
 public class ProfilesFragment extends Fragment {
 
-    private ProfilesViewModel profilesViewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
