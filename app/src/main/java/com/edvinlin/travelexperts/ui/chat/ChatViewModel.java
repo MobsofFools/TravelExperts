@@ -42,4 +42,5 @@ public class ChatViewModel extends ViewModel {
         });
 
     }
+
 }

@@ -29,7 +29,6 @@ public class ChatFragment extends Fragment {
     private CatAdapter catAdapter;
     private ImageView ivSend;
 
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
