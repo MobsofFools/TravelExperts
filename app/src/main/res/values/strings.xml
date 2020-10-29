@@ -86,4 +86,11 @@
     <string name="refresh">Refresh</string>
     <string name="write_a_message">Write a message</string>
     <string name="send">Send</string>
+
+
+    <string-array name="trip_types">
+        <item>B</item>
+        <item>G</item>
+        <item>L</item>
+    </string-array>
 </resources>

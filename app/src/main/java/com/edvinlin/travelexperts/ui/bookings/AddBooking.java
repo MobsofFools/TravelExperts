@@ -7,8 +7,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +21,7 @@ import androidx.navigation.Navigation;
 
 import com.edvinlin.travelexperts.R;
 import com.edvinlin.travelexperts.model.Booking;
+import com.edvinlin.travelexperts.model.TripType;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
@@ -26,19 +29,13 @@ import org.apache.commons.lang3.RandomUtils;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class AddBooking extends Fragment {
 
     private SharedBookingModel sharedBookingModel;
     private EditText BookingNo, BookingDate, BookingCustId, BookingTripTypeId, TravelerCount, PackageId;
-
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.add_booking_fragment, container, false);
-    }
-
     //Watches for onTextChanged in specified EditTexts
     private final TextWatcher textWatcher = new TextWatcher() {
         @Override
@@ -66,6 +63,37 @@ public class AddBooking extends Fragment {
     };
 
     @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.add_booking_fragment, container, false);
+    }
+
+    private List<TripType> tripTypeList;
+
+    private String getCurrentDate() {
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        Date c = Calendar.getInstance().getTime();
+        return simpleDateFormat.format(c);
+    }
+
+    //Randomly generate BookingNo
+    public String generateBookingNo() {
+        //Generates number between 1-4 for Alphabetical Part of Booking Number
+        int min = 1;
+        int max = 4;
+        int ran1 = ThreadLocalRandom.current().nextInt(min, max);
+        String generatedString = RandomStringUtils.random(ran1, true, false);
+
+        //Generates random number between 1-9999
+        int x = RandomUtils.nextInt(1, 9999);
+
+        //Returns Booking No (ABC1234)
+        return generatedString.toUpperCase() + x;
+
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -78,6 +106,9 @@ public class AddBooking extends Fragment {
         BookingTripTypeId = view.findViewById(R.id.etaBookingTripTypeId);
         TravelerCount = view.findViewById(R.id.etaTravelerCount);
         PackageId = view.findViewById(R.id.etaPackageId);
+        final Spinner spinTripId = view.findViewById(R.id.spinTripId);
+        SetSpinner(spinTripId);
+
 
         //Generate current date
         String date = getCurrentDate();
@@ -116,27 +147,9 @@ public class AddBooking extends Fragment {
         });
     }
 
-    private String getCurrentDate() {
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        Date c = Calendar.getInstance().getTime();
-        return simpleDateFormat.format(c);
+    public void SetSpinner(Spinner spinner) {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.trip_types, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
     }
-
-    //Randomly generate BookingNo
-    public String generateBookingNo() {
-        //Generates number between 1-4 for Alphabetical Part of Booking Number
-        int min = 1;
-        int max = 4;
-        int ran1 = ThreadLocalRandom.current().nextInt(min, max);
-        String generatedString = RandomStringUtils.random(ran1, true, false);
-
-        //Generates random number between 1-9999
-        int x = RandomUtils.nextInt(1, 9999);
-
-        //Returns Booking No (ABC1234)
-        return generatedString.toUpperCase() + x;
-
-    }
-
 }

@@ -3,9 +3,9 @@ package com.edvinlin.travelexperts.remote;
 import com.edvinlin.travelexperts.model.Booking;
 import com.edvinlin.travelexperts.model.Customer;
 import com.edvinlin.travelexperts.model.TravelPackage;
+import com.edvinlin.travelexperts.model.TripType;
 
 import java.util.List;
-
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -60,16 +60,21 @@ public interface ApiInterface {
     Call<List<TravelPackage>> getTravelPackagesAPI();
     @GET("gettravelpackage/{packageId}/")
     Call<TravelPackage> getPackageAPI(@Path("packageId") int packageId);
+
     //New Package
     @POST("posttravelpackage/")
     Call<TravelPackage> createTravelPackageAPI(@Body TravelPackage travelPackage);
+
     //Update/Replace Package
     @PUT("puttravelpackage/")
     Call<TravelPackage> updateTravelPackageAPI(@Body TravelPackage travelPackage);
+
     //Delete Package
     @DELETE("deletetravelpackage/{packageId}/")
     Call<ResponseBody> deletePackageAPI(@Path("packageId") int packageId);
 
-
+    //TripTypes
+    @GET("gettriptypes/")
+    Call<List<TripType>> getTripTypesAPI();
 
 }
