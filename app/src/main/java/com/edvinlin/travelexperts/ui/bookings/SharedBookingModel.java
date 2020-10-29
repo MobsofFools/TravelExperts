@@ -21,11 +21,9 @@ import retrofit2.Response;
 
 public class SharedBookingModel extends ViewModel {
 
-    private static final String TAG = "SharedBookingModel";
     public final MutableLiveData<List<Booking>> mutableBookingList = new MutableLiveData<>();
     public final MutableLiveData<Booking> mutableBooking = new MutableLiveData<>();
     public List<Booking> bookingList;
-    public Booking testBooking;
 
 
     public LiveData<List<Booking>> getBookingList() {
@@ -50,13 +48,17 @@ public class SharedBookingModel extends ViewModel {
     }
 
     private void LoadBookings() {
+        //Setup HTTP client
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        //API call
         Call<List<Booking>> call = apiService.getBookingsAPI();
+        //Queue API call
         call.enqueue(new Callback<List<Booking>>() {
             @Override
             public void onResponse(Call<List<Booking>> call, Response<List<Booking>> response) {
+                //Set data into list
                 bookingList = response.body();
-                Log.d("TAG","Response = " +bookingList);
+                //Post data into mutable data to access in fragments
                 mutableBookingList.postValue(bookingList);
             }
 
@@ -69,14 +71,14 @@ public class SharedBookingModel extends ViewModel {
     }
 
     public void AddBooking(Booking booking, Context context) {
+        //Setup HTTP client
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        //API Call
         Call<Booking> call = apiService.createBookingAPI(booking);
+        //Queue API call
         call.enqueue(new Callback<Booking>() {
             @Override
             public void onResponse(Call<Booking> call, Response<Booking> response) {
-                testBooking = response.body();
-                Log.d("TAG","Response = " +testBooking);
-                mutableBooking.postValue(testBooking);
                 Toast.makeText(context, "Booking Successful", Toast.LENGTH_LONG).show();
             }
 
@@ -87,16 +89,16 @@ public class SharedBookingModel extends ViewModel {
             }
         });
     }
-    //Functional
+
     public void EditBooking(Booking booking, Context context) {
+        //Setup HTTP client
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        //API Call
         Call<Booking> call = apiService.updateBookingAPI(booking);
+        //Queue API call
         call.enqueue(new Callback<Booking>() {
             @Override
             public void onResponse(Call<Booking> call, Response<Booking> response) {
-                testBooking = response.body();
-                Log.d("TAG","Response = " +testBooking);
-                mutableBooking.postValue(testBooking);
                 Toast.makeText(context, "Booking Saved", Toast.LENGTH_LONG).show();
             }
 
@@ -109,12 +111,14 @@ public class SharedBookingModel extends ViewModel {
     }
 
     public void DeleteBooking(int id, Context context) {
+        //Setup HTTP client
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        //API Call
         Call<ResponseBody> call = apiService.deleteBookingAPI(id);
+        //Queue API call
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.d("TAG","Response = " + response);
                 Toast.makeText(context, "Booking Deleted", Toast.LENGTH_LONG).show();
             }
 

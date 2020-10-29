@@ -19,16 +19,11 @@ import androidx.navigation.Navigation;
 
 import com.edvinlin.travelexperts.R;
 import com.edvinlin.travelexperts.model.Booking;
-import com.google.gson.Gson;
 
 public class BookingsDataViewFragment extends Fragment {
 
     private SharedBookingModel sharedBookingModel;
     private EditText BookingId, BookingNo, BookingDate, BookingCustId, BookingTripTypeId, BookingPackageId, BookingTravelerCount;
-
-    public static BookingsDataViewFragment newInstance() {
-        return new BookingsDataViewFragment();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -40,7 +35,9 @@ public class BookingsDataViewFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //Hide <- in action bar
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
         //Edit Texts
         BookingId = view.findViewById(R.id.etBookingId);
         BookingNo = view.findViewById(R.id.etBookingNo);
@@ -51,15 +48,19 @@ public class BookingsDataViewFragment extends Fragment {
         BookingTravelerCount = view.findViewById(R.id.etTravelerCount);
 
 
-        //Common Ones
-        final CardView back = view.findViewById(R.id.cardBack);
-        final Button btnSave = view.findViewById(R.id.btnSave);
-        final Button btnDelete = view.findViewById(R.id.btnDelete);
+        //Common Items
+        CardView back = view.findViewById(R.id.cardBack);
+        Button btnSave = view.findViewById(R.id.btnSave);
+        Button btnDelete = view.findViewById(R.id.btnDelete);
 
         back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_bookings));
 
+        //Instantiate Shared View Model
         sharedBookingModel = new ViewModelProvider(requireActivity()).get(SharedBookingModel.class);
+
         sharedBookingModel.getBooking().observe(getViewLifecycleOwner(), booking -> updateUI(booking));
+
+        //Pull Data from EditText fields to make booking object (In same order as API JSON Structure)
         btnSave.setOnClickListener(v -> {
             Booking booking = new Booking(
                     Integer.parseInt(BookingId.getText().toString()),
@@ -70,30 +71,32 @@ public class BookingsDataViewFragment extends Fragment {
                     Integer.parseInt(BookingTravelerCount.getText().toString()),
                     BookingTripTypeId.getText().toString()
             );
-            Gson gson = new Gson();
-            String json = gson.toJson(booking);
-            Log.d("TAG", booking.toString());
+            //Call EditBooking function from shared view model
             sharedBookingModel.EditBooking(booking, getContext());
+            //Navigate back to main list
             Navigation.findNavController(v).navigate(R.id.navigation_bookings);
 
-
-
         });
-        btnDelete.setOnClickListener( v -> {
+
+        btnDelete.setOnClickListener(v -> {
+            //get id for {bookingId} in api call
             int id = Integer.parseInt(BookingId.getText().toString());
             Log.d("TAG", String.valueOf(id));
+            //Call popup function
             DeleteAskOption(id);
         });
     }
 
-
+    //Pop confirmation function
     private void DeleteAskOption(int id) {
         AlertDialog deleteDialogBox = new AlertDialog.Builder(getContext())
                 .setTitle("Delete")
                 .setMessage("Do you want to Delete?")
                 .setIcon(R.drawable.ic_warning_24px)
                 .setPositiveButton("Delete", (dialog, which) -> {
+                    //Delete function
                     sharedBookingModel.DeleteBooking(id, getContext());
+                    //Navigate back to bookings
                     Navigation.findNavController(getView()).navigate(R.id.navigation_bookings);
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
@@ -102,7 +105,7 @@ public class BookingsDataViewFragment extends Fragment {
         deleteDialogBox.show();
     }
 
-
+    //Perhaps redundant if/else statements, sets EditText fields
     private void updateUI(Booking booking) {
         if (booking.getBookingId() == null) BookingId.setText("");
         else BookingId.setText(String.valueOf(booking.getBookingId()));

@@ -39,6 +39,32 @@ public class AddBooking extends Fragment {
         return inflater.inflate(R.layout.add_booking_fragment, container, false);
     }
 
+    //Watches for onTextChanged in specified EditTexts
+    private final TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String i1 = BookingDate.getText().toString();
+            String i2 = BookingNo.getText().toString();
+            String i3 = BookingCustId.getText().toString();
+            String i4 = PackageId.getText().toString();
+            String i5 = TravelerCount.getText().toString();
+            String i6 = BookingTripTypeId.getText().toString();
+            Button btnAdd = getView().findViewById(R.id.btnAdd);
+
+            //Enables btnAdd when all fields contain something
+            btnAdd.setEnabled(!i1.isEmpty() && !i2.isEmpty() && !i3.isEmpty()
+                    && !i4.isEmpty() && !i5.isEmpty() && !i6.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
+    };
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -53,13 +79,13 @@ public class AddBooking extends Fragment {
         TravelerCount = view.findViewById(R.id.etaTravelerCount);
         PackageId = view.findViewById(R.id.etaPackageId);
 
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        Date c = Calendar.getInstance().getTime();
-        String date = simpleDateFormat.format(c);
+        //Generate current date
+        String date = getCurrentDate();
         BookingDate.setText(date);
+        //Randomly generate booking number
         BookingNo.setText(generateBookingNo());
 
+        //Text watcher to enable add button when all fields are full
         BookingNo.addTextChangedListener(textWatcher);
         BookingDate.addTextChangedListener(textWatcher);
         BookingCustId.addTextChangedListener(textWatcher);
@@ -67,15 +93,11 @@ public class AddBooking extends Fragment {
         TravelerCount.addTextChangedListener(textWatcher);
         PackageId.addTextChangedListener(textWatcher);
 
-
-
         //Common Ones
-        final CardView back = view.findViewById(R.id.cardBack);
-        final Button btnAdd = view.findViewById(R.id.btnAdd);
+        CardView back = view.findViewById(R.id.cardBack);
+        Button btnAdd = view.findViewById(R.id.btnAdd);
 
         back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_bookings));
-
-
 
         btnAdd.setOnClickListener(v -> {
             Booking booking = new Booking(0,
@@ -93,40 +115,26 @@ public class AddBooking extends Fragment {
 
         });
     }
-    private final TextWatcher textWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        }
+    private String getCurrentDate() {
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        Date c = Calendar.getInstance().getTime();
+        return simpleDateFormat.format(c);
+    }
 
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            String i1 = BookingDate.getText().toString();
-            String i2 = BookingNo.getText().toString();
-            String i3 = BookingCustId.getText().toString();
-            String i4 = PackageId.getText().toString();
-            String i5 = TravelerCount.getText().toString();
-            String i6 = BookingTripTypeId.getText().toString();
-            Button btnAdd = getView().findViewById(R.id.btnAdd);
-            btnAdd.setEnabled(!i1.isEmpty() && !i2.isEmpty() && !i3.isEmpty()
-                    && !i4.isEmpty() && !i5.isEmpty() && !i6.isEmpty());
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-    };
-
-
-
+    //Randomly generate s
     public String generateBookingNo() {
+        //Generates number between 1-4 for Alphabetical Part of Booking Number
         int min = 1;
         int max = 4;
-        int ran1 = ThreadLocalRandom.current().nextInt(min,max);
+        int ran1 = ThreadLocalRandom.current().nextInt(min, max);
         String generatedString = RandomStringUtils.random(ran1, true, false);
-        int x = RandomUtils.nextInt(1,9999);
 
+        //Generates random number between 1-9999
+        int x = RandomUtils.nextInt(1, 9999);
+
+        //Returns Booking No (ABC1234)
         return generatedString.toUpperCase() + x;
 
     }
