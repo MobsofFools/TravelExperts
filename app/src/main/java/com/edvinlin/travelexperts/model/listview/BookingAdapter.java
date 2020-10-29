@@ -55,7 +55,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.mViewHol
         }
         return 0;
     }
-
+// Filter Start
     public void setBookingListFull(List<Booking> bookingListFull) {
         this.bookingListFull = bookingListFull;
     }
@@ -94,7 +94,9 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.mViewHol
         setBookingListFull(bookingList);
         return myFilter;
     }
+//Filter End
 
+    //Set View Holder
     public class mViewHolder extends RecyclerView.ViewHolder {
         final TextView bookingNo;
 

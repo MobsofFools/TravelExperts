@@ -123,7 +123,7 @@ public class AddBooking extends Fragment {
         return simpleDateFormat.format(c);
     }
 
-    //Randomly generate s
+    //Randomly generate BookingNo
     public String generateBookingNo() {
         //Generates number between 1-4 for Alphabetical Part of Booking Number
         int min = 1;
