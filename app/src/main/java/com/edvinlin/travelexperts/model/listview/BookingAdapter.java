@@ -43,6 +43,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.mViewHol
         return new mViewHolder(view);
     }
 
+    //Sets lines of data per item
     @Override
     public void onBindViewHolder(BookingAdapter.mViewHolder holder, int position) {
         holder.bookingNo.setText(bookingList.get(position).getBookingNo());
