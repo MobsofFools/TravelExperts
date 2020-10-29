@@ -19,7 +19,6 @@ import androidx.navigation.Navigation;
 
 import com.edvinlin.travelexperts.R;
 import com.edvinlin.travelexperts.model.Customer;
-import com.google.gson.Gson;
 
 public class CustomerDataViewFragment extends Fragment {
 
@@ -86,14 +85,9 @@ public class CustomerDataViewFragment extends Fragment {
                 CustLastName.getText().toString(),
                 CustPostal.getText().toString(),
                 CustProv.getText().toString()
-
-
-
                 );
-            Gson gson = new Gson();
-            String json = gson.toJson(customer);
-            Log.d("TAG", customer.toString());
             sharedCustomerModel.EditCustomer(customer, getContext());
+            Navigation.findNavController(v).navigate(R.id.navigation_customers);
         });
         btnDelete.setOnClickListener(v -> {
             int id = Integer.parseInt(CustId.getText().toString());

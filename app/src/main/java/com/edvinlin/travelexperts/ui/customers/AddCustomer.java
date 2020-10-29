@@ -85,8 +85,8 @@ public class AddCustomer extends Fragment {
                     CustPostal.getText().toString(),
                     CustProv.getText().toString()
             );
-            sharedCustomerModel.AddCustomer(customer,getContext());
-            Navigation.findNavController(view).navigate(R.id.navigation_customers);
+            sharedCustomerModel.AddCustomer(customer, getContext());
+            Navigation.findNavController(v).navigate(R.id.navigation_customers);
         });
     }
 

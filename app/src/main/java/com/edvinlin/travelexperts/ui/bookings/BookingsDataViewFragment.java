@@ -49,9 +49,9 @@ public class BookingsDataViewFragment extends Fragment {
 
 
         //Common Items
-        CardView back = view.findViewById(R.id.cardBack);
-        Button btnSave = view.findViewById(R.id.btnSave);
-        Button btnDelete = view.findViewById(R.id.btnDelete);
+        final CardView back = view.findViewById(R.id.cardBack);
+        final Button btnSave = view.findViewById(R.id.btnSave);
+        final Button btnDelete = view.findViewById(R.id.btnDelete);
 
         back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_bookings));
 
@@ -71,10 +71,12 @@ public class BookingsDataViewFragment extends Fragment {
                     Integer.parseInt(BookingTravelerCount.getText().toString()),
                     BookingTripTypeId.getText().toString()
             );
+
             //Call EditBooking function from shared view model
             sharedBookingModel.EditBooking(booking, getContext());
             //Navigate back to main list
             Navigation.findNavController(v).navigate(R.id.navigation_bookings);
+
 
         });
 

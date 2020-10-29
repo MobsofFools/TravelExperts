@@ -24,6 +24,7 @@ public class SharedBookingModel extends ViewModel {
     public final MutableLiveData<List<Booking>> mutableBookingList = new MutableLiveData<>();
     public final MutableLiveData<Booking> mutableBooking = new MutableLiveData<>();
     public List<Booking> bookingList;
+    public Booking testBooking;
 
 
     public LiveData<List<Booking>> getBookingList() {
@@ -79,6 +80,9 @@ public class SharedBookingModel extends ViewModel {
         call.enqueue(new Callback<Booking>() {
             @Override
             public void onResponse(Call<Booking> call, Response<Booking> response) {
+                testBooking = response.body();
+                Log.d("TAG", "Response = " + testBooking);
+                mutableBooking.postValue(testBooking);
                 Toast.makeText(context, "Booking Successful", Toast.LENGTH_LONG).show();
             }
 

@@ -94,8 +94,8 @@ public class AddBooking extends Fragment {
         PackageId.addTextChangedListener(textWatcher);
 
         //Common Ones
-        CardView back = view.findViewById(R.id.cardBack);
-        Button btnAdd = view.findViewById(R.id.btnAdd);
+        final CardView back = view.findViewById(R.id.cardBack);
+        final Button btnAdd = view.findViewById(R.id.btnAdd);
 
         back.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_bookings));
 
