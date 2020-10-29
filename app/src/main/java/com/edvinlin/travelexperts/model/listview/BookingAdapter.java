@@ -98,6 +98,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.mViewHol
 
     //Set View Holder
     public class mViewHolder extends RecyclerView.ViewHolder {
+        //Number of items in recyclerview item
         final TextView bookingNo;
 
 
