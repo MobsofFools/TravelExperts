@@ -7,10 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -106,8 +104,6 @@ public class AddBooking extends Fragment {
         BookingTripTypeId = view.findViewById(R.id.etaBookingTripTypeId);
         TravelerCount = view.findViewById(R.id.etaTravelerCount);
         PackageId = view.findViewById(R.id.etaPackageId);
-        final Spinner spinTripId = view.findViewById(R.id.spinTripId);
-        SetSpinner(spinTripId);
 
 
         //Generate current date
@@ -145,11 +141,5 @@ public class AddBooking extends Fragment {
             Navigation.findNavController(view).navigate(R.id.navigation_bookings);
 
         });
-    }
-
-    public void SetSpinner(Spinner spinner) {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.trip_types, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
     }
 }

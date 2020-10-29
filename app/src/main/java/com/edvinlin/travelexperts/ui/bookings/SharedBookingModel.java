@@ -9,7 +9,6 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.edvinlin.travelexperts.model.Booking;
-import com.edvinlin.travelexperts.model.TripType;
 import com.edvinlin.travelexperts.remote.ApiClient;
 import com.edvinlin.travelexperts.remote.ApiInterface;
 
@@ -24,8 +23,8 @@ public class SharedBookingModel extends ViewModel {
 
     public final MutableLiveData<List<Booking>> mutableBookingList = new MutableLiveData<>();
     public final MutableLiveData<Booking> mutableBooking = new MutableLiveData<>();
-    public final MutableLiveData<List<TripType>> mutableTripList = new MutableLiveData<>();
-    public List<TripType> ttList;
+/*    public final MutableLiveData<List<TripType>> mutableTripList = new MutableLiveData<>();
+    public List<TripType> ttList;*/
     public List<Booking> bookingList;
     public Booking testBooking;
 
@@ -74,12 +73,14 @@ public class SharedBookingModel extends ViewModel {
 
     }
 
+/*
     public LiveData<List<TripType>> getTripTypes() {
         LoadTripTypes();
         return mutableTripList;
     }
+*/
 
-    private void LoadTripTypes() {
+/*    private void LoadTripTypes() {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<List<TripType>> call = apiService.getTripTypesAPI();
         call.enqueue(new Callback<List<TripType>>() {
@@ -94,7 +95,7 @@ public class SharedBookingModel extends ViewModel {
                 Log.d("TAG", "Response = " + t.toString());
             }
         });
-    }
+    }*/
 
     public void AddBooking(Booking booking, Context context) {
         //Setup HTTP client

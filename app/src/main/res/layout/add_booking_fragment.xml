@@ -64,10 +64,10 @@
                 android:inputType="textPersonName"
                 android:textSize="14sp" />
 
-            <Spinner
+<!--            <Spinner
                 android:id="@+id/spinTripId"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content" />-->
 
             <TextView
                 android:id="@+id/textView23"
