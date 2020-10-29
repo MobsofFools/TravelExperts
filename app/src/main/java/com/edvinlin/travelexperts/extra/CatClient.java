@@ -7,7 +7,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CatClient {
-    public static String BASE_URL = "https://catfact.ninja/";
+    public static final String BASE_URL = "https://catfact.ninja/";
     private static Retrofit retrofit;
 
     public static Retrofit getClient() {

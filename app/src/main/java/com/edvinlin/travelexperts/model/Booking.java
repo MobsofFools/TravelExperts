@@ -1,13 +1,9 @@
 package com.edvinlin.travelexperts.model;
-import android.text.Editable;
-
-import androidx.annotation.NonNull;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Booking implements Serializable {
     private static final long serialVersionUID = 1L;

@@ -18,8 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.mViewHolder> implements Filterable {
-    OnRecyclerItemClickListener onItemClickListener;
-    private Context context;
+    final OnRecyclerItemClickListener onItemClickListener;
+    private final Context context;
     private List<Customer> customerList;
     private List<Customer> customerListFull;
 
@@ -59,26 +59,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.mViewH
         return 0;
     }
 
-    public class mViewHolder extends RecyclerView.ViewHolder{
-        TextView customerName;
-        TextView phoneNo;
-
-        public mViewHolder(@NonNull View itemView) {
-            super(itemView);
-            customerName= itemView.findViewById(R.id.item1);
-            phoneNo = itemView.findViewById(R.id.item2);
-            itemView.setOnClickListener(v -> onItemClickListener.onItemClick(getAdapterPosition()));
-
-        }
-
-    }
-
-    @Override
-    public Filter getFilter() {
-        setCustomerListFull(customerList);
-        return myFilter;
-    }
-    private Filter myFilter = new Filter() {
+    private final Filter myFilter = new Filter() {
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -98,9 +79,10 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.mViewH
                 }
             }
                 FilterResults results = new FilterResults();
-                results.values = filteredList;
-                return results;
+            results.values = filteredList;
+            return results;
         }
+
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             customerList.clear();
@@ -108,4 +90,24 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.mViewH
             notifyDataSetChanged();
         }
     };
+
+    @Override
+    public Filter getFilter() {
+        setCustomerListFull(customerList);
+        return myFilter;
+    }
+
+    public class mViewHolder extends RecyclerView.ViewHolder {
+        final TextView customerName;
+        final TextView phoneNo;
+
+        public mViewHolder(@NonNull View itemView) {
+            super(itemView);
+            customerName = itemView.findViewById(R.id.item1);
+            phoneNo = itemView.findViewById(R.id.item2);
+            itemView.setOnClickListener(v -> onItemClickListener.onItemClick(getAdapterPosition()));
+
+        }
+
+    }
 }

@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.edvinlin.travelexperts.R;
-import com.edvinlin.travelexperts.model.Customer;
 import com.edvinlin.travelexperts.model.TravelPackage;
 
 import java.util.ArrayList;
@@ -20,8 +19,8 @@ import java.util.List;
 
 public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.mViewHolder> implements Filterable {
 
-    OnRecyclerItemClickListener onRecyclerItemClickListener;
-    private Context context;
+    final OnRecyclerItemClickListener onRecyclerItemClickListener;
+    private final Context context;
     private List<TravelPackage> packageList;
     private List<TravelPackage> packageListFull;
 
@@ -61,25 +60,7 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.mViewHol
         return 0;
     }
 
-    public class mViewHolder extends RecyclerView.ViewHolder {
-        TextView packageName;
-        TextView packageStartDate;
-
-
-        public mViewHolder(View itemView) {
-            super(itemView);
-            packageName = itemView.findViewById(R.id.item1);
-            packageStartDate = itemView.findViewById(R.id.item2);
-            itemView.setOnClickListener(v -> onRecyclerItemClickListener.onItemClick(getAdapterPosition()));
-
-        }
-    }
-    @Override
-    public Filter getFilter() {
-        setPackageListFull(packageList);
-        return myFilter;
-    }
-    private Filter myFilter = new Filter() {
+    private final Filter myFilter = new Filter() {
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -98,6 +79,7 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.mViewHol
             results.values = filteredList;
             return results;
         }
+
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             packageList.clear();
@@ -105,5 +87,25 @@ public class PackageAdapter extends RecyclerView.Adapter<PackageAdapter.mViewHol
             notifyDataSetChanged();
         }
     };
+
+    @Override
+    public Filter getFilter() {
+        setPackageListFull(packageList);
+        return myFilter;
+    }
+
+    public class mViewHolder extends RecyclerView.ViewHolder {
+        final TextView packageName;
+        final TextView packageStartDate;
+
+
+        public mViewHolder(View itemView) {
+            super(itemView);
+            packageName = itemView.findViewById(R.id.item1);
+            packageStartDate = itemView.findViewById(R.id.item2);
+            itemView.setOnClickListener(v -> onRecyclerItemClickListener.onItemClick(getAdapterPosition()));
+
+        }
+    }
 }
 

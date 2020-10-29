@@ -93,27 +93,27 @@ public class CustomerDataViewFragment extends Fragment {
             Gson gson = new Gson();
             String json = gson.toJson(customer);
             Log.d("TAG", customer.toString());
-            sharedCustomerModel.EditCustomer(customer,getContext());
+            sharedCustomerModel.EditCustomer(customer, getContext());
         });
         btnDelete.setOnClickListener(v -> {
             int id = Integer.parseInt(CustId.getText().toString());
             Log.d("TAG", String.valueOf(id));
             DeleteAskOption(id);
         });
-        
+
     }
-    private AlertDialog DeleteAskOption(int id) {
-        AlertDialog deleteDialogBox = new AlertDialog.Builder(getContext())
+
+    private void DeleteAskOption(int id) {
+        new AlertDialog.Builder(getContext())
                 .setTitle("Delete")
                 .setMessage("Do you want to Delete?")
                 .setIcon(R.drawable.ic_warning_24px)
                 .setPositiveButton("Delete", (dialog, which) -> {
-                    sharedCustomerModel.DeleteCustomer(id,getContext());
+                    sharedCustomerModel.DeleteCustomer(id, getContext());
                     Navigation.findNavController(getView()).navigate(R.id.navigation_customers);
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
                 .create();
-        return deleteDialogBox;
     }
 
     private void updateUI(Customer customer) {

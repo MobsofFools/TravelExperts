@@ -33,11 +33,6 @@
         android:label="@string/card3"
         tools:layout="@layout/data_view_fragment_customer" />
     <fragment
-        android:id="@+id/navigation_productdataview"
-        android:name="com.edvinlin.travelexperts.ui.products.ProductsDataViewFragment"
-        android:label="@string/card5"
-        tools:layout="@layout/data_view_fragment_products" />
-    <fragment
         android:id="@+id/navigation_bookingsdataview"
         android:name="com.edvinlin.travelexperts.ui.bookings.BookingsDataViewFragment"
         android:label="@string/card4"
@@ -61,15 +56,7 @@
             android:id="@+id/action_navigation_addcustomer_to_navigation_customerdataview"
             app:destination="@id/navigation_customerdataview" />
     </fragment>
-    <fragment
-        android:id="@+id/navigation_addproduct"
-        android:name="com.edvinlin.travelexperts.ui.products.AddProduct"
-        android:label="@string/card5"
-        tools:layout="@layout/add_product_fragment" >
-        <action
-            android:id="@+id/action_navigation_addproduct_to_navigation_productdataview"
-            app:destination="@id/navigation_productdataview" />
-    </fragment>
+
     <fragment
         android:id="@+id/navigation_addpackage"
         android:name="com.edvinlin.travelexperts.ui.travelpackages.AddTravelPackage"
@@ -128,12 +115,6 @@
         android:name="com.edvinlin.travelexperts.ui.products.ProductsFragment"
         android:label="@string/card5"
         tools:layout="@layout/fragment_products" >
-        <action
-            android:id="@+id/action_navigation_products_to_navigation_addproduct"
-            app:destination="@id/navigation_addproduct" />
-        <action
-            android:id="@+id/action_navigation_products_to_navigation_productdataview"
-            app:destination="@id/navigation_productdataview" />
     </fragment>
     <fragment
         android:id="@+id/navigation_suppliers"

@@ -36,7 +36,6 @@ public class BookingsFragment extends Fragment implements OnRecyclerItemClickLis
     private NavController navController;
     private BookingAdapter bookingAdapter;
     private EditText searchBar;
-    private ImageView ivRefresh;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -56,7 +55,7 @@ public class BookingsFragment extends Fragment implements OnRecyclerItemClickLis
         recyclerView = view.findViewById(R.id.rvList);
         navController = Navigation.findNavController(view);
         searchBar = view.findViewById(R.id.etSearch);
-        ivRefresh = view.findViewById(R.id.ivRefresh);
+        ImageView ivRefresh = view.findViewById(R.id.ivRefresh);
         ivRefresh.setOnClickListener(v -> {
             loadBookings();
             searchBar.setText("");

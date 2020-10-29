@@ -36,7 +36,6 @@ public class TravelPackagesFragment extends Fragment implements OnRecyclerItemCl
     private NavController navController;
     private PackageAdapter packageAdapter;
     private EditText searchBar;
-    private ImageView ivRefresh;
 
 
     public static TravelPackagesFragment newInstance() {
@@ -61,7 +60,7 @@ public class TravelPackagesFragment extends Fragment implements OnRecyclerItemCl
 
         searchBar = view.findViewById(R.id.etSearch);
 
-        ivRefresh = view.findViewById(R.id.ivRefresh);
+        ImageView ivRefresh = view.findViewById(R.id.ivRefresh);
         ivRefresh.setOnClickListener(v -> {
             loadPackages();
             searchBar.setText("");

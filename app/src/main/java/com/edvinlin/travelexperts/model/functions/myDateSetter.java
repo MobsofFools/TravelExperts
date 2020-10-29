@@ -10,7 +10,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class myDateSetter {
-    private Calendar calendar = Calendar.getInstance();
+    private final Calendar calendar = Calendar.getInstance();
     public void setDate(EditText text, Context context)
     {
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -30,6 +30,6 @@ public class myDateSetter {
     public void updateLabel(EditText editText, Calendar myCalendar) {
         String myFormat = "yyyy-MM-dd";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.CANADA);
-        editText.setText(sdf.format(myCalendar.getTime()));;
+        editText.setText(sdf.format(myCalendar.getTime()));
     }
 }

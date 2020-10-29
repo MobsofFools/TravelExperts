@@ -1,13 +1,9 @@
 package com.edvinlin.travelexperts.model;
 
-import androidx.annotation.NonNull;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
 
 public class TravelPackage implements Serializable {
     private static final long serialVersionUID = 1L;

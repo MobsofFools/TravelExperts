@@ -27,7 +27,6 @@ public class ChatFragment extends Fragment {
     private RecyclerView recyclerView;
     private List<Cat> catList;
     private CatAdapter catAdapter;
-    private ImageView ivSend;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -41,7 +40,7 @@ public class ChatFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         chatViewModel = new ViewModelProvider(requireActivity()).get(ChatViewModel.class);
         recyclerView = view.findViewById(R.id.messages_view);
-        ivSend = view.findViewById(R.id.ivSend);
+        ImageView ivSend = view.findViewById(R.id.ivSend);
         ivSend.setOnClickListener(v -> loadCatFact());
 
         initRecyclerView();

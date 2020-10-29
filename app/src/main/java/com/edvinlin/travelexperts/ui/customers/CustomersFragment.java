@@ -36,7 +36,6 @@ public class CustomersFragment extends Fragment implements OnRecyclerItemClickLi
     private NavController navController;
     private CustomerAdapter customerAdapter;
     private EditText searchBar;
-    private ImageView ivRefresh;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -54,7 +53,7 @@ public class CustomersFragment extends Fragment implements OnRecyclerItemClickLi
         recyclerView = view.findViewById(R.id.rvList);
         navController = Navigation.findNavController(view);
         searchBar = view.findViewById(R.id.etSearch);
-        ivRefresh = view.findViewById(R.id.ivRefresh);
+        ImageView ivRefresh = view.findViewById(R.id.ivRefresh);
         ivRefresh.setOnClickListener(v -> {
             loadCustomers();
             searchBar.setText("");

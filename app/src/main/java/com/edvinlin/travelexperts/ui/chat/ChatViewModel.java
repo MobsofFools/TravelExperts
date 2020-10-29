@@ -16,7 +16,7 @@ import retrofit2.Response;
 
 public class ChatViewModel extends ViewModel {
     public static final String TAG = "CAT";
-    public MutableLiveData<Cat> mutableCat = new MutableLiveData<>();
+    public final MutableLiveData<Cat> mutableCat = new MutableLiveData<>();
     public Cat cat;
 
     public LiveData<Cat> getCatFact() {

@@ -21,8 +21,8 @@ import retrofit2.Response;
 
 public class SharedCustomerModel extends ViewModel {
     public static final String TAG = "SharedCustomerModel";
-    public MutableLiveData<List<Customer>> mutableCustomerList = new MutableLiveData<>();
-    public MutableLiveData<Customer> mutableCustomer = new MutableLiveData<>();
+    public final MutableLiveData<List<Customer>> mutableCustomerList = new MutableLiveData<>();
+    public final MutableLiveData<Customer> mutableCustomer = new MutableLiveData<>();
     public List<Customer> customerList;
     public Customer testCustomer;
 
@@ -31,7 +31,10 @@ public class SharedCustomerModel extends ViewModel {
         LoadCustomers();
         return mutableCustomerList;
     }
-    public LiveData<Customer> getCustomer() {return mutableCustomer;}
+
+    public LiveData<Customer> getCustomer() {
+        return mutableCustomer;
+    }
 
     public void setCustomer(int position) {
         try {

@@ -78,7 +78,7 @@ public class PackageDataViewFragment extends Fragment {
         dateSetter.setDate(PkgStartDate,getContext());
     }
 
-    private AlertDialog DeleteAskOption() {
+    private void DeleteAskOption() {
         AlertDialog deleteDialogBox = new AlertDialog.Builder(getContext())
                 .setTitle("Delete")
                 .setMessage("Do you want to Delete?")
@@ -91,7 +91,6 @@ public class PackageDataViewFragment extends Fragment {
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
                 .create();
         deleteDialogBox.show();
-        return deleteDialogBox;
     }
     private void updateUI(TravelPackage travelPackage) {
         if (travelPackage.getPackageId() == null) PkgId.setText("");

@@ -22,8 +22,8 @@ import retrofit2.Response;
 public class SharedBookingModel extends ViewModel {
 
     private static final String TAG = "SharedBookingModel";
-    public MutableLiveData<List<Booking>> mutableBookingList = new MutableLiveData<>();
-    public MutableLiveData<Booking> mutableBooking = new MutableLiveData<>();
+    public final MutableLiveData<List<Booking>> mutableBookingList = new MutableLiveData<>();
+    public final MutableLiveData<Booking> mutableBooking = new MutableLiveData<>();
     public List<Booking> bookingList;
     public Booking testBooking;
 

@@ -21,8 +21,8 @@ import retrofit2.Response;
 
 public class SharedPackageModel extends ViewModel {
 
-    public MutableLiveData<List<TravelPackage>> mutablePackageList = new MutableLiveData<>();
-    public MutableLiveData<TravelPackage> mutablePackage = new MutableLiveData<>();
+    public final MutableLiveData<List<TravelPackage>> mutablePackageList = new MutableLiveData<>();
+    public final MutableLiveData<TravelPackage> mutablePackage = new MutableLiveData<>();
     public List<TravelPackage> packageList;
     public TravelPackage testPackage;
 
@@ -31,6 +31,7 @@ public class SharedPackageModel extends ViewModel {
         LoadPackages();
         return mutablePackageList;
     }
+
     public LiveData<TravelPackage> getPackage() {
         return mutablePackage;
     }

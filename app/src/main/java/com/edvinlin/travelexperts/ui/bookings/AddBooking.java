@@ -15,7 +15,6 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.edvinlin.travelexperts.R;
@@ -33,10 +32,6 @@ public class AddBooking extends Fragment {
 
     private SharedBookingModel sharedBookingModel;
     private EditText BookingNo, BookingDate, BookingCustId, BookingTripTypeId, TravelerCount, PackageId;
-
-    public static AddBooking newInstance() {
-        return new AddBooking();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -98,7 +93,7 @@ public class AddBooking extends Fragment {
 
         });
     }
-    private TextWatcher textWatcher = new TextWatcher() {
+    private final TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -132,7 +127,7 @@ public class AddBooking extends Fragment {
         String generatedString = RandomStringUtils.random(ran1, true, false);
         int x = RandomUtils.nextInt(1,9999);
 
-        return generatedString.toUpperCase() + String.valueOf(x);
+        return generatedString.toUpperCase() + x;
 
     }
 

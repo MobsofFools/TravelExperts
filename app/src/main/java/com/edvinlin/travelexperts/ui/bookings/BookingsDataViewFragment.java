@@ -87,7 +87,7 @@ public class BookingsDataViewFragment extends Fragment {
     }
 
 
-    private AlertDialog DeleteAskOption(int id) {
+    private void DeleteAskOption(int id) {
         AlertDialog deleteDialogBox = new AlertDialog.Builder(getContext())
                 .setTitle("Delete")
                 .setMessage("Do you want to Delete?")
@@ -100,7 +100,6 @@ public class BookingsDataViewFragment extends Fragment {
                 .create();
         Log.d("TAG", "ALERT");
         deleteDialogBox.show();
-        return deleteDialogBox;
     }
 
 

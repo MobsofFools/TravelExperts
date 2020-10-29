@@ -1,5 +1,5 @@
 package com.edvinlin.travelexperts.model.listview;
 
 public interface OnRecyclerItemClickListener {
-    public void onItemClick(int position);
+    void onItemClick(int position);
 }

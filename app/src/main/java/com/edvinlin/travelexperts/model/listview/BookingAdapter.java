@@ -19,8 +19,8 @@ import java.util.List;
 
 public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.mViewHolder> implements Filterable {
 
-    OnRecyclerItemClickListener onItemClickListener;
-    private Context context;
+    final OnRecyclerItemClickListener onItemClickListener;
+    private final Context context;
     private List<Booking> bookingList;
     private List<Booking> bookingListFull;
 
@@ -60,32 +60,14 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.mViewHol
         this.bookingListFull = bookingListFull;
     }
 
-    public class mViewHolder extends RecyclerView.ViewHolder {
-        TextView bookingNo;
-
-
-        public mViewHolder(View itemView) {
-            super(itemView);
-            bookingNo = itemView.findViewById(R.id.item1);
-            itemView.setOnClickListener(v -> onItemClickListener.onItemClick(getAdapterPosition()));
-
-
-        }
-    }
-
-    @Override
-    public Filter getFilter() {
-        setBookingListFull(bookingList);
-        return myFilter;
-    }
-    private Filter myFilter = new Filter() {
+    private final Filter myFilter = new Filter() {
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<Booking> filteredList = new ArrayList<>();
-            if (constraint == null || constraint.length() == 0 ) {
+            if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(bookingListFull);
-            }else {
+            } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
                 for (Booking booking : bookingListFull) {
                     if (booking.getBookingNo().toLowerCase().contains(filterPattern)) {
@@ -96,7 +78,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.mViewHol
             }
             FilterResults results = new FilterResults();
             results.values = filteredList;
-            return  results;
+            return results;
         }
 
         @Override
@@ -106,5 +88,24 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.mViewHol
             notifyDataSetChanged();
         }
     };
+
+    @Override
+    public Filter getFilter() {
+        setBookingListFull(bookingList);
+        return myFilter;
+    }
+
+    public class mViewHolder extends RecyclerView.ViewHolder {
+        final TextView bookingNo;
+
+
+        public mViewHolder(View itemView) {
+            super(itemView);
+            bookingNo = itemView.findViewById(R.id.item1);
+            itemView.setOnClickListener(v -> onItemClickListener.onItemClick(getAdapterPosition()));
+
+
+        }
+    }
 }
 

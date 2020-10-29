@@ -1,15 +1,6 @@
 package com.edvinlin.travelexperts.ui.travelpackages;
 
-import androidx.cardview.widget.CardView;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -17,6 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.edvinlin.travelexperts.R;
 import com.edvinlin.travelexperts.model.TravelPackage;
@@ -35,8 +33,34 @@ public class AddTravelPackage extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.add_travel_package_fragment,container,false);
+        return inflater.inflate(R.layout.add_travel_package_fragment, container, false);
     }
+
+    private final TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String i1 = PkgName.getText().toString();
+            String i2 = PkgStartDate.getText().toString();
+            String i3 = PkgEndDate.getText().toString();
+            String i4 = PkgDesc.getText().toString();
+            String i5 = PkgBasePrice.getText().toString();
+            String i6 = PkgAgencyCommission.getText().toString();
+
+            Button btnAdd = getView().findViewById(R.id.btnAdd);
+            btnAdd.setEnabled(!i1.isEmpty() && !i2.isEmpty() && !i3.isEmpty()
+                    && !i4.isEmpty() && !i5.isEmpty() && !i6.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -79,32 +103,8 @@ public class AddTravelPackage extends Fragment {
                     PkgStartDate.getText().toString()
                     );
             sharedPackageModel.AddPackage(travelPackage, getContext());
+            Navigation.findNavController(view).navigate(R.id.navigation_packages);
         });
 
     }
-    private TextWatcher textWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            String i1 = PkgName.getText().toString();
-            String i2 = PkgStartDate.getText().toString();
-            String i3 = PkgEndDate.getText().toString();
-            String i4 = PkgDesc.getText().toString();
-            String i5 = PkgBasePrice.getText().toString();
-            String i6 = PkgAgencyCommission.getText().toString();
-
-            Button btnAdd = getView().findViewById(R.id.btnAdd);
-            btnAdd.setEnabled(!i1.isEmpty() && !i2.isEmpty() && !i3.isEmpty()
-                    && !i4.isEmpty() && !i5.isEmpty() && !i6.isEmpty());
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-    };
 }

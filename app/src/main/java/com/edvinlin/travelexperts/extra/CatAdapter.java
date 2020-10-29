@@ -14,7 +14,7 @@ import com.edvinlin.travelexperts.R;
 import java.util.List;
 
 public class CatAdapter extends RecyclerView.Adapter<CatAdapter.ViewHolder> {
-    private Context context;
+    private final Context context;
     private List<Cat> catList;
 
     public CatAdapter(Context context, List<Cat> catList) {
@@ -49,7 +49,7 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView catFact;
+        final TextView catFact;
 
         public ViewHolder(View itemView) {
             super(itemView);
