@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -52,6 +53,8 @@ public class TravelPackagesFragment extends Fragment implements OnRecyclerItemCl
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         sharedPackageModel = new ViewModelProvider(requireActivity()).get(SharedPackageModel.class);
         recyclerView = view.findViewById(R.id.rvList);
         navController = Navigation.findNavController(view);
@@ -84,8 +87,8 @@ public class TravelPackagesFragment extends Fragment implements OnRecyclerItemCl
             }
         });
 
-        final FloatingActionButton addbtn = view.findViewById(R.id.fabAdd);
-        addbtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_addpackage));
+        final FloatingActionButton addBtn = view.findViewById(R.id.fabAdd);
+        addBtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_addpackage));
 
         initRecyclerView();
         loadPackages();

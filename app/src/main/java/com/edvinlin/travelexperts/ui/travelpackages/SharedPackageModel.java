@@ -2,7 +2,6 @@ package com.edvinlin.travelexperts.ui.travelpackages;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
@@ -13,10 +12,7 @@ import com.edvinlin.travelexperts.model.TravelPackage;
 import com.edvinlin.travelexperts.remote.ApiClient;
 import com.edvinlin.travelexperts.remote.ApiInterface;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -25,7 +21,6 @@ import retrofit2.Response;
 
 public class SharedPackageModel extends ViewModel {
 
-    public static final String TAG = "SharedPackageModel";
     public MutableLiveData<List<TravelPackage>> mutablePackageList = new MutableLiveData<>();
     public MutableLiveData<TravelPackage> mutablePackage = new MutableLiveData<>();
     public List<TravelPackage> packageList;

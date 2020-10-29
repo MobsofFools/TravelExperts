@@ -25,22 +25,22 @@
     <fragment
         android:id="@+id/navigation_packagedataview"
         android:name="com.edvinlin.travelexperts.ui.travelpackages.PackageDataViewFragment"
-        android:label="@string/dataview"
+        android:label="@string/card1"
         tools:layout="@layout/data_view_fragment_package" />
     <fragment
         android:id="@+id/navigation_customerdataview"
         android:name="com.edvinlin.travelexperts.ui.customers.CustomerDataViewFragment"
-        android:label="@string/dataview"
+        android:label="@string/card3"
         tools:layout="@layout/data_view_fragment_customer" />
     <fragment
         android:id="@+id/navigation_productdataview"
         android:name="com.edvinlin.travelexperts.ui.products.ProductsDataViewFragment"
-        android:label="@string/dataview"
+        android:label="@string/card5"
         tools:layout="@layout/data_view_fragment_products" />
     <fragment
         android:id="@+id/navigation_bookingsdataview"
         android:name="com.edvinlin.travelexperts.ui.bookings.BookingsDataViewFragment"
-        android:label="@string/dataview"
+        android:label="@string/card4"
         tools:layout="@layout/data_view_fragment_bookings" />
     <!-- Add Views -->
     <fragment
