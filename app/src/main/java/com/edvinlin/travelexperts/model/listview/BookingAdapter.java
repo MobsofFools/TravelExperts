@@ -36,6 +36,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.mViewHol
         notifyDataSetChanged();
     }
 
+    //Pick layout for items
     @NonNull
     @Override
     public BookingAdapter.mViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
