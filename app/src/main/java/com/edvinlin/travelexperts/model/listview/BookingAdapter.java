@@ -57,7 +57,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.mViewHol
         }
         return 0;
     }
-// Filter Start
+// Filter Start (On Click Method Clashes with Filter, results go to first few customers)
     public void setBookingListFull(List<Booking> bookingListFull) {
         this.bookingListFull = bookingListFull;
     }
