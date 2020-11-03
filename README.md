@@ -5,3 +5,5 @@ Uses Retrofit2 to consume API </br>
 TravelExperts REST API is hosted locally </br>
 Chat functionality replaced with Cat Fact API </br>
 Bookings folder commented thouroughly for learning purposes </br>
+<p align="right">
+  <img src="./TravelExperts.PNG">
